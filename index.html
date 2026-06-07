@@ -887,7 +887,52 @@ function showToast(icon,msg){
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-render();
+// ── ΦΟΡΤΩΣΗ ΠΡΑΓΜΑΤΙΚΩΝ ΔΕΔΟΜΕΝΩΝ ΑΠΟ API ──
+async function loadRealData() {
+  showToast('🔄', 'Φόρτωση δεδομένων...');
+  try {
+    const r = await fetch('/api/all-sites');
+    const data = await r.json();
+    if (data.ok && data.sites && data.sites.length > 0) {
+      // Ενημέρωσε τον πίνακα SITES με πραγματικά δεδομένα
+      data.sites.forEach(apiSite => {
+        const existing = SITES.find(s => s.name === apiSite.name || s.id === apiSite.id);
+        if (existing) {
+          existing.kw     = apiSite.kw;
+          existing.status = apiSite.status;
+          existing.err    = apiSite.err;
+        } else {
+          // Νέα εγκατάσταση που δεν υπάρχει στα demo — πρόσθεσέ την
+          SITES.push({
+            id:     SITES.length + 100,
+            name:   apiSite.name,
+            loc:    apiSite.name,
+            brand:  apiSite.brand,
+            kw:     apiSite.kw,
+            cap:    apiSite.cap || 30,
+            status: apiSite.status,
+            err:    apiSite.err,
+          });
+        }
+      });
+      render();
+      showToast('✅', `${data.sites.length} εγκαταστάσεις φορτώθηκαν!`);
+
+      // Ανανέωση κάθε 5 λεπτά
+      setTimeout(loadRealData, 5 * 60 * 1000);
+    } else {
+      showToast('⚠️', 'Demo δεδομένα — API δεν απάντησε');
+      render();
+    }
+  } catch(e) {
+    console.error('API error:', e);
+    showToast('⚠️', 'Σφάλμα σύνδεσης — demo δεδομένα');
+    render();
+  }
+}
+
+// Ξεκίνα με φόρτωση πραγματικών δεδομένων
+loadRealData();
 </script>
 </body>
 </html>
