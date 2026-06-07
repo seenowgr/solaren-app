@@ -894,44 +894,35 @@ async function loadRealData() {
     const r = await fetch('/api/all-sites');
     const data = await r.json();
     if (data.ok && data.sites && data.sites.length > 0) {
-      // Ενημέρωσε τον πίνακα SITES με πραγματικά δεδομένα
-      data.sites.forEach(apiSite => {
-        const existing = SITES.find(s => s.name === apiSite.name || s.id === apiSite.id);
-        if (existing) {
-          existing.kw     = apiSite.kw;
-          existing.status = apiSite.status;
-          existing.err    = apiSite.err;
-        } else {
-          // Νέα εγκατάσταση που δεν υπάρχει στα demo — πρόσθεσέ την
-          SITES.push({
-            id:     SITES.length + 100,
-            name:   apiSite.name,
-            loc:    apiSite.name,
-            brand:  apiSite.brand,
-            kw:     apiSite.kw,
-            cap:    apiSite.cap || 30,
-            status: apiSite.status,
-            err:    apiSite.err,
-          });
-        }
+      // Άδειασε τα demo δεδομένα και βάλε μόνο τα πραγματικά
+      SITES.length = 0;
+      data.sites.forEach((apiSite, idx) => {
+        SITES.push({
+          id:     idx + 1,
+          name:   apiSite.name,
+          loc:    apiSite.name,
+          brand:  apiSite.brand,
+          kw:     apiSite.kw || 0,
+          cap:    apiSite.cap || 30,
+          status: apiSite.status || 'ok',
+          err:    apiSite.err || null,
+        });
       });
       render();
       showToast('✅', `${data.sites.length} εγκαταστάσεις φορτώθηκαν!`);
-
       // Ανανέωση κάθε 5 λεπτά
       setTimeout(loadRealData, 5 * 60 * 1000);
     } else {
-      showToast('⚠️', 'Demo δεδομένα — API δεν απάντησε');
       render();
+      showToast('⚠️', 'Demo δεδομένα — API δεν απάντησε');
     }
   } catch(e) {
     console.error('API error:', e);
-    showToast('⚠️', 'Σφάλμα σύνδεσης — demo δεδομένα');
     render();
+    showToast('⚠️', 'Σφάλμα σύνδεσης — demo δεδομένα');
   }
 }
 
-// Ξεκίνα με φόρτωση πραγματικών δεδομένων
 loadRealData();
 </script>
 </body>
