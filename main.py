@@ -89,14 +89,19 @@ def get_huawei_token():
     global _huawei_token, _huawei_expires
     if _huawei_token and datetime.now() < (_huawei_expires or datetime.min):
         return _huawei_token
+    # Force fresh login
+    _huawei_token = None
     r = requests.post(
         "https://eu5.fusionsolar.huawei.com/thirdData/login",
         json={"userName": os.getenv("HUAWEI_USER"), "systemCode": os.getenv("HUAWEI_PASS")},
         timeout=10
     )
-    if r.json().get("success"):
+    data = r.json()
+    log.info(f"Huawei login response: {data.get('success')} / {data.get('failCode')}")
+    if data.get("success"):
         _huawei_token = r.cookies.get("XSRF-TOKEN")
-        _huawei_expires = datetime.now() + timedelta(hours=1)
+        _huawei_expires = datetime.now() + timedelta(minutes=30)  # 30 λεπτά για ασφάλεια
+        log.info(f"Huawei token refreshed: {_huawei_token[:10] if _huawei_token else 'None'}...")
     return _huawei_token
 
 @app.get("/api/huawei/kpi-debug")
@@ -163,6 +168,21 @@ def huawei_sites():
         stations = data.get("data", [])
         if not isinstance(stations, list):
             stations = []
+
+        # Αν άδειο, δοκίμασε ξανά με νέο token
+        if not stations:
+            _huawei_token = None
+            _huawei_expires = None
+            token = get_huawei_token()
+            headers = {"XSRF-TOKEN": token}
+            r = requests.post(
+                "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
+                json={}, headers=headers, timeout=15
+            )
+            data = r.json()
+            stations = data.get("data", [])
+            if not isinstance(stations, list):
+                stations = []
 
         # Βήμα 2: Πάρε παραγωγή σε πραγματικό χρόνο για όλες μαζί
         codes = [s.get("stationCode","") for s in stations if s.get("stationCode")]
