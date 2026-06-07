@@ -181,37 +181,45 @@ def huawei_sites():
                     for k in kpi_data:
                         code = k.get("stationCode","")
                         kpi  = k.get("dataItemMap", {})
-                        # Huawei χρησιμοποιεί 'radiation_intensity' για active power σε kW
-                        power = (
-                            kpi.get("radiation_intensity") or
-                            kpi.get("power_profit") or
-                            kpi.get("inverter_power") or
-                            kpi.get("ongrid_power") or 0
-                        )
-                        power_map[code] = float(power)
+                        # day_power = παραγωγή σήμερα kWh
+                        # month_power = παραγωγή μήνα kWh
+                        # real_health_state: 1=ok, 2=warn, 3=error
+                        power = kpi.get("day_power") or 0
+                        health = kpi.get("real_health_state") or 1
+                        power_map[code] = {
+                            "kw": round(float(power), 2),
+                            "health": int(health),
+                            "month_power": round(float(kpi.get("month_power") or 0), 2),
+                            "total_power": round(float(kpi.get("total_power") or 0), 2),
+                        }
 
         sites = []
         for s in stations:
             code   = s.get("stationCode","")
             name   = s.get("stationName", f"Huawei-{code}")
             cap    = float(s.get("capacity") or 0)
-            kw     = power_map.get(code, 0.0)
-            status = "ok"
-            if kw == 0 and cap > 0:
-                # Έλεγξε αν είναι ώρα ηλίου (7-19)
-                from datetime import datetime
-                h = datetime.now().hour
-                if 7 <= h <= 19:
-                    status = "warn"
+            info   = power_map.get(code, {})
+            kw     = info.get("kw", 0.0)
+            health = info.get("health", 1)
+
+            # real_health_state: 1=λειτουργεί, 2=προειδοποίηση, 3=σφάλμα
+            if health == 3:
+                status = "error"
+            elif health == 2:
+                status = "warn"
+            else:
+                status = "ok"
 
             sites.append({
-                "id":     code,
-                "name":   name,
-                "brand":  "huawei",
-                "kw":     round(kw, 2),
-                "cap":    round(cap, 1),
-                "status": status,
-                "err":    None,
+                "id":          code,
+                "name":        name,
+                "brand":       "huawei",
+                "kw":          kw,
+                "cap":         round(cap, 1),
+                "status":      status,
+                "err":         None if status == "ok" else "Σφάλμα εγκατάστασης",
+                "month_power": info.get("month_power", 0),
+                "total_power": info.get("total_power", 0),
             })
 
         return {"ok": True, "sites": sites, "raw_count": len(stations)}
