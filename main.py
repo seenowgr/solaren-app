@@ -1,3 +1,4 @@
+
 """
 Solaren — Cloud Backend
 FastAPI server που τρέχει στο Render.com
@@ -107,18 +108,33 @@ def huawei_sites():
             "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
             json={}, headers={"XSRF-TOKEN": token}, timeout=15
         )
-        stations = r.json().get("data", [])
-        return {"ok": True, "sites": [
-            {
-                "id":    str(s["dn"]),
-                "name":  s.get("stationName", f"Huawei-{s['dn']}"),
+        data = r.json()
+        stations = data.get("data", [])
+        if not isinstance(stations, list):
+            stations = []
+        sites = []
+        for s in stations:
+            # Huawei uses different field names depending on API version
+            site_id = s.get("dn") or s.get("stationCode") or s.get("plantCode") or str(s.get("id",""))
+            name    = s.get("stationName") or s.get("plantName") or f"Huawei-{site_id}"
+            # Power: try multiple field paths
+            kpi     = s.get("realKpi") or s.get("kpiInfo") or {}
+            power   = kpi.get("activePower") or kpi.get("radiationIntensity") or s.get("activePower") or 0
+            cap     = s.get("capacity") or s.get("installedCapacity") or 0
+            status_val = s.get("status") or s.get("healthState") or 1
+            if status_val in (1, "1", "normal"): status = "ok"
+            elif status_val in (2, "2", "warning"): status = "warn"
+            else: status = "error"
+            sites.append({
+                "id":    str(site_id),
+                "name":  name,
                 "brand": "huawei",
-                "kw":    round(float(s.get("realKpi", {}).get("radiationIntensity", 0)), 2),
-                "cap":   round(float(s.get("capacity", 0)), 1),
-                "status":"ok" if s.get("status") == 1 else ("warn" if s.get("status") == 2 else "error"),
+                "kw":    round(float(power), 2),
+                "cap":   round(float(cap), 1),
+                "status": status,
                 "err":   None,
-            } for s in stations
-        ]}
+            })
+        return {"ok": True, "sites": sites, "raw_count": len(stations)}
     except Exception as e:
         log.error(f"Huawei error: {e}")
         return {"ok": False, "error": str(e), "sites": []}
