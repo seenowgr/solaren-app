@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solaren β€” Watchlist</title>
+<title>Solaren — Watchlist</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -74,7 +74,7 @@ main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column
 .page-sub{font-size:12px;color:var(--tx2);margin-top:3px;}
 .search-wrap{display:flex;gap:8px;align-items:center;}
 .si{position:relative;}
-.si::before{content:'π”';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;pointer-events:none;}
+.si::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;pointer-events:none;}
 .search-inp{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:7px 12px 7px 30px;
   font-size:13px;color:var(--tx);width:210px;transition:all .2s;outline:none;}
 .search-inp:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(22,119,255,.12);}
@@ -112,7 +112,7 @@ main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column
   border-radius:8px;padding:5px 10px;color:var(--tx2);outline:none;cursor:pointer;}
 .count-lbl{font-size:12px;color:var(--tx3);margin-left:auto;}
 
-/* β”€β”€ CARDS β”€β”€ */
+/* ── CARDS ── */
 .sites-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .site-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
   box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;}
@@ -155,7 +155,7 @@ main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column
 .np-fr{background:var(--fr-l);color:var(--fr);}
 .fbtn.f-brand.active{border-color:var(--tx2);color:var(--tx);background:var(--bg2);}
 
-/* β”€β”€ CHART TOGGLE β”€β”€ */
+/* ── CHART TOGGLE ── */
 .chart-toggle{display:flex;align-items:center;justify-content:space-between;
   padding:9px 14px;border-top:1px solid var(--bdr);cursor:pointer;transition:background .15s;user-select:none;}
 .chart-toggle:hover{background:var(--bl-l);}
@@ -164,7 +164,7 @@ main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column
 .chart-arrow{font-size:10px;color:var(--tx3);transition:transform .25s;}
 .chart-arrow.open{transform:rotate(180deg);}
 
-/* β”€β”€ CHART SECTION β”€β”€ */
+/* ── CHART SECTION ── */
 .chart-section{overflow:hidden;max-height:0;transition:max-height .38s cubic-bezier(.4,0,.2,1);border-top:none;}
 .chart-section.open{max-height:380px;border-top:1px solid var(--bdr);}
 .chart-inner{padding:14px 14px 10px;}
@@ -263,7 +263,7 @@ canvas.mini{width:100%!important;height:130px!important;}
   padding:11px 18px;font-size:13px;color:#fff;display:flex;align-items:center;gap:10px;
   box-shadow:0 6px 24px rgba(0,0,0,.25);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-/* β”€β”€ SECTION HEADERS β”€β”€ */
+/* ── SECTION HEADERS ── */
 .sec-header{
   grid-column:1/-1;
   display:flex;align-items:center;gap:10px;
@@ -293,7 +293,7 @@ canvas.mini{width:100%!important;height:130px!important;}
 
 <header>
   <div class="logo">
-    <div class="logo-icon">β€οΈ</div>
+    <div class="logo-icon">☀️</div>
     <span style="color:var(--bl)">Solar</span><span style="color:var(--or)">en</span>
   </div>
   <div class="header-right">
@@ -302,69 +302,69 @@ canvas.mini{width:100%!important;height:130px!important;}
       <button class="htab active">Watchlist</button>
       <button class="htab">Analytics</button>
     </div>
-    <div class="hbtn">π”” <span class="bc">3</span></div>
-    <div class="hbtn">β™οΈ</div>
+    <div class="hbtn">🔔 <span class="bc">3</span></div>
+    <div class="hbtn">⚙️</div>
     <div class="user-pill">
-      <div class="user-av">Ξ“Ξ</div>
-      <span class="user-name">Ξ›ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟΟ‚</span>
+      <div class="user-av">ΓΚ</div>
+      <span class="user-name">Λογαριασμός</span>
     </div>
   </div>
 </header>
 
 <div class="layout">
   <nav>
-    <div class="nav-sec">ΞΟΟΞΉΞΏ</div>
-    <div class="nav-item" onclick="showPage('dashboard')"><span class="nav-icon">β΅</span>Dashboard</div>
-    <div class="nav-item active" id="nav-watchlist" onclick="showPage('watchlist')"><span class="nav-icon">β­</span>Watchlist <span class="nav-pill np-bl" id="wlCount">0</span></div>
-    <div class="nav-item" onclick="showPage('sites')"><span class="nav-icon">π­</span>Ξ•Ξ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</div>
-    <div class="nav-item" onclick="showPage('analytics')"><span class="nav-icon">π“</span>Ξ‘Ξ½Ξ±Ξ»Ο…Ο„ΞΉΞΊΞ¬</div>
+    <div class="nav-sec">Κύριο</div>
+    <div class="nav-item" onclick="showPage('dashboard')"><span class="nav-icon">⚡</span>Dashboard</div>
+    <div class="nav-item active" id="nav-watchlist" onclick="showPage('watchlist')"><span class="nav-icon">⭐</span>Watchlist <span class="nav-pill np-bl" id="wlCount">0</span></div>
+    <div class="nav-item" onclick="showPage('sites')"><span class="nav-icon">🏭</span>Εγκαταστάσεις</div>
+    <div class="nav-item" onclick="showPage('analytics')"><span class="nav-icon">📈</span>Αναλυτικά</div>
     <div class="nav-sec">Brands</div>
-    <div class="nav-item" onclick="filterByBrand('sungrow')"><span class="nav-icon">β—‰</span>Sungrow <span class="nav-pill np-bl" id="cnt-sungrow">β€”</span></div>
-    <div class="nav-item" onclick="filterByBrand('huawei')"><span class="nav-icon">β—‰</span>Huawei <span class="nav-pill np-rd" id="cnt-huawei">β€”</span></div>
-    <div class="nav-item" onclick="filterByBrand('goodwe')"><span class="nav-icon">β—‰</span>GoodWe <span class="nav-pill np-gr" id="cnt-goodwe">β€”</span></div>
-    <div class="nav-item" onclick="filterByBrand('fronius')"><span class="nav-icon">β—‰</span>Fronius <span class="nav-pill np-fr" id="cnt-fronius">β€”</span></div>
-    <div class="nav-sec">Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚</div>
-    <div class="nav-item" onclick="showPage('alerts')"><span class="nav-icon">π¨</span>Alerts <span class="nav-pill np-rd" id="alertNavCount">0</span></div>
-    <div class="nav-item" onclick="showPage('email')"><span class="nav-icon">β‰οΈ</span>Email</div>
-    <div class="nav-item" onclick="showPage('push')"><span class="nav-icon">π“±</span>Push</div>
-    <div class="nav-sec">Ξ£ΟΟƒΟ„Ξ·ΞΌΞ±</div>
-    <div class="nav-item" onclick="showPage('apikeys')"><span class="nav-icon">π”‘</span>API Keys</div>
-    <div class="nav-item" onclick="showPage('account')"><span class="nav-icon">π‘¤</span>Ξ›ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟΟ‚</div>
+    <div class="nav-item" onclick="filterByBrand('sungrow')"><span class="nav-icon">◉</span>Sungrow <span class="nav-pill np-bl" id="cnt-sungrow">—</span></div>
+    <div class="nav-item" onclick="filterByBrand('huawei')"><span class="nav-icon">◉</span>Huawei <span class="nav-pill np-rd" id="cnt-huawei">—</span></div>
+    <div class="nav-item" onclick="filterByBrand('goodwe')"><span class="nav-icon">◉</span>GoodWe <span class="nav-pill np-gr" id="cnt-goodwe">—</span></div>
+    <div class="nav-item" onclick="filterByBrand('fronius')"><span class="nav-icon">◉</span>Fronius <span class="nav-pill np-fr" id="cnt-fronius">—</span></div>
+    <div class="nav-sec">Ειδοποιήσεις</div>
+    <div class="nav-item" onclick="showPage('alerts')"><span class="nav-icon">🚨</span>Alerts <span class="nav-pill np-rd" id="alertNavCount">0</span></div>
+    <div class="nav-item" onclick="showPage('email')"><span class="nav-icon">✉️</span>Email</div>
+    <div class="nav-item" onclick="showPage('push')"><span class="nav-icon">📱</span>Push</div>
+    <div class="nav-sec">Σύστημα</div>
+    <div class="nav-item" onclick="showPage('apikeys')"><span class="nav-icon">🔑</span>API Keys</div>
+    <div class="nav-item" onclick="showPage('account')"><span class="nav-icon">👤</span>Λογαριασμός</div>
   </nav>
 
   <main>
     <div class="page-head">
       <div>
-        <div class="page-title">β­ Watchlist</div>
-        <div class="page-sub">ΞΞ»ΞΉΞΊ ΟƒΟ„ΞΏ π“ Ξ³ΞΉΞ± Ξ³ΟΞ¬Ο†Ξ·ΞΌΞ± Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ®Ο‚ ΞΌΞµ ΟƒΟΞ³ΞΊΟΞΉΟƒΞ· Ο‡ΞΈΞµΟ‚ / ΟƒΞ®ΞΌΞµΟΞ±</div>
+        <div class="page-title">⭐ Watchlist</div>
+        <div class="page-sub">Κλικ στο 📈 για γράφημα παραγωγής με σύγκριση χθες / σήμερα</div>
       </div>
       <div class="search-wrap">
-        <div class="si"><input class="search-inp" type="text" placeholder="Ξ‘Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ·..." oninput="filterSites(this.value)"></div>
-        <button class="btn-sec" onclick="clearAll()">ΞΞ±ΞΈΞ±ΟΞΉΟƒΞΌΟΟ‚</button>
-        <button class="btn-pri" onclick="saveWatchlist()">π’Ύ Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ·</button>
+        <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="filterSites(this.value)"></div>
+        <button class="btn-sec" onclick="clearAll()">Καθαρισμός</button>
+        <button class="btn-pri" onclick="saveWatchlist()">💾 Αποθήκευση</button>
       </div>
     </div>
 
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ξ£Ο„ΞΏ Watchlist</div><div class="kpi-ic ki-bl">β­</div></div>
-        <div class="kpi-val" id="sumCount">0 <span class="kpi-unit">ΞµΞ³ΞΊ/ΟƒΞµΞΉΟ‚</span></div>
-        <div class="kpi-trend" id="sumSub"><span class="tr-wa">Ξ•Ο€Ξ―Ξ»ΞµΞΎΞµ ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® Ο„ΟΟΞ±</div><div class="kpi-ic ki-or">β΅</div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Στο Watchlist</div><div class="kpi-ic ki-bl">⭐</div></div>
+        <div class="kpi-val" id="sumCount">0 <span class="kpi-unit">εγκ/σεις</span></div>
+        <div class="kpi-trend" id="sumSub"><span class="tr-wa">Επίλεξε εγκαταστάσεις</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Παραγωγή τώρα</div><div class="kpi-ic ki-or">⚡</div></div>
         <div class="kpi-val" id="sumKw">0 <span class="kpi-unit">kW</span></div>
-        <div class="kpi-trend" id="sumKwSub"><span class="tr-wa">β€”</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Alerts watchlist</div><div class="kpi-ic ki-rd">π¨</div></div>
+        <div class="kpi-trend" id="sumKwSub"><span class="tr-wa">—</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Alerts watchlist</div><div class="kpi-ic ki-rd">🚨</div></div>
         <div class="kpi-val" id="sumAlerts">0</div>
-        <div class="kpi-trend"><span class="tr-wa">ΞµΞ½ΞµΟΞ³Ξ¬ ΟƒΟ†Ξ¬Ξ»ΞΌΞ±Ο„Ξ±</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Push ΞµΞ½ΞµΟΞ³Ξ­Ο‚</div><div class="kpi-ic ki-gr">π“±</div></div>
+        <div class="kpi-trend"><span class="tr-wa">ενεργά σφάλματα</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Push ενεργές</div><div class="kpi-ic ki-gr">📱</div></div>
         <div class="kpi-val" id="sumPush">0</div>
-        <div class="kpi-trend"><span class="tr-up">ΞµΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚ on</span></div></div>
+        <div class="kpi-trend"><span class="tr-up">ειδοποιήσεις on</span></div></div>
     </div>
 
     <div class="toolbar">
-      <button class="fbtn f-all active" onclick="setFilter(this,'all')">ΞΞ»ΞµΟ‚</button>
-      <button class="fbtn" onclick="setFilter(this,'starred')">β­ Watchlist ΞΌΞΏΟ…</button>
-      <button class="fbtn f-err" onclick="setFilter(this,'error')">π”΄ Ξ£Ο†Ξ¬Ξ»ΞΌΞ±</button>
-      <button class="fbtn f-warn" onclick="setFilter(this,'warn')">π΅ Ξ ΟΞΏΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·</button>
+      <button class="fbtn f-all active" onclick="setFilter(this,'all')">Όλες</button>
+      <button class="fbtn" onclick="setFilter(this,'starred')">⭐ Watchlist μου</button>
+      <button class="fbtn f-err" onclick="setFilter(this,'error')">🔴 Σφάλμα</button>
+      <button class="fbtn f-warn" onclick="setFilter(this,'warn')">🟡 Προειδοποίηση</button>
       <div class="tbsep"></div>
       <button class="fbtn f-brand" onclick="setFilter(this,'sungrow')">Sungrow</button>
       <button class="fbtn f-brand" onclick="setFilter(this,'huawei')">Huawei</button>
@@ -372,103 +372,103 @@ canvas.mini{width:100%!important;height:130px!important;}
       <button class="fbtn f-brand" onclick="setFilter(this,'fronius')" style="color:var(--fr)">Fronius</button>
       <div class="tbsep"></div>
       <select class="sort-sel" onchange="sortSites(this.value)">
-        <option value="name">Ξ‘β€“Ξ© ΞΞ½ΞΏΞΌΞ±</option>
-        <option value="kw">Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® β†“</option>
-        <option value="status">ΞΞ±Ο„Ξ¬ΟƒΟ„Ξ±ΟƒΞ·</option>
-        <option value="starred">Watchlist Ο€ΟΟΟ„Ξ±</option>
+        <option value="name">Α–Ω Όνομα</option>
+        <option value="kw">Παραγωγή ↓</option>
+        <option value="status">Κατάσταση</option>
+        <option value="starred">Watchlist πρώτα</option>
       </select>
-      <span class="count-lbl" id="countLbl">β€”</span>
+      <span class="count-lbl" id="countLbl">—</span>
     </div>
 
     <div class="sites-grid" id="sitesGrid"></div>
   </main>
 
-  <!-- β”€β”€ DASHBOARD PAGE β”€β”€ -->
+  <!-- ── DASHBOARD PAGE ── -->
   <main id="page-dashboard" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">β΅ Dashboard</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">⚡ Dashboard</div>
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ξ£Ο…Ξ½ΞΏΞ»ΞΉΞΊΞ® Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® Ο„ΟΟΞ±</div><div class="kpi-ic ki-or">β΅</div></div>
-        <div class="kpi-val" id="dash-kw">β€” <span class="kpi-unit">kW</span></div>
-        <div class="kpi-trend" id="dash-kwsub"><span class="tr-wa">β€”</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ξ•Ξ½ΞµΟΞ³Ξ­Ο‚ ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</div><div class="kpi-ic ki-gr">π­</div></div>
-        <div class="kpi-val" id="dash-ok">β€”</div>
-        <div class="kpi-trend" id="dash-oksub"><span class="tr-wa">β€”</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">ΞΞµ ΟƒΟ†Ξ¬Ξ»ΞΌΞ±</div><div class="kpi-ic ki-rd">π¨</div></div>
-        <div class="kpi-val" id="dash-err" style="color:var(--rd)">β€”</div>
-        <div class="kpi-trend"><span class="tr-wa">ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ξ£Ο…Ξ½ΞΏΞ»ΞΉΞΊΞ­Ο‚ ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</div><div class="kpi-ic ki-bl">π“</div></div>
-        <div class="kpi-val" id="dash-total">β€”</div>
-        <div class="kpi-trend"><span class="tr-wa">ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολική παραγωγή τώρα</div><div class="kpi-ic ki-or">⚡</div></div>
+        <div class="kpi-val" id="dash-kw">— <span class="kpi-unit">kW</span></div>
+        <div class="kpi-trend" id="dash-kwsub"><span class="tr-wa">—</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ενεργές εγκαταστάσεις</div><div class="kpi-ic ki-gr">🏭</div></div>
+        <div class="kpi-val" id="dash-ok">—</div>
+        <div class="kpi-trend" id="dash-oksub"><span class="tr-wa">—</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Με σφάλμα</div><div class="kpi-ic ki-rd">🚨</div></div>
+        <div class="kpi-val" id="dash-err" style="color:var(--rd)">—</div>
+        <div class="kpi-trend"><span class="tr-wa">εγκαταστάσεις</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολικές εγκαταστάσεις</div><div class="kpi-ic ki-bl">📊</div></div>
+        <div class="kpi-val" id="dash-total">—</div>
+        <div class="kpi-trend"><span class="tr-wa">εγκαταστάσεις</span></div></div>
     </div>
     <!-- Brand breakdown -->
     <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:16px;">Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® Ξ±Ξ½Ξ¬ brand</div>
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:16px;">Παραγωγή ανά brand</div>
       <div id="dash-brands" style="display:flex;flex-direction:column;gap:10px;"></div>
     </div>
     <!-- Alerts summary -->
     <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">π¨ Ξ•Ξ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚ ΞΌΞµ Ο€ΟΟΞ²Ξ»Ξ·ΞΌΞ±</div>
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">🚨 Εγκαταστάσεις με πρόβλημα</div>
       <div id="dash-alerts-list"></div>
     </div>
   </main>
 
-  <!-- β”€β”€ SITES PAGE β”€β”€ -->
+  <!-- ── SITES PAGE ── -->
   <main id="page-sites" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
     <div style="display:flex;align-items:center;justify-content:space-between;">
-      <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">π­ ΞΞ»ΞµΟ‚ ΞΏΞΉ Ξ•Ξ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</div>
-      <div class="si"><input class="search-inp" type="text" placeholder="Ξ‘Ξ½Ξ±Ξ¶Ξ®Ο„Ξ·ΟƒΞ·..." oninput="filterAllSites(this.value)" id="allSitesSearch"></div>
+      <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🏭 Όλες οι Εγκαταστάσεις</div>
+      <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="filterAllSites(this.value)" id="allSitesSearch"></div>
     </div>
     <div class="toolbar">
-      <button class="fbtn active" onclick="filterAllSitesBrand(this,'all')">ΞΞ»ΞµΟ‚</button>
+      <button class="fbtn active" onclick="filterAllSitesBrand(this,'all')">Όλες</button>
       <button class="fbtn" onclick="filterAllSitesBrand(this,'sungrow')">Sungrow</button>
       <button class="fbtn" onclick="filterAllSitesBrand(this,'huawei')">Huawei</button>
       <button class="fbtn" onclick="filterAllSitesBrand(this,'goodwe')">GoodWe</button>
       <button class="fbtn" onclick="filterAllSitesBrand(this,'fronius')" style="color:var(--fr)">Fronius</button>
       <div class="tbsep"></div>
-      <button class="fbtn f-err" onclick="filterAllSitesBrand(this,'error')">π”΄ Ξ£Ο†Ξ¬Ξ»ΞΌΞ±</button>
-      <button class="fbtn f-warn" onclick="filterAllSitesBrand(this,'warn')">π΅ Ξ ΟΞΏΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·</button>
-      <span class="count-lbl" id="allSitesCount">β€”</span>
+      <button class="fbtn f-err" onclick="filterAllSitesBrand(this,'error')">🔴 Σφάλμα</button>
+      <button class="fbtn f-warn" onclick="filterAllSitesBrand(this,'warn')">🟡 Προειδοποίηση</button>
+      <span class="count-lbl" id="allSitesCount">—</span>
     </div>
     <div class="sites-grid" id="allSitesGrid"></div>
   </main>
 
-  <!-- β”€β”€ ANALYTICS PAGE β”€β”€ -->
+  <!-- ── ANALYTICS PAGE ── -->
   <main id="page-analytics" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">π“ Ξ‘Ξ½Ξ±Ξ»Ο…Ο„ΞΉΞΊΞ¬</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">📈 Αναλυτικά</div>
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-lbl">Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® ΟƒΞ®ΞΌΞµΟΞ±</div>
-        <div class="kpi-val" id="an-today">β€” <span class="kpi-unit">kWh</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® ΞΌΞ®Ξ½Ξ±</div>
-        <div class="kpi-val" id="an-month">β€” <span class="kpi-unit">kWh</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® Ξ­Ο„ΞΏΟ…Ο‚</div>
-        <div class="kpi-val" id="an-year">β€” <span class="kpi-unit">MWh</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">ΞΞ­ΟƒΞ· Ξ±Ο€ΟΞ΄ΞΏΟƒΞ·</div>
-        <div class="kpi-val" id="an-avg">β€” <span class="kpi-unit">%</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Παραγωγή σήμερα</div>
+        <div class="kpi-val" id="an-today">— <span class="kpi-unit">kWh</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Παραγωγή μήνα</div>
+        <div class="kpi-val" id="an-month">— <span class="kpi-unit">kWh</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Παραγωγή έτους</div>
+        <div class="kpi-val" id="an-year">— <span class="kpi-unit">MWh</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Μέση απόδοση</div>
+        <div class="kpi-val" id="an-avg">— <span class="kpi-unit">%</span></div></div>
     </div>
     <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">ΞΞ±Ο„Ξ¬Ο„Ξ±ΞΎΞ· ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΟ‰Ξ½ β€” Ξ Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® ΟƒΞ®ΞΌΞµΟΞ±</div>
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Κατάταξη εγκαταστάσεων — Παραγωγή σήμερα</div>
       <div id="an-ranking"></div>
     </div>
     <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Ξ‘Ξ½Ξ¬Ξ»Ο…ΟƒΞ· Ξ±Ξ½Ξ¬ brand</div>
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Ανάλυση ανά brand</div>
       <div id="an-brands"></div>
     </div>
   </main>
 
-  <!-- β”€β”€ ALERTS PAGE β”€β”€ -->
+  <!-- ── ALERTS PAGE ── -->
   <main id="page-alerts" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">π¨ Alerts</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🚨 Alerts</div>
     <div id="alerts-list"></div>
   </main>
 
-  <!-- β”€β”€ EMAIL PAGE β”€β”€ -->
+  <!-- ── EMAIL PAGE ── -->
   <main id="page-email" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">β‰οΈ Email Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">✉️ Email Ειδοποιήσεις</div>
     <div class="kpi" style="padding:22px;max-width:520px;">
-      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ξ΅ΟΞΈΞΌΞΉΟƒΞµ Ο„ΞΏ email Ξ³ΞΉΞ± Ξ½Ξ± Ξ»Ξ±ΞΌΞ²Ξ¬Ξ½ΞµΞΉΟ‚ ΞµΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚ ΟƒΟ†Ξ±Ξ»ΞΌΞ¬Ο„Ο‰Ξ½.</div>
+      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ρύθμισε το email για να λαμβάνεις ειδοποιήσεις σφαλμάτων.</div>
       <div style="display:flex;flex-direction:column;gap:12px;">
         <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Email Ξ±Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ®Ο‚ (Gmail)</div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Email αποστολής (Gmail)</div>
           <input class="search-inp" style="width:100%;" type="email" id="emailFrom" placeholder="alerts@gmail.com">
         </div>
         <div>
@@ -476,48 +476,48 @@ canvas.mini{width:100%!important;height:130px!important;}
           <input class="search-inp" style="width:100%;" type="password" id="emailPass" placeholder="xxxx xxxx xxxx xxxx">
         </div>
         <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ® ΟƒΞµ (email ΟƒΞΏΟ…)</div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Αποστολή σε (email σου)</div>
           <input class="search-inp" style="width:100%;" type="email" id="emailTo" placeholder="info@solaren.gr">
         </div>
         <div style="background:var(--bl-l);border-radius:8px;padding:12px;font-size:12px;color:var(--bl);">
-          π’΅ Ξ“ΞΉΞ± Gmail App Password: Google Account β†’ Security β†’ 2-Step Verification β†’ App Passwords
+          💡 Για Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
         </div>
-        <button class="btn-pri" onclick="saveEmailSettings()">π’Ύ Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ·</button>
+        <button class="btn-pri" onclick="saveEmailSettings()">💾 Αποθήκευση</button>
       </div>
     </div>
   </main>
 
-  <!-- β”€β”€ PUSH PAGE β”€β”€ -->
+  <!-- ── PUSH PAGE ── -->
   <main id="page-push" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">π“± Push Notifications</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">📱 Push Notifications</div>
     <div class="kpi" style="padding:22px;max-width:520px;">
-      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ξ•Ξ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞµ push notifications Ξ³ΞΉΞ± Ξ½Ξ± Ξ»Ξ±ΞΌΞ²Ξ¬Ξ½ΞµΞΉΟ‚ ΞµΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚ ΟƒΟ„ΞΏ ΞΊΞΉΞ½Ξ·Ο„Ο ΞΊΞ±ΞΉ desktop.</div>
+      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ενεργοποίησε push notifications για να λαμβάνεις ειδοποιήσεις στο κινητό και desktop.</div>
       <div style="display:flex;flex-direction:column;gap:14px;">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
           <div>
             <div style="font-size:13px;font-weight:600;color:var(--tx);">Browser Notifications</div>
-            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚ ΟƒΞµ Ξ±Ο…Ο„ΟΞ½ Ο„ΞΏΞ½ browser</div>
+            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Ειδοποιήσεις σε αυτόν τον browser</div>
           </div>
-          <button class="btn-pri" id="pushEnableBtn" onclick="enablePush()">Ξ•Ξ½ΞµΟΞ³ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·</button>
+          <button class="btn-pri" id="pushEnableBtn" onclick="enablePush()">Ενεργοποίηση</button>
         </div>
         <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
           <div>
-            <div style="font-size:13px;font-weight:600;color:var(--tx);">Firebase FCM (ΞΊΞΉΞ½Ξ·Ο„Ο)</div>
-            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Server Key Ξ±Ο€Ο Firebase Console</div>
+            <div style="font-size:13px;font-weight:600;color:var(--tx);">Firebase FCM (κινητό)</div>
+            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Server Key από Firebase Console</div>
           </div>
-          <span style="font-size:11px;color:var(--tx3);">ΞΞ­ΟƒΟ‰ Railway Variables</span>
+          <span style="font-size:11px;color:var(--tx3);">Μέσω Railway Variables</span>
         </div>
         <div style="background:var(--bl-l);border-radius:8px;padding:12px;font-size:12px;color:var(--bl);">
-          π’΅ Ξ“ΞΉΞ± mobile push: Ξ²Ξ¬Ξ»Ξµ FCM_SERVER_KEY ΟƒΟ„ΞΏ Railway β†’ Variables
+          💡 Για mobile push: βάλε FCM_SERVER_KEY στο Railway → Variables
         </div>
       </div>
     </div>
   </main>
 
-  <!-- β”€β”€ API KEYS PAGE β”€β”€ -->
+  <!-- ── API KEYS PAGE ── -->
   <main id="page-apikeys" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">π”‘ API Keys</div>
-    <div style="font-size:13px;color:var(--tx2);">Ξ¤Ξ± API keys Ξ΄ΞΉΞ±Ο‡ΞµΞΉΟΞ―Ξ¶ΞΏΞ½Ο„Ξ±ΞΉ ΞΌΞ­ΟƒΟ‰ Ο„ΞΏΟ… Railway.app β†’ Variables Ξ³ΞΉΞ± Ξ±ΟƒΟ†Ξ¬Ξ»ΞµΞΉΞ±.</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🔑 API Keys</div>
+    <div style="font-size:13px;color:var(--tx2);">Τα API keys διαχειρίζονται μέσω του Railway.app → Variables για ασφάλεια.</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div class="kpi" style="padding:18px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -526,7 +526,7 @@ canvas.mini{width:100%!important;height:130px!important;}
         </div>
         <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">SUNGROW_TOKEN</div>
         <div style="font-size:11px;color:var(--tx2);">SUNGROW_APP_ID</div>
-        <div style="margin-top:10px;"><a href="https://isolarcloud.com.hk" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Ξ†Ξ½ΞΏΞΉΞ³ΞΌΞ± β†’</a></div>
+        <div style="margin-top:10px;"><a href="https://isolarcloud.com.hk" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
       </div>
       <div class="kpi" style="padding:18px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -534,8 +534,8 @@ canvas.mini{width:100%!important;height:130px!important;}
           <span style="font-size:11px;color:var(--tx3);">FusionSolar API</span>
         </div>
         <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">HUAWEI_USER: <strong>solarengr</strong></div>
-        <div style="font-size:11px;color:var(--tx2);">HUAWEI_PASS: β€Άβ€Άβ€Άβ€Άβ€Άβ€Άβ€Άβ€Ά</div>
-        <div style="margin-top:10px;font-size:10px;color:var(--gr);font-weight:600;">β… Ξ£Ο…Ξ½Ξ΄ΞµΞ΄ΞµΞΌΞ­Ξ½ΞΏ</div>
+        <div style="font-size:11px;color:var(--tx2);">HUAWEI_PASS: ••••••••</div>
+        <div style="margin-top:10px;font-size:10px;color:var(--gr);font-weight:600;">✅ Συνδεδεμένο</div>
       </div>
       <div class="kpi" style="padding:18px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -544,7 +544,7 @@ canvas.mini{width:100%!important;height:130px!important;}
         </div>
         <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">GOODWE_ACCOUNT</div>
         <div style="font-size:11px;color:var(--tx2);">GOODWE_TOKEN</div>
-        <div style="margin-top:10px;"><a href="https://semsportal.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Ξ†Ξ½ΞΏΞΉΞ³ΞΌΞ± β†’</a></div>
+        <div style="margin-top:10px;"><a href="https://semsportal.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
       </div>
       <div class="kpi" style="padding:18px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
@@ -553,41 +553,41 @@ canvas.mini{width:100%!important;height:130px!important;}
         </div>
         <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">FRONIUS_ACCESS_KEY_ID</div>
         <div style="font-size:11px;color:var(--tx2);">FRONIUS_ACCESS_KEY_VALUE</div>
-        <div style="margin-top:10px;"><a href="https://www.solarweb.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Ξ†Ξ½ΞΏΞΉΞ³ΞΌΞ± β†’</a></div>
+        <div style="margin-top:10px;"><a href="https://www.solarweb.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
       </div>
     </div>
   </main>
 
-  <!-- β”€β”€ ACCOUNT PAGE β”€β”€ -->
+  <!-- ── ACCOUNT PAGE ── -->
   <main id="page-account" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">π‘¤ Ξ›ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟΟ‚</div>
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">👤 Λογαριασμός</div>
     <!-- Login form -->
     <div id="loginForm" class="kpi" style="padding:24px;max-width:420px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Ξ£ΟΞ½Ξ΄ΞµΟƒΞ·</div>
-      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Ξ£Ο…Ξ½Ξ΄Ξ­ΟƒΞΏΟ… ΟƒΟ„ΞΏ Solaren account ΟƒΞΏΟ…</div>
+      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Σύνδεση</div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Συνδέσου στο Solaren account σου</div>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div>
           <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Email</div>
           <input class="search-inp" style="width:100%;" type="email" id="loginEmail" placeholder="info@solaren.gr">
         </div>
         <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">ΞΟ‰Ξ΄ΞΉΞΊΟΟ‚</div>
-          <input class="search-inp" style="width:100%;" type="password" id="loginPass" placeholder="β€Άβ€Άβ€Άβ€Άβ€Άβ€Άβ€Άβ€Ά">
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Κωδικός</div>
+          <input class="search-inp" style="width:100%;" type="password" id="loginPass" placeholder="••••••••">
         </div>
-        <button class="btn-pri" onclick="doLogin()">Ξ£ΟΞ½Ξ΄ΞµΟƒΞ· β†’</button>
+        <button class="btn-pri" onclick="doLogin()">Σύνδεση →</button>
         <div style="text-align:center;font-size:12px;color:var(--tx2);">
-          Ξ”ΞµΞ½ Ξ­Ο‡ΞµΞΉΟ‚ Ξ»ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟ; 
-          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showRegister()">Ξ•Ξ³Ξ³ΟΞ±Ο†Ξ®</span>
+          Δεν έχεις λογαριασμό; 
+          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showRegister()">Εγγραφή</span>
         </div>
       </div>
     </div>
     <!-- Register form -->
     <div id="registerForm" class="kpi" style="padding:24px;max-width:420px;display:none;">
-      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Ξ•Ξ³Ξ³ΟΞ±Ο†Ξ®</div>
-      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Ξ”Ξ·ΞΌΞΉΞΏΟΟΞ³Ξ·ΟƒΞµ Ξ½Ξ­ΞΏ Solaren account</div>
+      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Εγγραφή</div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Δημιούργησε νέο Solaren account</div>
       <div style="display:flex;flex-direction:column;gap:10px;">
         <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">ΞΞ½ΞΏΞΌΞ± ΞµΟ„Ξ±ΞΉΟΞµΞ―Ξ±Ο‚</div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Όνομα εταιρείας</div>
           <input class="search-inp" style="width:100%;" type="text" id="regName" placeholder="Solaren GR">
         </div>
         <div>
@@ -595,31 +595,31 @@ canvas.mini{width:100%!important;height:130px!important;}
           <input class="search-inp" style="width:100%;" type="email" id="regEmail" placeholder="info@solaren.gr">
         </div>
         <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">ΞΟ‰Ξ΄ΞΉΞΊΟΟ‚</div>
-          <input class="search-inp" style="width:100%;" type="password" id="regPass" placeholder="Ξ¤ΞΏΟ…Ξ»Ξ¬Ο‡ΞΉΟƒΟ„ΞΏΞ½ 8 Ο‡Ξ±ΟΞ±ΞΊΟ„Ξ®ΟΞµΟ‚">
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Κωδικός</div>
+          <input class="search-inp" style="width:100%;" type="password" id="regPass" placeholder="Τουλάχιστον 8 χαρακτήρες">
         </div>
         <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Ξ•Ο€ΞΉΞ²ΞµΞ²Ξ±Ξ―Ο‰ΟƒΞ· ΞΊΟ‰Ξ΄ΞΉΞΊΞΏΟ</div>
-          <input class="search-inp" style="width:100%;" type="password" id="regPass2" placeholder="β€Άβ€Άβ€Άβ€Άβ€Άβ€Άβ€Άβ€Ά">
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Επιβεβαίωση κωδικού</div>
+          <input class="search-inp" style="width:100%;" type="password" id="regPass2" placeholder="••••••••">
         </div>
-        <button class="btn-pri" onclick="doRegister()">Ξ•Ξ³Ξ³ΟΞ±Ο†Ξ® β†’</button>
+        <button class="btn-pri" onclick="doRegister()">Εγγραφή →</button>
         <div style="text-align:center;font-size:12px;color:var(--tx2);">
-          ΞΟ‡ΞµΞΉΟ‚ Ξ®Ξ΄Ξ· Ξ»ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟ; 
-          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showLogin()">Ξ£ΟΞ½Ξ΄ΞµΟƒΞ·</span>
+          Έχεις ήδη λογαριασμό; 
+          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showLogin()">Σύνδεση</span>
         </div>
       </div>
     </div>
     <!-- Logged in profile -->
     <div id="profileForm" class="kpi" style="padding:24px;max-width:420px;display:none;">
       <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
-        <div style="width:52px;height:52px;border-radius:50%;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--bl);" id="profileAvatar">Ξ“Ξ</div>
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--bl);" id="profileAvatar">ΓΚ</div>
         <div>
-          <div style="font-family:var(--head);font-weight:700;font-size:16px;" id="profileName">β€”</div>
-          <div style="font-size:12px;color:var(--tx2);" id="profileEmail">β€”</div>
+          <div style="font-family:var(--head);font-weight:700;font-size:16px;" id="profileName">—</div>
+          <div style="font-size:12px;color:var(--tx2);" id="profileEmail">—</div>
         </div>
       </div>
       <div style="height:1px;background:var(--bdr);margin-bottom:14px;"></div>
-      <button class="btn-sec" style="width:100%;color:var(--rd);border-color:var(--rd);" onclick="doLogout()">Ξ‘Ο€ΞΏΟƒΟΞ½Ξ΄ΞµΟƒΞ·</button>
+      <button class="btn-sec" style="width:100%;color:var(--rd);border-color:var(--rd);" onclick="doLogout()">Αποσύνδεση</button>
     </div>
   </main>
 </div>
@@ -629,78 +629,78 @@ canvas.mini{width:100%!important;height:130px!important;}
   <div class="modal">
     <div class="modal-head">
       <div class="modal-head-left">
-        <div class="modal-av" id="modalAv">β€οΈ</div>
-        <div><div class="modal-title" id="modalSiteName">β€”</div><div class="modal-sub" id="modalSiteSub">β€”</div></div>
+        <div class="modal-av" id="modalAv">☀️</div>
+        <div><div class="modal-title" id="modalSiteName">—</div><div class="modal-sub" id="modalSiteSub">—</div></div>
       </div>
-      <button class="modal-close" onclick="closeModal()">β•</button>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
       <div class="toggle-row">
-        <div><div class="toggle-lbl">β­ Watchlist</div><div class="toggle-desc">Ξ Ξ±ΟΞ±ΞΊΞΏΞ»ΞΏΟΞΈΞ·ΟƒΞ· Ξ±Ο…Ο„Ξ®Ο‚ Ο„Ξ·Ο‚ ΞµΞ³ΞΊΞ±Ο„Ξ¬ΟƒΟ„Ξ±ΟƒΞ·Ο‚</div></div>
+        <div><div class="toggle-lbl">⭐ Watchlist</div><div class="toggle-desc">Παρακολούθηση αυτής της εγκατάστασης</div></div>
         <label class="tog"><input type="checkbox" id="tWatchlist" onchange="updateModalState()"><div class="tog-track"></div><div class="tog-thumb"></div></label>
       </div>
       <div id="notifSection">
         <div class="toggle-row">
-          <div><div class="toggle-lbl">β‰οΈ Email ΞµΞΉΞ΄ΞΏΟ€ΞΏΞΉΞ®ΟƒΞµΞΉΟ‚</div><div class="toggle-desc">Ξ‘Ο€ΞΏΟƒΟ„ΞΏΞ»Ξ® email Ξ³ΞΉΞ± Ξ±Ο…Ο„Ξ® Ο„Ξ·Ξ½ ΞµΞ³ΞΊΞ±Ο„Ξ¬ΟƒΟ„Ξ±ΟƒΞ·</div></div>
+          <div><div class="toggle-lbl">✉️ Email ειδοποιήσεις</div><div class="toggle-desc">Αποστολή email για αυτή την εγκατάσταση</div></div>
           <label class="tog"><input type="checkbox" id="tEmail"><div class="tog-track"></div><div class="tog-thumb"></div></label>
         </div>
         <div class="toggle-row">
-          <div><div class="toggle-lbl">π“± Push notification</div><div class="toggle-desc">Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· ΟƒΟ„ΞΏ ΞΊΞΉΞ½Ξ·Ο„Ο ΞΊΞ±ΞΉ desktop</div></div>
+          <div><div class="toggle-lbl">📱 Push notification</div><div class="toggle-desc">Ειδοποίηση στο κινητό και desktop</div></div>
           <label class="tog"><input type="checkbox" id="tPush"><div class="tog-track"></div><div class="tog-thumb"></div></label>
         </div>
         <div>
-          <div style="font-size:11px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">Ξ•Ο€Ξ―Ο€ΞµΞ΄ΞΏ ΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·Ο‚</div>
+          <div style="font-size:11px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">Επίπεδο ειδοποίησης</div>
           <div class="sev-grid">
-            <div class="sev-opt c-err checked" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--rd)"></div><div class="sev-txt">ΞΟΞ―ΟƒΞΉΞΌΞΏ ΟƒΟ†Ξ¬Ξ»ΞΌΞ±</div><div class="sev-chk">β“</div></div>
-            <div class="sev-opt c-warn checked" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--am)"></div><div class="sev-txt">Ξ ΟΞΏΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·</div><div class="sev-chk">β“</div></div>
-            <div class="sev-opt c-info" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--bl)"></div><div class="sev-txt">Ξ§Ξ±ΞΌΞ·Ξ»Ξ® Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ®</div><div class="sev-chk">β“</div></div>
-            <div class="sev-opt c-ok" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--gr)"></div><div class="sev-txt">Ξ•Ο€Ξ¬Ξ½ΞΏΞ΄ΞΏΟ‚ ΞΞ</div><div class="sev-chk">β“</div></div>
+            <div class="sev-opt c-err checked" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--rd)"></div><div class="sev-txt">Κρίσιμο σφάλμα</div><div class="sev-chk">✓</div></div>
+            <div class="sev-opt c-warn checked" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--am)"></div><div class="sev-txt">Προειδοποίηση</div><div class="sev-chk">✓</div></div>
+            <div class="sev-opt c-info" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--bl)"></div><div class="sev-txt">Χαμηλή παραγωγή</div><div class="sev-chk">✓</div></div>
+            <div class="sev-opt c-ok" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--gr)"></div><div class="sev-txt">Επάνοδος ΟΚ</div><div class="sev-chk">✓</div></div>
           </div>
         </div>
         <div class="thresh-box">
-          <div class="thresh-title">ΞΞ±Ο„ΟΟ†Ξ»ΞΉΞ±</div>
-          <div class="thresh-row"><div class="thresh-lbl">Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ξ±Ξ½ Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ® Ο€Ξ­ΟƒΞµΞΉ ΞΊΞ¬Ο„Ο‰ Ξ±Ο€Ο</div><input class="thresh-inp" type="number" id="threshLow" value="70"><div class="thresh-unit">%</div></div>
-          <div class="thresh-row"><div class="thresh-lbl">Ξ•ΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ· Ξ±Ξ½ Ο‡Ξ±ΞΈΞµΞ― ΞµΟ€ΞΉΞΊΞΏΞΉΞ½Ο‰Ξ½Ξ―Ξ± Ξ³ΞΉΞ±</div><input class="thresh-inp" type="number" id="threshOff" value="15"><div class="thresh-unit">Ξ»ΞµΟ€Ο„Ξ¬</div></div>
+          <div class="thresh-title">Κατώφλια</div>
+          <div class="thresh-row"><div class="thresh-lbl">Ειδοποίηση αν παραγωγή πέσει κάτω από</div><input class="thresh-inp" type="number" id="threshLow" value="70"><div class="thresh-unit">%</div></div>
+          <div class="thresh-row"><div class="thresh-lbl">Ειδοποίηση αν χαθεί επικοινωνία για</div><input class="thresh-inp" type="number" id="threshOff" value="15"><div class="thresh-unit">λεπτά</div></div>
         </div>
       </div>
     </div>
     <div class="modal-foot">
-      <button class="btn-sec" onclick="closeModal()">Ξ†ΞΊΟ…ΟΞΏ</button>
-      <button class="btn-pri" onclick="saveSettings()">π’Ύ Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞ·</button>
+      <button class="btn-sec" onclick="closeModal()">Άκυρο</button>
+      <button class="btn-pri" onclick="saveSettings()">💾 Αποθήκευση</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"><span id="toastIcon">β­</span><span id="toastMsg">β€”</span></div>
+<div class="toast" id="toast"><span id="toastIcon">⭐</span><span id="toastMsg">—</span></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script>
 const SITES=[
-  {id:1, name:'ΞΞ·Ο†ΞΉΟƒΞΉΞ¬ Ξ‘',    loc:'ΞΞ·Ο†ΞΉΟƒΞΉΞ¬',       brand:'sungrow', kw:42.3, cap:50, status:'ok'},
-  {id:2, name:'ΞΞ±ΟΞΏΟΟƒΞΉ Ξ’',    loc:'ΞΞ±ΟΞΏΟΟƒΞΉ',       brand:'huawei',  kw:0,    cap:35, status:'error', err:'Grid fault'},
-  {id:3, name:'Ξ“Ξ»Ο…Ο†Ξ¬Ξ΄Ξ± Ξ‘',    loc:'Ξ“Ξ»Ο…Ο†Ξ¬Ξ΄Ξ±',       brand:'goodwe',  kw:28.1, cap:30, status:'ok'},
-  {id:4, name:'Ξ§Ξ±Ξ»Ξ¬Ξ½Ξ΄ΟΞΉ',     loc:'Ξ§Ξ±Ξ»Ξ¬Ξ½Ξ΄ΟΞΉ',      brand:'sungrow', kw:61.0, cap:65, status:'ok'},
-  {id:5, name:'Ξ‘Ξ³. Ξ Ξ±Ο.',     loc:'Ξ‘Ξ³. Ξ Ξ±ΟΞ±ΟƒΞΊΞµΟ…Ξ®', brand:'huawei',  kw:18.4, cap:40, status:'warn', err:'Low output -30%'},
-  {id:6, name:'Ξ’ΟΞΉΞ»Ξ®ΟƒΟƒΞΉΞ±',    loc:'Ξ’ΟΞΉΞ»Ξ®ΟƒΟƒΞΉΞ±',     brand:'goodwe',  kw:33.5, cap:35, status:'ok'},
-  {id:7, name:'ΞΞ­Ξ± Ξ™Ο‰Ξ½Ξ―Ξ±',    loc:'ΞΞ­Ξ± Ξ™Ο‰Ξ½Ξ―Ξ±',     brand:'sungrow', kw:0,    cap:55, status:'error', err:'Inverter offline'},
-  {id:8, name:'Ξ—Ξ»ΞΉΞΏΟΟ€ΞΏΞ»Ξ·',    loc:'Ξ—Ξ»ΞΉΞΏΟΟ€ΞΏΞ»Ξ·',     brand:'huawei',  kw:47.2, cap:50, status:'ok'},
-  {id:9, name:'Ξ ΞµΟΞΉΟƒΟ„Ξ­ΟΞΉ',    loc:'Ξ ΞµΟΞΉΟƒΟ„Ξ­ΟΞΉ',     brand:'sungrow', kw:38.9, cap:45, status:'ok'},
-  {id:10,name:'Ξ . Ξ¦Ξ¬Ξ»Ξ·ΟΞΏ',    loc:'Ξ . Ξ¦Ξ¬Ξ»Ξ·ΟΞΏ',     brand:'goodwe',  kw:22.0, cap:25, status:'ok'},
-  {id:11,name:'Ξ†Ξ»ΞΉΞΌΞΏΟ‚ Ξ‘',     loc:'Ξ†Ξ»ΞΉΞΌΞΏΟ‚',        brand:'sungrow', kw:55.1, cap:60, status:'ok'},
-  {id:12,name:'ΞΞ­Ξ± Ξ£ΞΌΟΟΞ½Ξ·',   loc:'ΞΞ­Ξ± Ξ£ΞΌΟΟΞ½Ξ·',   brand:'huawei',  kw:14.2, cap:30, status:'warn', err:'Ξ§Ξ±ΞΌΞ·Ξ»Ξ® Ξ±Ο€ΟΞ΄ΞΏΟƒΞ·'},
-  {id:13,name:'Ξ‘ΟΞ³Ο…ΟΞΏΟΟ€ΞΏΞ»Ξ·',  loc:'Ξ‘ΟΞ³Ο…ΟΞΏΟΟ€ΞΏΞ»Ξ·',   brand:'fronius', kw:38.4, cap:40, status:'ok'},
-  {id:14,name:'Ξ’ΟΟΟ‰Ξ½Ξ±Ο‚',      loc:'Ξ’ΟΟΟ‰Ξ½Ξ±Ο‚',       brand:'fronius', kw:0,    cap:30, status:'error', err:'Communication lost'},
-  {id:15,name:'ΞΞ±Ξ»Ξ»ΞΉΞΈΞ­Ξ± Ξ‘',   loc:'ΞΞ±Ξ»Ξ»ΞΉΞΈΞ­Ξ±',      brand:'fronius', kw:21.6, cap:25, status:'ok'},
-  {id:16,name:'Ξ”Ξ¬Ο†Ξ½Ξ·',        loc:'Ξ”Ξ¬Ο†Ξ½Ξ·',         brand:'fronius', kw:17.8, cap:35, status:'warn', err:'Low irradiance'},
-  {id:17,name:'Ξ–Ο‰Ξ³ΟΞ¬Ο†ΞΏΟ…',     loc:'Ξ–Ο‰Ξ³ΟΞ¬Ο†ΞΏΟ…',      brand:'fronius', kw:44.1, cap:45, status:'ok'},
+  {id:1, name:'Κηφισιά Α',    loc:'Κηφισιά',       brand:'sungrow', kw:42.3, cap:50, status:'ok'},
+  {id:2, name:'Μαρούσι Β',    loc:'Μαρούσι',       brand:'huawei',  kw:0,    cap:35, status:'error', err:'Grid fault'},
+  {id:3, name:'Γλυφάδα Α',    loc:'Γλυφάδα',       brand:'goodwe',  kw:28.1, cap:30, status:'ok'},
+  {id:4, name:'Χαλάνδρι',     loc:'Χαλάνδρι',      brand:'sungrow', kw:61.0, cap:65, status:'ok'},
+  {id:5, name:'Αγ. Παρ.',     loc:'Αγ. Παρασκευή', brand:'huawei',  kw:18.4, cap:40, status:'warn', err:'Low output -30%'},
+  {id:6, name:'Βριλήσσια',    loc:'Βριλήσσια',     brand:'goodwe',  kw:33.5, cap:35, status:'ok'},
+  {id:7, name:'Νέα Ιωνία',    loc:'Νέα Ιωνία',     brand:'sungrow', kw:0,    cap:55, status:'error', err:'Inverter offline'},
+  {id:8, name:'Ηλιούπολη',    loc:'Ηλιούπολη',     brand:'huawei',  kw:47.2, cap:50, status:'ok'},
+  {id:9, name:'Περιστέρι',    loc:'Περιστέρι',     brand:'sungrow', kw:38.9, cap:45, status:'ok'},
+  {id:10,name:'Π. Φάληρο',    loc:'Π. Φάληρο',     brand:'goodwe',  kw:22.0, cap:25, status:'ok'},
+  {id:11,name:'Άλιμος Α',     loc:'Άλιμος',        brand:'sungrow', kw:55.1, cap:60, status:'ok'},
+  {id:12,name:'Νέα Σμύρνη',   loc:'Νέα Σμύρνη',   brand:'huawei',  kw:14.2, cap:30, status:'warn', err:'Χαμηλή απόδοση'},
+  {id:13,name:'Αργυρούπολη',  loc:'Αργυρούπολη',   brand:'fronius', kw:38.4, cap:40, status:'ok'},
+  {id:14,name:'Βύρωνας',      loc:'Βύρωνας',       brand:'fronius', kw:0,    cap:30, status:'error', err:'Communication lost'},
+  {id:15,name:'Καλλιθέα Α',   loc:'Καλλιθέα',      brand:'fronius', kw:21.6, cap:25, status:'ok'},
+  {id:16,name:'Δάφνη',        loc:'Δάφνη',         brand:'fronius', kw:17.8, cap:35, status:'warn', err:'Low irradiance'},
+  {id:17,name:'Ζωγράφου',     loc:'Ζωγράφου',      brand:'fronius', kw:44.1, cap:45, status:'ok'},
 ];
 
 const bLbl={sungrow:'Sungrow',huawei:'Huawei',goodwe:'GoodWe',fronius:'Fronius'};
 const bCls={sungrow:'b-sg',huawei:'b-hw',goodwe:'b-gw',fronius:'b-fr'};
-const bAv={sungrow:'π”µ',huawei:'π”΄',goodwe:'πΆ',fronius:'π '};
+const bAv={sungrow:'🔵',huawei:'🔴',goodwe:'🟢',fronius:'🟠'};
 const bColor={sungrow:'#1677ff',huawei:'#e0181f',goodwe:'#00a85a',fronius:'#e65c00'};
 
-// β”€β”€ DATA GENERATOR β”€β”€
+// ── DATA GENERATOR ──
 function rng(seed,i){return 0.65+0.35*Math.abs(Math.sin(seed+i*1.9));}
 
 function genToday(site,variation=1){
@@ -713,7 +713,7 @@ function genToday(site,variation=1){
   };
 }
 function genWeek(site,variation=1){
-  const days=['Ξ”ΞµΟ…','Ξ¤ΟΞΉ','Ξ¤ΞµΟ„','Ξ ΞµΞΌ','Ξ Ξ±Ο','Ξ£Ξ±Ξ²','ΞΟ…Ο'];
+  const days=['Δευ','Τρι','Τετ','Πεμ','Παρ','Σαβ','Κυρ'];
   const sd=site.id*11;
   return{labels:days,values:days.map((_,i)=>+(site.cap*8*rng(sd,i+10)*variation).toFixed(1))};
 }
@@ -723,7 +723,7 @@ function genMonth(site,variation=1){
   return{labels:days,values:days.map((_,i)=>+(site.cap*7.5*rng(sd,i+20)*variation).toFixed(1))};
 }
 function genYear(site,variation=1){
-  const months=['Ξ™Ξ±Ξ½','Ξ¦ΞµΞ²','ΞΞ±Ο','Ξ‘Ο€Ο','ΞΞ±Ο','Ξ™ΞΏΟ…Ξ½','Ξ™ΞΏΟ…Ξ»','Ξ‘Ο…Ξ³','Ξ£ΞµΟ€','ΞΞΊΟ„','ΞΞΏΞµ','Ξ”ΞµΞΊ'];
+  const months=['Ιαν','Φεβ','Μαρ','Απρ','Μαϊ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
   const seas=[0.38,0.48,0.68,0.84,0.94,1,0.97,0.95,0.80,0.62,0.42,0.33];
   const sd=site.id*17;
   return{labels:months,values:months.map((_,i)=>Math.round(site.cap*200*seas[i]*rng(sd,i+30)*variation))};
@@ -758,10 +758,10 @@ function render(){
   else if(cSort==='starred') s.sort((a,b)=>(gcfg(b.id).starred?1:0)-(gcfg(a.id).starred?1:0));
   else s.sort((a,b)=>a.name.localeCompare(b.name,'el'));
 
-  document.getElementById('countLbl').textContent=s.length+' ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚';
+  document.getElementById('countLbl').textContent=s.length+' εγκαταστάσεις';
   const g=document.getElementById('sitesGrid');
   if(!s.length){
-    g.innerHTML='<div class="empty"><div class="empty-icon">π”</div><div class="empty-title">Ξ”ΞµΞ½ Ξ²ΟΞ­ΞΈΞ·ΞΊΞ±Ξ½ Ξ±Ο€ΞΏΟ„ΞµΞ»Ξ­ΟƒΞΌΞ±Ο„Ξ±</div></div>';
+    g.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Δεν βρέθηκαν αποτελέσματα</div></div>';
     updateSum();return;
   }
 
@@ -773,7 +773,7 @@ function render(){
   if(problems.length){
     html+=`<div class="sec-header error-header">
       <span class="sec-header-dot err-dot"></span>
-      <span class="sec-header-title">Ξ‘Ο€Ξ±ΞΉΟ„ΞµΞ― Ο€ΟΞΏΟƒΞΏΟ‡Ξ®</span>
+      <span class="sec-header-title">Απαιτεί προσοχή</span>
       <span class="sec-header-count err-count">${problems.length}</span>
     </div>`;
     html+=problems.map(x=>buildCard(x)).join('');
@@ -781,7 +781,7 @@ function render(){
   if(ok.length){
     html+=`<div class="sec-header ok-header" style="margin-top:${problems.length?'12px':'0'}">
       <span class="sec-header-dot ok-dot"></span>
-      <span class="sec-header-title">ΞΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ® Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±</span>
+      <span class="sec-header-title">Κανονική λειτουργία</span>
       <span class="sec-header-count ok-count">${ok.length}</span>
     </div>`;
     html+=ok.map(x=>buildCard(x)).join('');
@@ -801,7 +801,7 @@ function buildCard(x){
   const bc=x.status==='error'?'var(--rd)':x.status==='warn'?'var(--am)':'var(--bl)';
   const pwC=x.status==='error'?'style="color:var(--rd)"':x.status==='warn'?'style="color:var(--am)"':'';
   const spC={ok:'sp-ok',warn:'sp-warn',error:'sp-err'}[x.status];
-  const stL={ok:'ΞΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ® Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±',warn:'Ξ§Ξ±ΞΌΞ·Ξ»Ξ® Ξ±Ο€ΟΞ΄ΞΏΟƒΞ·',error:'Ξ•ΞΊΟ„ΟΟ‚ Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±Ο‚'}[x.status];
+  const stL={ok:'Κανονική λειτουργία',warn:'Χαμηλή απόδοση',error:'Εκτός λειτουργίας'}[x.status];
   const dotC={ok:'dot-ok',warn:'dot-warn',error:'dot-err'}[x.status];
   const isOpen=!!openCharts[x.id];
   const curPeriod=openCharts[x.id]||'today';
@@ -815,22 +815,22 @@ function buildCard(x){
   const diffPct=yestTot>0?Math.round((todayTot-yestTot)/yestTot*100):0;
   const diffSign=diffPct>0?'+':'';
   const diffCls=diffPct>0?'cmp-up':diffPct<0?'cmp-dn':'cmp-eq';
-  const diffIcon=diffPct>0?'β†‘':diffPct<0?'β†“':'=';
+  const diffIcon=diffPct>0?'↑':diffPct<0?'↓':'=';
 
   return `<div class="site-card ${stC}">
     <div class="card-top"><div class="card-row1">
-      <div><div class="site-name">${x.name}</div><div class="site-loc">π“ ${x.loc}</div></div>
+      <div><div class="site-name">${x.name}</div><div class="site-loc">📍 ${x.loc}</div></div>
       <div class="card-actions">
-        <button class="star-btn ${c.starred?'starred':''}" onclick="quickStar(${x.id},event)">${c.starred?'β­':'β†'}</button>
-        <button class="set-btn" onclick="openSettings(${x.id},event)">β™οΈ</button>
+        <button class="star-btn ${c.starred?'starred':''}" onclick="quickStar(${x.id},event)">${c.starred?'⭐':'☆'}</button>
+        <button class="set-btn" onclick="openSettings(${x.id},event)">⚙️</button>
       </div>
     </div></div>
 
     <div class="card-mid">
       <div class="power-row">
-        <div class="power-val" ${pwC}>${x.kw>0?x.kw.toFixed(1):'β€”'}</div>
+        <div class="power-val" ${pwC}>${x.kw>0?x.kw.toFixed(1):'—'}</div>
         <div class="power-unit">kW</div>
-        <div class="power-cap">${x.cap} kW peak Β· ${pct}%</div>
+        <div class="power-cap">${x.cap} kW peak · ${pct}%</div>
       </div>
       <div class="prog-wrap"><div class="prog-bar" style="width:${pct}%;background:${bc}"></div></div>
       <div class="status-row">
@@ -840,31 +840,31 @@ function buildCard(x){
     </div>
 
     <div class="card-click-hint" onclick="openInverterModal(${x.id})">
-      π” ${(INVERTERS[x.id]||[]).length || 'β€”'} Inverters β€” ΞΊΞ»ΞΉΞΊ Ξ³ΞΉΞ± Ξ»ΞµΟ€Ο„ΞΏΞΌΞ­ΟΞµΞΉΞµΟ‚
-      <span style="margin-left:auto;font-size:13px;">β€Ί</span>
+      🔌 ${(INVERTERS[x.id]||[]).length || '—'} Inverters — κλικ για λεπτομέρειες
+      <span style="margin-left:auto;font-size:13px;">›</span>
     </div>
 
     <div class="chart-toggle" onclick="toggleChart(${x.id})">
       <div class="chart-toggle-left">
-        <span>π“</span> Ξ“ΟΞ¬Ο†Ξ·ΞΌΞ±
-        <span class="chart-hint">ΟƒΞ®ΞΌΞµΟΞ± ${todayTot} kWh</span>
-        <span class="cmp-badge ${diffCls}">${diffIcon} ${diffSign}${diffPct}% vs Ο‡ΞΈΞµΟ‚</span>
+        <span>📈</span> Γράφημα
+        <span class="chart-hint">σήμερα ${todayTot} kWh</span>
+        <span class="cmp-badge ${diffCls}">${diffIcon} ${diffSign}${diffPct}% vs χθες</span>
       </div>
-      <span class="chart-arrow ${isOpen?'open':''}" id="arr-${x.id}">β–Ό</span>
+      <span class="chart-arrow ${isOpen?'open':''}" id="arr-${x.id}">▼</span>
     </div>
 
     <div class="chart-section ${isOpen?'open':''}" id="cs-${x.id}">
       <div class="chart-inner">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
           <div class="chart-tabs">
-            <button class="ctab ${curPeriod==='today'?'active':''}" onclick="changePeriod(${x.id},'today',event)">Ξ£Ξ®ΞΌΞµΟΞ±</button>
-            <button class="ctab ${curPeriod==='week'?'active':''}" onclick="changePeriod(${x.id},'week',event)">Ξ•Ξ²Ξ΄ΞΏΞΌΞ¬Ξ΄Ξ±</button>
-            <button class="ctab ${curPeriod==='month'?'active':''}" onclick="changePeriod(${x.id},'month',event)">ΞΞ®Ξ½Ξ±Ο‚</button>
-            <button class="ctab ${curPeriod==='year'?'active':''}" onclick="changePeriod(${x.id},'year',event)">ΞΟ„ΞΏΟ‚</button>
+            <button class="ctab ${curPeriod==='today'?'active':''}" onclick="changePeriod(${x.id},'today',event)">Σήμερα</button>
+            <button class="ctab ${curPeriod==='week'?'active':''}" onclick="changePeriod(${x.id},'week',event)">Εβδομάδα</button>
+            <button class="ctab ${curPeriod==='month'?'active':''}" onclick="changePeriod(${x.id},'month',event)">Μήνας</button>
+            <button class="ctab ${curPeriod==='year'?'active':''}" onclick="changePeriod(${x.id},'year',event)">Έτος</button>
           </div>
           <div class="chart-legend">
-            <div class="leg-item"><div class="leg-line" style="background:${bColor[x.brand]}"></div>Ξ£Ξ®ΞΌΞµΟΞ±</div>
-            <div class="leg-item"><div class="leg-dashed" style="border-color:${bColor[x.brand]};opacity:.5"></div>Ξ§ΞΈΞµΟ‚</div>
+            <div class="leg-item"><div class="leg-line" style="background:${bColor[x.brand]}"></div>Σήμερα</div>
+            <div class="leg-item"><div class="leg-dashed" style="border-color:${bColor[x.brand]};opacity:.5"></div>Χθες</div>
           </div>
         </div>
         <canvas class="mini" id="chart-${x.id}"></canvas>
@@ -873,9 +873,9 @@ function buildCard(x){
     </div>
 
     ${c.starred?`<div class="card-foot">
-      <span class="nt ${c.email?'nt-on':'nt-off'}">β‰οΈ ${c.email?'Email on':'Email off'}</span>
-      <span class="nt ${c.push?'nt-on':'nt-off'}">π“± ${c.push?'Push on':'Push off'}</span>
-      <span class="nt nt-wl">β­ Watchlist</span>
+      <span class="nt ${c.email?'nt-on':'nt-off'}">✉️ ${c.email?'Email on':'Email off'}</span>
+      <span class="nt ${c.push?'nt-on':'nt-off'}">📱 ${c.push?'Push on':'Push off'}</span>
+      <span class="nt nt-wl">⭐ Watchlist</span>
     </div>`:''}
   </div>`;
 }
@@ -905,22 +905,22 @@ function buildChart(id, period){
   // Render stats
   document.getElementById('stats-'+id).innerHTML=`
     <div class="cstat">
-      <div class="cstat-l">Ξ£Ξ®ΞΌΞµΟΞ±</div>
+      <div class="cstat-l">Σήμερα</div>
       <div class="cstat-v">${todaySum.toFixed(1)}<span class="cstat-u"> ${unit}</span></div>
-      <div class="cstat-diff ${diffCls}">${diffSign}${diffAbs} vs Ο‡ΞΈΞµΟ‚</div>
+      <div class="cstat-diff ${diffCls}">${diffSign}${diffAbs} vs χθες</div>
     </div>
     <div class="cstat">
-      <div class="cstat-l">Ξ§ΞΈΞµΟ‚</div>
+      <div class="cstat-l">Χθες</div>
       <div class="cstat-v">${yestSum.toFixed(1)}<span class="cstat-u"> ${unit}</span></div>
       <div class="cstat-diff ${diffCls}">${diffSign}${diffPct}%</div>
     </div>
     <div class="cstat">
-      <div class="cstat-l">ΞΞ®Ξ½Ξ±Ο‚</div>
+      <div class="cstat-l">Μήνας</div>
       <div class="cstat-v">${monthSum}<span class="cstat-u"> kWh</span></div>
-      <div class="cstat-diff" style="color:var(--tx3)">Ξ™ΞΏΟΞ½. 2026</div>
+      <div class="cstat-diff" style="color:var(--tx3)">Ιούν. 2026</div>
     </div>
     <div class="cstat">
-      <div class="cstat-l">Ξ‘Ο€ΟΞ΄ΞΏΟƒΞ·</div>
+      <div class="cstat-l">Απόδοση</div>
       <div class="cstat-v">${pct}<span class="cstat-u"> %</span></div>
       <div class="cstat-diff" style="color:var(--tx3)">peak cap</div>
     </div>`;
@@ -937,7 +937,7 @@ function buildChart(id, period){
       labels:todayD.labels,
       datasets:[
         {
-          label:'Ξ£Ξ®ΞΌΞµΟΞ±',
+          label:'Σήμερα',
           data:todayD.values,
           fill:true,
           backgroundColor:grad,
@@ -951,7 +951,7 @@ function buildChart(id, period){
           order:1
         },
         {
-          label:'Ξ§ΞΈΞµΟ‚',
+          label:'Χθες',
           data:yestD.values,
           fill:false,
           borderColor:color,
@@ -991,7 +991,7 @@ function buildChart(id, period){
                 const yest=items[1].raw;
                 const d=yest>0?Math.round((today-yest)/yest*100):0;
                 const sign=d>=0?'+':'';
-                return [`β”€β”€β”€β”€β”€β”€β”€β”€β”€`,` Ξ”ΞΉΞ±Ο†ΞΏΟΞ¬: ${sign}${d}%`];
+                return [`─────────`,` Διαφορά: ${sign}${d}%`];
               }
               return[];
             }
@@ -1045,10 +1045,10 @@ function updateSum(){
   const kw=st.reduce((a,s)=>a+s.kw,0);
   const al=st.filter(s=>s.status==='error').length;
   const pu=st.filter(s=>gcfg(s.id).push).length;
-  document.getElementById('sumCount').innerHTML=`${st.length} <span class="kpi-unit">ΞµΞ³ΞΊ/ΟƒΞµΞΉΟ‚</span>`;
-  document.getElementById('sumSub').innerHTML=st.length?'<span class="tr-up">Ξ±Ο€Ο '+SITES.length+' ΟƒΟ…Ξ½ΞΏΞ»ΞΉΞΊΞ¬</span>':'<span class="tr-wa">Ξ•Ο€Ξ―Ξ»ΞµΞΎΞµ ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</span>';
+  document.getElementById('sumCount').innerHTML=`${st.length} <span class="kpi-unit">εγκ/σεις</span>`;
+  document.getElementById('sumSub').innerHTML=st.length?'<span class="tr-up">από '+SITES.length+' συνολικά</span>':'<span class="tr-wa">Επίλεξε εγκαταστάσεις</span>';
   document.getElementById('sumKw').innerHTML=`${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
-  document.getElementById('sumKwSub').innerHTML=st.length?'<span class="tr-up">live Ο€Ξ±ΟΞ±Ξ³Ο‰Ξ³Ξ®</span>':'<span class="tr-wa">β€”</span>';
+  document.getElementById('sumKwSub').innerHTML=st.length?'<span class="tr-up">live παραγωγή</span>':'<span class="tr-wa">—</span>';
   document.getElementById('sumAlerts').textContent=al;
   document.getElementById('sumAlerts').style.color=al>0?'var(--rd)':'var(--tx)';
   document.getElementById('sumPush').textContent=pu;
@@ -1082,7 +1082,7 @@ function quickStar(id,e){
   const c=gcfg(id);c.starred=!c.starred;wl[id]=c;
   localStorage.setItem('solaren_wl',JSON.stringify(wl));
   const s=SITES.find(x=>x.id===id);
-  showToast(c.starred?'β­':'β•',c.starred?`"${s.name}" Ο€ΟΞΏΟƒΟ„Ξ­ΞΈΞ·ΞΊΞµ ΟƒΟ„ΞΏ Watchlist`:`"${s.name}" Ξ±Ο†Ξ±ΞΉΟΞ­ΞΈΞ·ΞΊΞµ`);
+  showToast(c.starred?'⭐':'✕',c.starred?`"${s.name}" προστέθηκε στο Watchlist`:`"${s.name}" αφαιρέθηκε`);
   render();
 }
 
@@ -1091,7 +1091,7 @@ function openSettings(id,e){
   const s=SITES.find(x=>x.id===id);const c=gcfg(id);
   document.getElementById('modalAv').textContent=bAv[s.brand];
   document.getElementById('modalSiteName').textContent=s.name;
-  document.getElementById('modalSiteSub').textContent=bLbl[s.brand]+' Β· '+s.loc;
+  document.getElementById('modalSiteSub').textContent=bLbl[s.brand]+' · '+s.loc;
   document.getElementById('tWatchlist').checked=c.starred;
   document.getElementById('tEmail').checked=c.email;
   document.getElementById('tPush').checked=c.push;
@@ -1117,14 +1117,14 @@ function saveSettings(){
   c.threshOff=parseInt(document.getElementById('threshOff').value)||15;
   ['sevCritical','sevWarn','sevLow','sevOk'].forEach((k,i)=>c[k]=document.querySelectorAll('.sev-opt')[i].classList.contains('checked'));
   wl[eid]=c;localStorage.setItem('solaren_wl',JSON.stringify(wl));
-  closeModal();render();showToast('β…','Ξ΅Ο…ΞΈΞΌΞ―ΟƒΞµΞΉΟ‚ Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟΟ„Ξ·ΞΊΞ±Ξ½!');
+  closeModal();render();showToast('✅','Ρυθμίσεις αποθηκεύτηκαν!');
 }
 function closeModal(){document.getElementById('settingsModal').classList.remove('open');}
 document.getElementById('settingsModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 function filterSites(q){cs=q;render();}
 function sortSites(v){cSort=v;render();}
-function clearAll(){if(!confirm('ΞΞ± Ξ±Ο†Ξ±ΞΉΟΞµΞΈΞΏΟΞ½ ΟΞ»ΞµΟ‚;'))return;Object.keys(wl).forEach(k=>{if(wl[k])wl[k].starred=false;});localStorage.setItem('solaren_wl',JSON.stringify(wl));render();showToast('π—‘','Watchlist ΞµΞΊΞΊΞ±ΞΈΞ±ΟΞ―ΟƒΟ„Ξ·ΞΊΞµ');}
-function saveWatchlist(){localStorage.setItem('solaren_wl',JSON.stringify(wl));showToast('β…','Ξ‘Ο€ΞΏΞΈΞ·ΞΊΞµΟΟ„Ξ·ΞΊΞµ!');}
+function clearAll(){if(!confirm('Να αφαιρεθούν όλες;'))return;Object.keys(wl).forEach(k=>{if(wl[k])wl[k].starred=false;});localStorage.setItem('solaren_wl',JSON.stringify(wl));render();showToast('🗑','Watchlist εκκαθαρίστηκε');}
+function saveWatchlist(){localStorage.setItem('solaren_wl',JSON.stringify(wl));showToast('✅','Αποθηκεύτηκε!');}
 function showToast(icon,msg){
   document.getElementById('toastIcon').textContent=icon;
   document.getElementById('toastMsg').textContent=msg;
@@ -1132,7 +1132,7 @@ function showToast(icon,msg){
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// β”€β”€ PAGE NAVIGATION β”€β”€
+// ── PAGE NAVIGATION ──
 const PAGES = ['watchlist','dashboard','sites','analytics','alerts','email','push','apikeys','account'];
 let currentPage = 'watchlist';
 
@@ -1159,7 +1159,7 @@ function showPage(page) {
   if (page === 'account')    renderAccount();
 }
 
-// β”€β”€ DASHBOARD PAGE β”€β”€
+// ── DASHBOARD PAGE ──
 function renderDashboard() {
   const total = SITES.length;
   const ok    = SITES.filter(s => s.status === 'ok').length;
@@ -1168,9 +1168,9 @@ function renderDashboard() {
   const kw    = SITES.reduce((a,s) => a + s.kw, 0);
 
   document.getElementById('dash-kw').innerHTML    = `${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
-  document.getElementById('dash-kwsub').innerHTML = `<span class="tr-up">ΟƒΞµ ${total} ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚</span>`;
+  document.getElementById('dash-kwsub').innerHTML = `<span class="tr-up">σε ${total} εγκαταστάσεις</span>`;
   document.getElementById('dash-ok').textContent  = ok;
-  document.getElementById('dash-oksub').innerHTML = `<span class="tr-up">ΞΊΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ® Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±</span>`;
+  document.getElementById('dash-oksub').innerHTML = `<span class="tr-up">κανονική λειτουργία</span>`;
   document.getElementById('dash-err').textContent = errs + warns;
   document.getElementById('dash-total').textContent = total;
 
@@ -1198,13 +1198,13 @@ function renderDashboard() {
     <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:${s.status==='error'?'var(--rd-l)':'var(--am-l)'};border-radius:8px;margin-bottom:6px;border-left:3px solid ${s.status==='error'?'var(--rd)':'var(--am)'};">
       <div style="flex:1;">
         <div style="font-size:13px;font-weight:600;color:var(--tx);">${s.name}</div>
-        <div style="font-size:11px;color:var(--tx2);">${s.err || (s.status==='error'?'Ξ•ΞΊΟ„ΟΟ‚ Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±Ο‚':'Ξ§Ξ±ΞΌΞ·Ξ»Ξ® Ξ±Ο€ΟΞ΄ΞΏΟƒΞ·')}</div>
+        <div style="font-size:11px;color:var(--tx2);">${s.err || (s.status==='error'?'Εκτός λειτουργίας':'Χαμηλή απόδοση')}</div>
       </div>
       <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
-    </div>`).join('') : '<div style="color:var(--gr);font-size:13px;">β… ΞΞ»ΞµΟ‚ ΞΏΞΉ ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚ Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³ΞΏΟΞ½ ΞΊΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ¬!</div>';
+    </div>`).join('') : '<div style="color:var(--gr);font-size:13px;">✅ Όλες οι εγκαταστάσεις λειτουργούν κανονικά!</div>';
 }
 
-// β”€β”€ ALL SITES PAGE β”€β”€
+// ── ALL SITES PAGE ──
 let allSitesFilter = 'all';
 let allSitesSearch = '';
 
@@ -1223,17 +1223,17 @@ function renderAllSites() {
   const ok       = sites.filter(s => s.status === 'ok');
   problems.sort((a,b) => ['error','warn'].indexOf(a.status)-['error','warn'].indexOf(b.status));
 
-  document.getElementById('allSitesCount').textContent = sites.length + ' ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚';
+  document.getElementById('allSitesCount').textContent = sites.length + ' εγκαταστάσεις';
   let html = '';
   if (problems.length) {
-    html += `<div class="sec-header"><span class="sec-header-dot err-dot"></span><span class="sec-header-title">Ξ‘Ο€Ξ±ΞΉΟ„ΞµΞ― Ο€ΟΞΏΟƒΞΏΟ‡Ξ®</span><span class="sec-header-count err-count">${problems.length}</span></div>`;
+    html += `<div class="sec-header"><span class="sec-header-dot err-dot"></span><span class="sec-header-title">Απαιτεί προσοχή</span><span class="sec-header-count err-count">${problems.length}</span></div>`;
     html += problems.map(x => buildCard(x)).join('');
   }
   if (ok.length) {
-    html += `<div class="sec-header" style="margin-top:${problems.length?'12px':'0'}"><span class="sec-header-dot ok-dot"></span><span class="sec-header-title">ΞΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ® Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±</span><span class="sec-header-count ok-count">${ok.length}</span></div>`;
+    html += `<div class="sec-header" style="margin-top:${problems.length?'12px':'0'}"><span class="sec-header-dot ok-dot"></span><span class="sec-header-title">Κανονική λειτουργία</span><span class="sec-header-count ok-count">${ok.length}</span></div>`;
     html += ok.map(x => buildCard(x)).join('');
   }
-  document.getElementById('allSitesGrid').innerHTML = html || '<div class="empty"><div class="empty-icon">π”</div><div class="empty-title">Ξ”ΞµΞ½ Ξ²ΟΞ­ΞΈΞ·ΞΊΞ±Ξ½ Ξ±Ο€ΞΏΟ„ΞµΞ»Ξ­ΟƒΞΌΞ±Ο„Ξ±</div></div>';
+  document.getElementById('allSitesGrid').innerHTML = html || '<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Δεν βρέθηκαν αποτελέσματα</div></div>';
 }
 
 function filterAllSites(q) { allSitesSearch = q; renderAllSites(); }
@@ -1244,7 +1244,7 @@ function filterAllSitesBrand(btn, f) {
   renderAllSites();
 }
 
-// β”€β”€ ANALYTICS PAGE β”€β”€
+// ── ANALYTICS PAGE ──
 function renderAnalytics() {
   const todayKwh = SITES.reduce((a,s) => a + (s.month_power || (s.kw * 5)), 0);
   const monthKwh = SITES.reduce((a,s) => a + (s.month_power || 0), 0);
@@ -1280,22 +1280,22 @@ function renderAnalytics() {
     const bOk = bSites.filter(s=>s.status==='ok').length;
     return `<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg2);border-radius:8px;margin-bottom:6px;">
       <span class="brand-tag ${bCls[b]}">${bNames[b]}</span>
-      <div style="flex:1;font-size:12px;color:var(--tx2);">${bSites.length} ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚ Β· ${bOk} OK</div>
+      <div style="flex:1;font-size:12px;color:var(--tx2);">${bSites.length} εγκαταστάσεις · ${bOk} OK</div>
       <div style="font-size:14px;font-weight:700;color:var(--tx);">${bKw.toFixed(1)} kW</div>
     </div>`;
   }).join('');
 }
 
-// β”€β”€ ALERTS PAGE β”€β”€
+// ── ALERTS PAGE ──
 function renderAlerts() {
   const problems = SITES.filter(s => s.status !== 'ok');
   document.getElementById('alertNavCount').textContent = problems.length;
   if (!problems.length) {
     document.getElementById('alerts-list').innerHTML = `
       <div style="text-align:center;padding:48px;color:var(--tx3);">
-        <div style="font-size:36px;margin-bottom:10px;">β…</div>
-        <div style="font-size:16px;font-weight:600;color:var(--tx2);">Ξ”ΞµΞ½ Ο…Ο€Ξ¬ΟΟ‡ΞΏΟ…Ξ½ ΞµΞ½ΞµΟΞ³Ξ¬ alerts</div>
-        <div style="font-size:13px;margin-top:4px;">ΞΞ»ΞµΟ‚ ΞΏΞΉ ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚ Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³ΞΏΟΞ½ ΞΊΞ±Ξ½ΞΏΞ½ΞΉΞΊΞ¬</div>
+        <div style="font-size:36px;margin-bottom:10px;">✅</div>
+        <div style="font-size:16px;font-weight:600;color:var(--tx2);">Δεν υπάρχουν ενεργά alerts</div>
+        <div style="font-size:13px;margin-top:4px;">Όλες οι εγκαταστάσεις λειτουργούν κανονικά</div>
       </div>`;
     return;
   }
@@ -1305,19 +1305,19 @@ function renderAlerts() {
     const bg    = isErr ? 'var(--rd-l)' : 'var(--am-l)';
     return `<div style="background:${bg};border-radius:12px;padding:16px 18px;margin-bottom:10px;border-left:4px solid ${color};">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-        <div style="font-size:10px;font-weight:700;color:${color};text-transform:uppercase;letter-spacing:.06em;">${isErr?'π¨ ΞΟΞ―ΟƒΞΉΞΌΞΏ':'β οΈ Ξ ΟΞΏΞµΞΉΞ΄ΞΏΟ€ΞΏΞ―Ξ·ΟƒΞ·'}</div>
+        <div style="font-size:10px;font-weight:700;color:${color};text-transform:uppercase;letter-spacing:.06em;">${isErr?'🚨 Κρίσιμο':'⚠️ Προειδοποίηση'}</div>
         <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
       </div>
       <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:4px;">${s.name}</div>
-      <div style="font-size:12px;color:var(--tx2);">${s.err || (isErr?'Ξ•ΞΊΟ„ΟΟ‚ Ξ»ΞµΞΉΟ„ΞΏΟ…ΟΞ³Ξ―Ξ±Ο‚':'Ξ§Ξ±ΞΌΞ·Ξ»Ξ® Ξ±Ο€ΟΞ΄ΞΏΟƒΞ·')}</div>
+      <div style="font-size:12px;color:var(--tx2);">${s.err || (isErr?'Εκτός λειτουργίας':'Χαμηλή απόδοση')}</div>
       <div style="margin-top:10px;display:flex;gap:8px;">
-        <button class="btn-sec" style="font-size:11px;padding:4px 10px;" onclick="openInverterModal(${s.id})">π” Inverters</button>
+        <button class="btn-sec" style="font-size:11px;padding:4px 10px;" onclick="openInverterModal(${s.id})">🔌 Inverters</button>
       </div>
     </div>`;
   }).join('');
 }
 
-// β”€β”€ EMAIL SETTINGS β”€β”€
+// ── EMAIL SETTINGS ──
 function saveEmailSettings() {
   const cfg = {
     from: document.getElementById('emailFrom').value,
@@ -1325,24 +1325,24 @@ function saveEmailSettings() {
     to:   document.getElementById('emailTo').value,
   };
   localStorage.setItem('solaren_email', JSON.stringify(cfg));
-  showToast('β…', 'Email ΟΟ…ΞΈΞΌΞ―ΟƒΞµΞΉΟ‚ Ξ±Ο€ΞΏΞΈΞ·ΞΊΞµΟΟ„Ξ·ΞΊΞ±Ξ½!');
+  showToast('✅', 'Email ρυθμίσεις αποθηκεύτηκαν!');
 }
 
-// β”€β”€ PUSH β”€β”€
+// ── PUSH ──
 async function enablePush() {
-  if (!('Notification' in window)) { showToast('β', 'Ξ browser Ξ΄ΞµΞ½ Ο…Ο€ΞΏΟƒΟ„Ξ·ΟΞ―Ξ¶ΞµΞΉ notifications'); return; }
+  if (!('Notification' in window)) { showToast('❌', 'Ο browser δεν υποστηρίζει notifications'); return; }
   const perm = await Notification.requestPermission();
   if (perm === 'granted') {
-    document.getElementById('pushEnableBtn').textContent = 'β… Ξ•Ξ½ΞµΟΞ³Ο';
+    document.getElementById('pushEnableBtn').textContent = '✅ Ενεργό';
     document.getElementById('pushEnableBtn').disabled = true;
-    new Notification('Solaren', { body: 'Push notifications ΞµΞ½ΞµΟΞ³ΞΏΟ€ΞΏΞΉΞ®ΞΈΞ·ΞΊΞ±Ξ½!' });
-    showToast('π””', 'Push notifications ΞµΞ½ΞµΟΞ³Ξ¬!');
+    new Notification('Solaren', { body: 'Push notifications ενεργοποιήθηκαν!' });
+    showToast('🔔', 'Push notifications ενεργά!');
   } else {
-    showToast('β', 'Ξ”ΞµΞ½ Ξ΄ΟΞΈΞ·ΞΊΞµ Ξ¬Ξ΄ΞµΞΉΞ±');
+    showToast('❌', 'Δεν δόθηκε άδεια');
   }
 }
 
-// β”€β”€ ACCOUNT β”€β”€
+// ── ACCOUNT ──
 function renderAccount() {
   const user = JSON.parse(localStorage.getItem('solaren_user') || 'null');
   document.getElementById('loginForm').style.display    = user ? 'none' : 'block';
@@ -1366,13 +1366,13 @@ function showLogin() {
 function doLogin() {
   const email = document.getElementById('loginEmail').value;
   const pass  = document.getElementById('loginPass').value;
-  if (!email || !pass) { showToast('β', 'Ξ£Ο…ΞΌΟ€Ξ»Ξ®ΟΟ‰ΟƒΞµ email ΞΊΞ±ΞΉ ΞΊΟ‰Ξ΄ΞΉΞΊΟ'); return; }
+  if (!email || !pass) { showToast('❌', 'Συμπλήρωσε email και κωδικό'); return; }
   const saved = JSON.parse(localStorage.getItem('solaren_user') || 'null');
   if (saved && saved.email === email && saved.pass === pass) {
     renderAccount();
-    showToast('β…', `ΞΞ±Ξ»ΟΟ‚ Ξ®ΟΞΈΞµΟ‚, ${saved.name}!`);
+    showToast('✅', `Καλώς ήρθες, ${saved.name}!`);
   } else {
-    showToast('β', 'Ξ›Ξ¬ΞΈΞΏΟ‚ email Ξ® ΞΊΟ‰Ξ΄ΞΉΞΊΟΟ‚');
+    showToast('❌', 'Λάθος email ή κωδικός');
   }
 }
 function doRegister() {
@@ -1380,17 +1380,17 @@ function doRegister() {
   const email = document.getElementById('regEmail').value;
   const pass  = document.getElementById('regPass').value;
   const pass2 = document.getElementById('regPass2').value;
-  if (!name || !email || !pass) { showToast('β', 'Ξ£Ο…ΞΌΟ€Ξ»Ξ®ΟΟ‰ΟƒΞµ ΟΞ»Ξ± Ο„Ξ± Ο€ΞµΞ΄Ξ―Ξ±'); return; }
-  if (pass !== pass2) { showToast('β', 'ΞΞΉ ΞΊΟ‰Ξ΄ΞΉΞΊΞΏΞ― Ξ΄ΞµΞ½ Ο„Ξ±ΞΉΟΞΉΞ¬Ξ¶ΞΏΟ…Ξ½'); return; }
-  if (pass.length < 8) { showToast('β', 'Ξ ΞΊΟ‰Ξ΄ΞΉΞΊΟΟ‚ Ο€ΟΞ­Ο€ΞµΞΉ Ξ½Ξ± Ξ­Ο‡ΞµΞΉ Ο„ΞΏΟ…Ξ»Ξ¬Ο‡ΞΉΟƒΟ„ΞΏΞ½ 8 Ο‡Ξ±ΟΞ±ΞΊΟ„Ξ®ΟΞµΟ‚'); return; }
+  if (!name || !email || !pass) { showToast('❌', 'Συμπλήρωσε όλα τα πεδία'); return; }
+  if (pass !== pass2) { showToast('❌', 'Οι κωδικοί δεν ταιριάζουν'); return; }
+  if (pass.length < 8) { showToast('❌', 'Ο κωδικός πρέπει να έχει τουλάχιστον 8 χαρακτήρες'); return; }
   localStorage.setItem('solaren_user', JSON.stringify({name, email, pass}));
   renderAccount();
-  showToast('β…', `Ξ Ξ»ΞΏΞ³Ξ±ΟΞΉΞ±ΟƒΞΌΟΟ‚ Ξ΄Ξ·ΞΌΞΉΞΏΟ…ΟΞ³Ξ®ΞΈΞ·ΞΊΞµ! ΞΞ±Ξ»ΟΟ‚ Ξ®ΟΞΈΞµΟ‚, ${name}!`);
+  showToast('✅', `Ο λογαριασμός δημιουργήθηκε! Καλώς ήρθες, ${name}!`);
 }
 function doLogout() {
   localStorage.removeItem('solaren_user');
   renderAccount();
-  showToast('π‘‹', 'Ξ‘Ο€ΞΏΟƒΟ…Ξ½Ξ΄Ξ­ΞΈΞ·ΞΊΞµΟ‚');
+  showToast('👋', 'Αποσυνδέθηκες');
 }
 
 // Init account header name
@@ -1402,41 +1402,41 @@ if (_u) {
   const unEl = document.querySelector('.user-name');
   if (unEl) unEl.textContent = _u.name;
 }
-let lastRealData = null; // ΞΟΞ±Ο„Ξ¬ΞµΞΉ Ο„Ξ± Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―Ξ± Ξ³Ξ½Ο‰ΟƒΟ„Ξ¬ Ξ΄ΞµΞ΄ΞΏΞΌΞ­Ξ½Ξ±
+let lastRealData = null; // Κρατάει τα τελευταία γνωστά δεδομένα
 
 async function loadRealData() {
   try {
     const r = await fetch('/api/all-sites');
     const data = await r.json();
     if (data.ok && data.sites && data.sites.length > 0) {
-      // Ξ‘Ο€ΞΏΞΈΞ®ΞΊΞµΟ…ΟƒΞµ ΟƒΟ„ΞΏ localStorage Ξ³ΞΉΞ± ΞµΟ€ΟΞΌΞµΞ½Ξ· Ο†ΟΟΟ„Ο‰ΟƒΞ·
+      // Αποθήκευσε στο localStorage για επόμενη φόρτωση
       localStorage.setItem('solaren_last_sites', JSON.stringify(data.sites));
       lastRealData = data.sites;
       updateSitesFromAPI(data.sites);
-      showToast('β…', `${data.sites.length} ΞµΞ³ΞΊΞ±Ο„Ξ±ΟƒΟ„Ξ¬ΟƒΞµΞΉΟ‚ ΞµΞ½Ξ·ΞΌΞµΟΟΞΈΞ·ΞΊΞ±Ξ½`);
+      showToast('✅', `${data.sites.length} εγκαταστάσεις ενημερώθηκαν`);
     } else {
-      // API Ξ±Ο€Ξ­Ο„Ο…Ο‡Ξµ β€” Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞ―Ξ·ΟƒΞµ Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―Ξ± Ξ³Ξ½Ο‰ΟƒΟ„Ξ¬ Ξ΄ΞµΞ΄ΞΏΞΌΞ­Ξ½Ξ±
+      // API απέτυχε — χρησιμοποίησε τελευταία γνωστά δεδομένα
       const saved = localStorage.getItem('solaren_last_sites');
       if (saved) {
         const sites = JSON.parse(saved);
         updateSitesFromAPI(sites);
-        showToast('β οΈ', 'Offline β€” ΞµΞΌΟ†Ξ¬Ξ½ΞΉΟƒΞ· Ο„ΞµΞ»ΞµΟ…Ο„Ξ±Ξ―Ο‰Ξ½ Ξ΄ΞµΞ΄ΞΏΞΌΞ­Ξ½Ο‰Ξ½');
+        showToast('⚠️', 'Offline — εμφάνιση τελευταίων δεδομένων');
       } else {
-        render(); // demo Ξ΄ΞµΞ΄ΞΏΞΌΞ­Ξ½Ξ± ΞΌΟΞ½ΞΏ Ξ±Ξ½ Ξ΄ΞµΞ½ Ξ­Ο‡ΞΏΟ…ΞΌΞµ Ο„Ξ―Ο€ΞΏΟ„Ξ±
+        render(); // demo δεδομένα μόνο αν δεν έχουμε τίποτα
       }
     }
   } catch(e) {
-    // Ξ£Ο†Ξ¬Ξ»ΞΌΞ± Ξ΄ΞΉΞΊΟ„ΟΞΏΟ… β€” Ο‡ΟΞ·ΟƒΞΉΞΌΞΏΟ€ΞΏΞ―Ξ·ΟƒΞµ cached
+    // Σφάλμα δικτύου — χρησιμοποίησε cached
     const saved = localStorage.getItem('solaren_last_sites');
     if (saved) {
       const sites = JSON.parse(saved);
       updateSitesFromAPI(sites);
-      showToast('π“µ', 'Offline β€” cached Ξ΄ΞµΞ΄ΞΏΞΌΞ­Ξ½Ξ±');
+      showToast('📵', 'Offline — cached δεδομένα');
     } else {
       render();
     }
   }
-  // Ξ‘Ξ½Ξ±Ξ½Ξ­Ο‰ΟƒΞ· ΞΊΞ¬ΞΈΞµ 5 Ξ»ΞµΟ€Ο„Ξ¬
+  // Ανανέωση κάθε 5 λεπτά
   setTimeout(loadRealData, 5 * 60 * 1000);
 }
 
@@ -1457,7 +1457,7 @@ function updateSitesFromAPI(apiSites) {
   render();
 }
 
-// Ξ¦ΟΟΟ„Ο‰ΟƒΞµ Ξ±ΞΌΞ­ΟƒΟ‰Ο‚ cached Ξ΄ΞµΞ΄ΞΏΞΌΞ­Ξ½Ξ± Ξ±Ξ½ Ο…Ο€Ξ¬ΟΟ‡ΞΏΟ…Ξ½ (Ο‡Ο‰ΟΞ―Ο‚ Ξ½Ξ± Ο€ΞµΟΞΉΞΌΞ­Ξ½ΞµΞΉ API)
+// Φόρτωσε αμέσως cached δεδομένα αν υπάρχουν (χωρίς να περιμένει API)
 const cachedSites = localStorage.getItem('solaren_last_sites');
 if (cachedSites) {
   try {
@@ -1469,7 +1469,7 @@ if (cachedSites) {
   render();
 }
 
-// ΞΞµΟ„Ξ¬ Ο†ΟΟΟ„Ο‰ΟƒΞµ Ο†ΟΞ­ΟƒΞΊΞ± Ξ±Ο€Ο API
+// Μετά φόρτωσε φρέσκα από API
 loadRealData();
 </script>
 </body>
