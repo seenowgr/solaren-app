@@ -314,22 +314,22 @@ canvas.mini{width:100%!important;height:130px!important;}
 <div class="layout">
   <nav>
     <div class="nav-sec">Κύριο</div>
-    <div class="nav-item"><span class="nav-icon">⚡</span>Dashboard</div>
-    <div class="nav-item active"><span class="nav-icon">⭐</span>Watchlist <span class="nav-pill np-bl" id="wlCount">0</span></div>
-    <div class="nav-item"><span class="nav-icon">🏭</span>Εγκαταστάσεις</div>
-    <div class="nav-item"><span class="nav-icon">📈</span>Αναλυτικά</div>
+    <div class="nav-item" onclick="showPage('dashboard')"><span class="nav-icon">⚡</span>Dashboard</div>
+    <div class="nav-item active" id="nav-watchlist" onclick="showPage('watchlist')"><span class="nav-icon">⭐</span>Watchlist <span class="nav-pill np-bl" id="wlCount">0</span></div>
+    <div class="nav-item" onclick="showPage('sites')"><span class="nav-icon">🏭</span>Εγκαταστάσεις</div>
+    <div class="nav-item" onclick="showPage('analytics')"><span class="nav-icon">📈</span>Αναλυτικά</div>
     <div class="nav-sec">Brands</div>
     <div class="nav-item" onclick="filterByBrand('sungrow')"><span class="nav-icon">◉</span>Sungrow <span class="nav-pill np-bl" id="cnt-sungrow">—</span></div>
     <div class="nav-item" onclick="filterByBrand('huawei')"><span class="nav-icon">◉</span>Huawei <span class="nav-pill np-rd" id="cnt-huawei">—</span></div>
     <div class="nav-item" onclick="filterByBrand('goodwe')"><span class="nav-icon">◉</span>GoodWe <span class="nav-pill np-gr" id="cnt-goodwe">—</span></div>
     <div class="nav-item" onclick="filterByBrand('fronius')"><span class="nav-icon">◉</span>Fronius <span class="nav-pill np-fr" id="cnt-fronius">—</span></div>
     <div class="nav-sec">Ειδοποιήσεις</div>
-    <div class="nav-item"><span class="nav-icon">🚨</span>Alerts <span class="nav-pill np-rd">3</span></div>
-    <div class="nav-item"><span class="nav-icon">✉️</span>Email</div>
-    <div class="nav-item"><span class="nav-icon">📱</span>Push</div>
+    <div class="nav-item" onclick="showPage('alerts')"><span class="nav-icon">🚨</span>Alerts <span class="nav-pill np-rd" id="alertNavCount">0</span></div>
+    <div class="nav-item" onclick="showPage('email')"><span class="nav-icon">✉️</span>Email</div>
+    <div class="nav-item" onclick="showPage('push')"><span class="nav-icon">📱</span>Push</div>
     <div class="nav-sec">Σύστημα</div>
-    <div class="nav-item"><span class="nav-icon">🔑</span>API Keys</div>
-    <div class="nav-item"><span class="nav-icon">👤</span>Λογαριασμός</div>
+    <div class="nav-item" onclick="showPage('apikeys')"><span class="nav-icon">🔑</span>API Keys</div>
+    <div class="nav-item" onclick="showPage('account')"><span class="nav-icon">👤</span>Λογαριασμός</div>
   </nav>
 
   <main>
@@ -597,6 +597,11 @@ function buildCard(x){
         <div class="status-pill ${spC}"><span class="sdot ${dotC}"></span>${stL}</div>
         <span class="brand-tag ${bCls[x.brand]}">${bLbl[x.brand]}</span>
       </div>
+    </div>
+
+    <div class="card-click-hint" onclick="openInverterModal(${x.id})">
+      🔌 ${(INVERTERS[x.id]||[]).length || '—'} Inverters — κλικ για λεπτομέρειες
+      <span style="margin-left:auto;font-size:13px;">›</span>
     </div>
 
     <div class="chart-toggle" onclick="toggleChart(${x.id})">
@@ -931,32 +936,4 @@ function updateSitesFromAPI(apiSites) {
   apiSites.forEach((s, idx) => {
     SITES.push({
       id:     idx + 1,
-      name:   s.name,
-      loc:    s.name,
-      brand:  s.brand,
-      kw:     s.kw || 0,
-      cap:    s.cap || 30,
-      status: s.status || 'ok',
-      err:    s.err || null,
-    });
-  });
-  render();
-}
-
-// Φόρτωσε αμέσως cached δεδομένα αν υπάρχουν (χωρίς να περιμένει API)
-const cachedSites = localStorage.getItem('solaren_last_sites');
-if (cachedSites) {
-  try {
-    updateSitesFromAPI(JSON.parse(cachedSites));
-  } catch(e) {
-    render();
-  }
-} else {
-  render();
-}
-
-// Μετά φόρτωσε φρέσκα από API
-loadRealData();
-</script>
-</body>
-</html>
+      name:   s.n
