@@ -123,36 +123,68 @@ def huawei_debug():
 def huawei_sites():
     try:
         token = get_huawei_token()
+        headers = {"XSRF-TOKEN": token}
+
+        # Βήμα 1: Πάρε λίστα εγκαταστάσεων
         r = requests.post(
             "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
-            json={}, headers={"XSRF-TOKEN": token}, timeout=15
+            json={}, headers=headers, timeout=15
         )
         data = r.json()
         stations = data.get("data", [])
         if not isinstance(stations, list):
             stations = []
+
+        # Βήμα 2: Πάρε παραγωγή σε πραγματικό χρόνο για όλες μαζί
+        codes = [s.get("stationCode","") for s in stations if s.get("stationCode")]
+        power_map = {}
+        if codes:
+            # Huawei δέχεται max 100 codes ανά κλήση
+            for i in range(0, len(codes), 100):
+                batch = codes[i:i+100]
+                rp = requests.post(
+                    "https://eu5.fusionsolar.huawei.com/thirdData/getStationRealKpi",
+                    json={"stationCodes": ",".join(batch)},
+                    headers=headers, timeout=15
+                )
+                kpi_data = rp.json().get("data", [])
+                if isinstance(kpi_data, list):
+                    for k in kpi_data:
+                        code = k.get("stationCode","")
+                        kpi  = k.get("dataItemMap", {})
+                        # Huawei χρησιμοποιεί 'radiation_intensity' για active power σε kW
+                        power = (
+                            kpi.get("radiation_intensity") or
+                            kpi.get("power_profit") or
+                            kpi.get("inverter_power") or
+                            kpi.get("ongrid_power") or 0
+                        )
+                        power_map[code] = float(power)
+
         sites = []
         for s in stations:
-            # Huawei uses different field names depending on API version
-            site_id = s.get("dn") or s.get("stationCode") or s.get("plantCode") or str(s.get("id",""))
-            name    = s.get("stationName") or s.get("plantName") or f"Huawei-{site_id}"
-            # Power: try multiple field paths
-            kpi     = s.get("realKpi") or s.get("kpiInfo") or {}
-            power   = kpi.get("activePower") or kpi.get("radiationIntensity") or s.get("activePower") or 0
-            cap     = s.get("capacity") or s.get("installedCapacity") or 0
-            status_val = s.get("status") or s.get("healthState") or 1
-            if status_val in (1, "1", "normal"): status = "ok"
-            elif status_val in (2, "2", "warning"): status = "warn"
-            else: status = "error"
+            code   = s.get("stationCode","")
+            name   = s.get("stationName", f"Huawei-{code}")
+            cap    = float(s.get("capacity") or 0)
+            kw     = power_map.get(code, 0.0)
+            status = "ok"
+            if kw == 0 and cap > 0:
+                # Έλεγξε αν είναι ώρα ηλίου (7-19)
+                from datetime import datetime
+                h = datetime.now().hour
+                if 7 <= h <= 19:
+                    status = "warn"
+
             sites.append({
-                "id":    str(site_id),
-                "name":  name,
-                "brand": "huawei",
-                "kw":    round(float(power), 2),
-                "cap":   round(float(cap), 1),
+                "id":     code,
+                "name":   name,
+                "brand":  "huawei",
+                "kw":     round(kw, 2),
+                "cap":    round(cap, 1),
                 "status": status,
-                "err":   None,
+                "err":    None,
             })
+
         return {"ok": True, "sites": sites, "raw_count": len(stations)}
     except Exception as e:
         log.error(f"Huawei error: {e}")
