@@ -109,6 +109,9 @@ def huawei_kpi_debug():
     """Δείχνει την ακριβή απάντηση του KPI endpoint"""
     try:
         token = get_huawei_token()
+        if not token:
+            return {"error": "Login failed - check HUAWEI_USER and HUAWEI_PASS"}
+        
         headers = {"XSRF-TOKEN": token}
 
         # Πάρε πρώτα τις εγκαταστάσεις
@@ -116,8 +119,17 @@ def huawei_kpi_debug():
             "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
             json={}, headers=headers, timeout=15
         )
-        stations = r.json().get("data", [])[:3]  # μόνο πρώτες 3
-        codes = [s.get("stationCode","") for s in stations]
+        raw = r.json()
+        stations = raw.get("data", [])
+        
+        # Έλεγξε αν data είναι λίστα
+        if not isinstance(stations, list):
+            return {"error": "data is not a list", "raw": raw}
+        
+        if not stations:
+            return {"error": "empty station list", "raw": raw}
+            
+        codes = [s.get("stationCode","") for s in stations[:3] if isinstance(s, dict)]
 
         # Τώρα δοκίμασε το KPI
         rp = requests.post(
@@ -125,13 +137,17 @@ def huawei_kpi_debug():
             json={"stationCodes": ",".join(codes)},
             headers=headers, timeout=15
         )
+        kpi_raw = rp.json()
         return {
+            "token_ok": bool(token),
             "codes_sent": codes,
-            "kpi_response": rp.json(),
+            "station_count": len(stations),
+            "kpi_response": kpi_raw,
             "status_code": rp.status_code
         }
     except Exception as e:
-        return {"error": str(e)}
+        import traceback
+        return {"error": str(e), "trace": traceback.format_exc()}
 
 @app.get("/api/huawei/debug")
 def huawei_debug():
