@@ -382,6 +382,246 @@ canvas.mini{width:100%!important;height:130px!important;}
 
     <div class="sites-grid" id="sitesGrid"></div>
   </main>
+
+  <!-- ── DASHBOARD PAGE ── -->
+  <main id="page-dashboard" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">⚡ Dashboard</div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολική παραγωγή τώρα</div><div class="kpi-ic ki-or">⚡</div></div>
+        <div class="kpi-val" id="dash-kw">— <span class="kpi-unit">kW</span></div>
+        <div class="kpi-trend" id="dash-kwsub"><span class="tr-wa">—</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ενεργές εγκαταστάσεις</div><div class="kpi-ic ki-gr">🏭</div></div>
+        <div class="kpi-val" id="dash-ok">—</div>
+        <div class="kpi-trend" id="dash-oksub"><span class="tr-wa">—</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Με σφάλμα</div><div class="kpi-ic ki-rd">🚨</div></div>
+        <div class="kpi-val" id="dash-err" style="color:var(--rd)">—</div>
+        <div class="kpi-trend"><span class="tr-wa">εγκαταστάσεις</span></div></div>
+      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολικές εγκαταστάσεις</div><div class="kpi-ic ki-bl">📊</div></div>
+        <div class="kpi-val" id="dash-total">—</div>
+        <div class="kpi-trend"><span class="tr-wa">εγκαταστάσεις</span></div></div>
+    </div>
+    <!-- Brand breakdown -->
+    <div class="kpi" style="padding:20px;">
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:16px;">Παραγωγή ανά brand</div>
+      <div id="dash-brands" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
+    <!-- Alerts summary -->
+    <div class="kpi" style="padding:20px;">
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">🚨 Εγκαταστάσεις με πρόβλημα</div>
+      <div id="dash-alerts-list"></div>
+    </div>
+  </main>
+
+  <!-- ── SITES PAGE ── -->
+  <main id="page-sites" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;">
+      <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🏭 Όλες οι Εγκαταστάσεις</div>
+      <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="filterAllSites(this.value)" id="allSitesSearch"></div>
+    </div>
+    <div class="toolbar">
+      <button class="fbtn active" onclick="filterAllSitesBrand(this,'all')">Όλες</button>
+      <button class="fbtn" onclick="filterAllSitesBrand(this,'sungrow')">Sungrow</button>
+      <button class="fbtn" onclick="filterAllSitesBrand(this,'huawei')">Huawei</button>
+      <button class="fbtn" onclick="filterAllSitesBrand(this,'goodwe')">GoodWe</button>
+      <button class="fbtn" onclick="filterAllSitesBrand(this,'fronius')" style="color:var(--fr)">Fronius</button>
+      <div class="tbsep"></div>
+      <button class="fbtn f-err" onclick="filterAllSitesBrand(this,'error')">🔴 Σφάλμα</button>
+      <button class="fbtn f-warn" onclick="filterAllSitesBrand(this,'warn')">🟡 Προειδοποίηση</button>
+      <span class="count-lbl" id="allSitesCount">—</span>
+    </div>
+    <div class="sites-grid" id="allSitesGrid"></div>
+  </main>
+
+  <!-- ── ANALYTICS PAGE ── -->
+  <main id="page-analytics" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">📈 Αναλυτικά</div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-lbl">Παραγωγή σήμερα</div>
+        <div class="kpi-val" id="an-today">— <span class="kpi-unit">kWh</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Παραγωγή μήνα</div>
+        <div class="kpi-val" id="an-month">— <span class="kpi-unit">kWh</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Παραγωγή έτους</div>
+        <div class="kpi-val" id="an-year">— <span class="kpi-unit">MWh</span></div></div>
+      <div class="kpi"><div class="kpi-lbl">Μέση απόδοση</div>
+        <div class="kpi-val" id="an-avg">— <span class="kpi-unit">%</span></div></div>
+    </div>
+    <div class="kpi" style="padding:20px;">
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Κατάταξη εγκαταστάσεων — Παραγωγή σήμερα</div>
+      <div id="an-ranking"></div>
+    </div>
+    <div class="kpi" style="padding:20px;">
+      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Ανάλυση ανά brand</div>
+      <div id="an-brands"></div>
+    </div>
+  </main>
+
+  <!-- ── ALERTS PAGE ── -->
+  <main id="page-alerts" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🚨 Alerts</div>
+    <div id="alerts-list"></div>
+  </main>
+
+  <!-- ── EMAIL PAGE ── -->
+  <main id="page-email" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">✉️ Email Ειδοποιήσεις</div>
+    <div class="kpi" style="padding:22px;max-width:520px;">
+      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ρύθμισε το email για να λαμβάνεις ειδοποιήσεις σφαλμάτων.</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Email αποστολής (Gmail)</div>
+          <input class="search-inp" style="width:100%;" type="email" id="emailFrom" placeholder="alerts@gmail.com">
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">App Password Gmail</div>
+          <input class="search-inp" style="width:100%;" type="password" id="emailPass" placeholder="xxxx xxxx xxxx xxxx">
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Αποστολή σε (email σου)</div>
+          <input class="search-inp" style="width:100%;" type="email" id="emailTo" placeholder="info@solaren.gr">
+        </div>
+        <div style="background:var(--bl-l);border-radius:8px;padding:12px;font-size:12px;color:var(--bl);">
+          💡 Για Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
+        </div>
+        <button class="btn-pri" onclick="saveEmailSettings()">💾 Αποθήκευση</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── PUSH PAGE ── -->
+  <main id="page-push" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">📱 Push Notifications</div>
+    <div class="kpi" style="padding:22px;max-width:520px;">
+      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ενεργοποίησε push notifications για να λαμβάνεις ειδοποιήσεις στο κινητό και desktop.</div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--tx);">Browser Notifications</div>
+            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Ειδοποιήσεις σε αυτόν τον browser</div>
+          </div>
+          <button class="btn-pri" id="pushEnableBtn" onclick="enablePush()">Ενεργοποίηση</button>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:var(--tx);">Firebase FCM (κινητό)</div>
+            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Server Key από Firebase Console</div>
+          </div>
+          <span style="font-size:11px;color:var(--tx3);">Μέσω Railway Variables</span>
+        </div>
+        <div style="background:var(--bl-l);border-radius:8px;padding:12px;font-size:12px;color:var(--bl);">
+          💡 Για mobile push: βάλε FCM_SERVER_KEY στο Railway → Variables
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── API KEYS PAGE ── -->
+  <main id="page-apikeys" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🔑 API Keys</div>
+    <div style="font-size:13px;color:var(--tx2);">Τα API keys διαχειρίζονται μέσω του Railway.app → Variables για ασφάλεια.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="kpi" style="padding:18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="brand-tag b-sg">Sungrow</span>
+          <span style="font-size:11px;color:var(--tx3);">iSolarCloud API</span>
+        </div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">SUNGROW_TOKEN</div>
+        <div style="font-size:11px;color:var(--tx2);">SUNGROW_APP_ID</div>
+        <div style="margin-top:10px;"><a href="https://isolarcloud.com.hk" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
+      </div>
+      <div class="kpi" style="padding:18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="brand-tag b-hw">Huawei</span>
+          <span style="font-size:11px;color:var(--tx3);">FusionSolar API</span>
+        </div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">HUAWEI_USER: <strong>solarengr</strong></div>
+        <div style="font-size:11px;color:var(--tx2);">HUAWEI_PASS: ••••••••</div>
+        <div style="margin-top:10px;font-size:10px;color:var(--gr);font-weight:600;">✅ Συνδεδεμένο</div>
+      </div>
+      <div class="kpi" style="padding:18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="brand-tag b-gw">GoodWe</span>
+          <span style="font-size:11px;color:var(--tx3);">SEMS Portal API</span>
+        </div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">GOODWE_ACCOUNT</div>
+        <div style="font-size:11px;color:var(--tx2);">GOODWE_TOKEN</div>
+        <div style="margin-top:10px;"><a href="https://semsportal.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
+      </div>
+      <div class="kpi" style="padding:18px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <span class="brand-tag b-fr">Fronius</span>
+          <span style="font-size:11px;color:var(--tx3);">SolarWeb API</span>
+        </div>
+        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">FRONIUS_ACCESS_KEY_ID</div>
+        <div style="font-size:11px;color:var(--tx2);">FRONIUS_ACCESS_KEY_VALUE</div>
+        <div style="margin-top:10px;"><a href="https://www.solarweb.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── ACCOUNT PAGE ── -->
+  <main id="page-account" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
+    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">👤 Λογαριασμός</div>
+    <!-- Login form -->
+    <div id="loginForm" class="kpi" style="padding:24px;max-width:420px;">
+      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Σύνδεση</div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Συνδέσου στο Solaren account σου</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Email</div>
+          <input class="search-inp" style="width:100%;" type="email" id="loginEmail" placeholder="info@solaren.gr">
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Κωδικός</div>
+          <input class="search-inp" style="width:100%;" type="password" id="loginPass" placeholder="••••••••">
+        </div>
+        <button class="btn-pri" onclick="doLogin()">Σύνδεση →</button>
+        <div style="text-align:center;font-size:12px;color:var(--tx2);">
+          Δεν έχεις λογαριασμό; 
+          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showRegister()">Εγγραφή</span>
+        </div>
+      </div>
+    </div>
+    <!-- Register form -->
+    <div id="registerForm" class="kpi" style="padding:24px;max-width:420px;display:none;">
+      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Εγγραφή</div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Δημιούργησε νέο Solaren account</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Όνομα εταιρείας</div>
+          <input class="search-inp" style="width:100%;" type="text" id="regName" placeholder="Solaren GR">
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Email</div>
+          <input class="search-inp" style="width:100%;" type="email" id="regEmail" placeholder="info@solaren.gr">
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Κωδικός</div>
+          <input class="search-inp" style="width:100%;" type="password" id="regPass" placeholder="Τουλάχιστον 8 χαρακτήρες">
+        </div>
+        <div>
+          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Επιβεβαίωση κωδικού</div>
+          <input class="search-inp" style="width:100%;" type="password" id="regPass2" placeholder="••••••••">
+        </div>
+        <button class="btn-pri" onclick="doRegister()">Εγγραφή →</button>
+        <div style="text-align:center;font-size:12px;color:var(--tx2);">
+          Έχεις ήδη λογαριασμό; 
+          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showLogin()">Σύνδεση</span>
+        </div>
+      </div>
+    </div>
+    <!-- Logged in profile -->
+    <div id="profileForm" class="kpi" style="padding:24px;max-width:420px;display:none;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--bl);" id="profileAvatar">ΓΚ</div>
+        <div>
+          <div style="font-family:var(--head);font-weight:700;font-size:16px;" id="profileName">—</div>
+          <div style="font-size:12px;color:var(--tx2);" id="profileEmail">—</div>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--bdr);margin-bottom:14px;"></div>
+      <button class="btn-sec" style="width:100%;color:var(--rd);border-color:var(--rd);" onclick="doLogout()">Αποσύνδεση</button>
+    </div>
+  </main>
 </div>
 
 <!-- SETTINGS MODAL -->
@@ -892,7 +1132,276 @@ function showToast(icon,msg){
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// ── ΦΟΡΤΩΣΗ ΠΡΑΓΜΑΤΙΚΩΝ ΔΕΔΟΜΕΝΩΝ ΑΠΟ API ──
+// ── PAGE NAVIGATION ──
+const PAGES = ['watchlist','dashboard','sites','analytics','alerts','email','push','apikeys','account'];
+let currentPage = 'watchlist';
+
+function showPage(page) {
+  currentPage = page;
+  // Hide all pages
+  PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) el.style.display = 'none';
+  });
+  // Show watchlist main (special case)
+  const mainWl = document.querySelector('main:not([id])') || document.querySelector('main');
+  if (mainWl) mainWl.style.display = (page === 'watchlist') ? 'flex' : 'none';
+  // Show target page
+  const target = document.getElementById('page-' + page);
+  if (target) target.style.display = 'flex';
+  // Update nav active state
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  // Refresh page content
+  if (page === 'dashboard')  renderDashboard();
+  if (page === 'sites')      renderAllSites();
+  if (page === 'analytics')  renderAnalytics();
+  if (page === 'alerts')     renderAlerts();
+  if (page === 'account')    renderAccount();
+}
+
+// ── DASHBOARD PAGE ──
+function renderDashboard() {
+  const total = SITES.length;
+  const ok    = SITES.filter(s => s.status === 'ok').length;
+  const errs  = SITES.filter(s => s.status === 'error').length;
+  const warns = SITES.filter(s => s.status === 'warn').length;
+  const kw    = SITES.reduce((a,s) => a + s.kw, 0);
+
+  document.getElementById('dash-kw').innerHTML    = `${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
+  document.getElementById('dash-kwsub').innerHTML = `<span class="tr-up">σε ${total} εγκαταστάσεις</span>`;
+  document.getElementById('dash-ok').textContent  = ok;
+  document.getElementById('dash-oksub').innerHTML = `<span class="tr-up">κανονική λειτουργία</span>`;
+  document.getElementById('dash-err').textContent = errs + warns;
+  document.getElementById('dash-total').textContent = total;
+
+  // Brand breakdown
+  const brands = ['sungrow','huawei','goodwe','fronius'];
+  const bNames = {sungrow:'Sungrow',huawei:'Huawei',goodwe:'GoodWe',fronius:'Fronius'};
+  const bColors = {sungrow:'var(--bl)',huawei:'var(--rd)',goodwe:'var(--gr)',fronius:'var(--fr)'};
+  const maxKw = Math.max(...brands.map(b => SITES.filter(s=>s.brand===b).reduce((a,s)=>a+s.kw,0)), 1);
+  document.getElementById('dash-brands').innerHTML = brands.map(b => {
+    const bSites = SITES.filter(s => s.brand === b);
+    const bKw = bSites.reduce((a,s) => a+s.kw, 0);
+    const pct = Math.round(bKw/maxKw*100);
+    return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+      <div style="width:80px;font-size:12px;color:var(--tx2);">${bNames[b]} <span style="color:var(--tx3);font-size:10px;">(${bSites.length})</span></div>
+      <div style="flex:1;height:6px;background:var(--bg2);border-radius:3px;">
+        <div style="width:${pct}%;height:6px;border-radius:3px;background:${bColors[b]};transition:width .8s;"></div>
+      </div>
+      <div style="font-size:12px;font-weight:600;color:${bColors[b]};width:70px;text-align:right;">${bKw.toFixed(1)} kW</div>
+    </div>`;
+  }).join('');
+
+  // Problems
+  const problems = SITES.filter(s => s.status !== 'ok');
+  document.getElementById('dash-alerts-list').innerHTML = problems.length ? problems.map(s => `
+    <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:${s.status==='error'?'var(--rd-l)':'var(--am-l)'};border-radius:8px;margin-bottom:6px;border-left:3px solid ${s.status==='error'?'var(--rd)':'var(--am)'};">
+      <div style="flex:1;">
+        <div style="font-size:13px;font-weight:600;color:var(--tx);">${s.name}</div>
+        <div style="font-size:11px;color:var(--tx2);">${s.err || (s.status==='error'?'Εκτός λειτουργίας':'Χαμηλή απόδοση')}</div>
+      </div>
+      <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
+    </div>`).join('') : '<div style="color:var(--gr);font-size:13px;">✅ Όλες οι εγκαταστάσεις λειτουργούν κανονικά!</div>';
+}
+
+// ── ALL SITES PAGE ──
+let allSitesFilter = 'all';
+let allSitesSearch = '';
+
+function renderAllSites() {
+  let sites = [...SITES];
+  if (allSitesSearch) {
+    const q = allSitesSearch.toLowerCase();
+    sites = sites.filter(s => s.name.toLowerCase().includes(q) || bLbl[s.brand].toLowerCase().includes(q));
+  }
+  if (['sungrow','huawei','goodwe','fronius'].includes(allSitesFilter)) {
+    sites = sites.filter(s => s.brand === allSitesFilter);
+  } else if (allSitesFilter === 'error') sites = sites.filter(s => s.status === 'error');
+  else if (allSitesFilter === 'warn')  sites = sites.filter(s => s.status === 'warn');
+
+  const problems = sites.filter(s => s.status !== 'ok');
+  const ok       = sites.filter(s => s.status === 'ok');
+  problems.sort((a,b) => ['error','warn'].indexOf(a.status)-['error','warn'].indexOf(b.status));
+
+  document.getElementById('allSitesCount').textContent = sites.length + ' εγκαταστάσεις';
+  let html = '';
+  if (problems.length) {
+    html += `<div class="sec-header"><span class="sec-header-dot err-dot"></span><span class="sec-header-title">Απαιτεί προσοχή</span><span class="sec-header-count err-count">${problems.length}</span></div>`;
+    html += problems.map(x => buildCard(x)).join('');
+  }
+  if (ok.length) {
+    html += `<div class="sec-header" style="margin-top:${problems.length?'12px':'0'}"><span class="sec-header-dot ok-dot"></span><span class="sec-header-title">Κανονική λειτουργία</span><span class="sec-header-count ok-count">${ok.length}</span></div>`;
+    html += ok.map(x => buildCard(x)).join('');
+  }
+  document.getElementById('allSitesGrid').innerHTML = html || '<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Δεν βρέθηκαν αποτελέσματα</div></div>';
+}
+
+function filterAllSites(q) { allSitesSearch = q; renderAllSites(); }
+function filterAllSitesBrand(btn, f) {
+  document.querySelectorAll('#page-sites .fbtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  allSitesFilter = f;
+  renderAllSites();
+}
+
+// ── ANALYTICS PAGE ──
+function renderAnalytics() {
+  const todayKwh = SITES.reduce((a,s) => a + (s.month_power || (s.kw * 5)), 0);
+  const monthKwh = SITES.reduce((a,s) => a + (s.month_power || 0), 0);
+  document.getElementById('an-today').innerHTML = `${(todayKwh/30).toFixed(0)} <span class="kpi-unit">kWh</span>`;
+  document.getElementById('an-month').innerHTML = `${monthKwh.toFixed(0)} <span class="kpi-unit">kWh</span>`;
+  document.getElementById('an-year').innerHTML  = `${(monthKwh*12/1000).toFixed(1)} <span class="kpi-unit">MWh</span>`;
+
+  const sitesWithCap = SITES.filter(s => s.cap > 0);
+  const avgPct = sitesWithCap.length ? Math.round(sitesWithCap.reduce((a,s) => a + s.kw/s.cap*100, 0) / sitesWithCap.length) : 0;
+  document.getElementById('an-avg').innerHTML = `${avgPct} <span class="kpi-unit">%</span>`;
+
+  // Ranking
+  const ranked = [...SITES].sort((a,b) => b.kw - a.kw);
+  document.getElementById('an-ranking').innerHTML = ranked.slice(0,10).map((s,i) => {
+    const pct = s.cap ? Math.round(s.kw/s.cap*100) : 0;
+    const color = s.status==='error'?'var(--rd)':s.status==='warn'?'var(--am)':'var(--bl)';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr);">
+      <div style="width:22px;font-size:12px;color:var(--tx3);font-weight:600;">${i+1}</div>
+      <div style="flex:1;font-size:13px;font-weight:500;color:var(--tx);">${s.name}</div>
+      <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
+      <div style="font-size:13px;font-weight:700;color:${color};width:80px;text-align:right;">${s.kw.toFixed(1)} kW</div>
+      <div style="font-size:11px;color:var(--tx3);width:40px;text-align:right;">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Brand analysis
+  const brands = ['sungrow','huawei','goodwe','fronius'];
+  const bNames = {sungrow:'Sungrow',huawei:'Huawei',goodwe:'GoodWe',fronius:'Fronius'};
+  document.getElementById('an-brands').innerHTML = brands.map(b => {
+    const bSites = SITES.filter(s => s.brand === b);
+    if (!bSites.length) return '';
+    const bKw = bSites.reduce((a,s)=>a+s.kw,0);
+    const bOk = bSites.filter(s=>s.status==='ok').length;
+    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg2);border-radius:8px;margin-bottom:6px;">
+      <span class="brand-tag ${bCls[b]}">${bNames[b]}</span>
+      <div style="flex:1;font-size:12px;color:var(--tx2);">${bSites.length} εγκαταστάσεις · ${bOk} OK</div>
+      <div style="font-size:14px;font-weight:700;color:var(--tx);">${bKw.toFixed(1)} kW</div>
+    </div>`;
+  }).join('');
+}
+
+// ── ALERTS PAGE ──
+function renderAlerts() {
+  const problems = SITES.filter(s => s.status !== 'ok');
+  document.getElementById('alertNavCount').textContent = problems.length;
+  if (!problems.length) {
+    document.getElementById('alerts-list').innerHTML = `
+      <div style="text-align:center;padding:48px;color:var(--tx3);">
+        <div style="font-size:36px;margin-bottom:10px;">✅</div>
+        <div style="font-size:16px;font-weight:600;color:var(--tx2);">Δεν υπάρχουν ενεργά alerts</div>
+        <div style="font-size:13px;margin-top:4px;">Όλες οι εγκαταστάσεις λειτουργούν κανονικά</div>
+      </div>`;
+    return;
+  }
+  document.getElementById('alerts-list').innerHTML = problems.map(s => {
+    const isErr = s.status === 'error';
+    const color = isErr ? 'var(--rd)' : 'var(--am)';
+    const bg    = isErr ? 'var(--rd-l)' : 'var(--am-l)';
+    return `<div style="background:${bg};border-radius:12px;padding:16px 18px;margin-bottom:10px;border-left:4px solid ${color};">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+        <div style="font-size:10px;font-weight:700;color:${color};text-transform:uppercase;letter-spacing:.06em;">${isErr?'🚨 Κρίσιμο':'⚠️ Προειδοποίηση'}</div>
+        <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
+      </div>
+      <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:4px;">${s.name}</div>
+      <div style="font-size:12px;color:var(--tx2);">${s.err || (isErr?'Εκτός λειτουργίας':'Χαμηλή απόδοση')}</div>
+      <div style="margin-top:10px;display:flex;gap:8px;">
+        <button class="btn-sec" style="font-size:11px;padding:4px 10px;" onclick="openInverterModal(${s.id})">🔌 Inverters</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── EMAIL SETTINGS ──
+function saveEmailSettings() {
+  const cfg = {
+    from: document.getElementById('emailFrom').value,
+    pass: document.getElementById('emailPass').value,
+    to:   document.getElementById('emailTo').value,
+  };
+  localStorage.setItem('solaren_email', JSON.stringify(cfg));
+  showToast('✅', 'Email ρυθμίσεις αποθηκεύτηκαν!');
+}
+
+// ── PUSH ──
+async function enablePush() {
+  if (!('Notification' in window)) { showToast('❌', 'Ο browser δεν υποστηρίζει notifications'); return; }
+  const perm = await Notification.requestPermission();
+  if (perm === 'granted') {
+    document.getElementById('pushEnableBtn').textContent = '✅ Ενεργό';
+    document.getElementById('pushEnableBtn').disabled = true;
+    new Notification('Solaren', { body: 'Push notifications ενεργοποιήθηκαν!' });
+    showToast('🔔', 'Push notifications ενεργά!');
+  } else {
+    showToast('❌', 'Δεν δόθηκε άδεια');
+  }
+}
+
+// ── ACCOUNT ──
+function renderAccount() {
+  const user = JSON.parse(localStorage.getItem('solaren_user') || 'null');
+  document.getElementById('loginForm').style.display    = user ? 'none' : 'block';
+  document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('profileForm').style.display  = user ? 'block' : 'none';
+  if (user) {
+    const initials = user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+    document.getElementById('profileAvatar').textContent = initials;
+    document.getElementById('profileName').textContent   = user.name;
+    document.getElementById('profileEmail').textContent  = user.email;
+  }
+}
+function showRegister() {
+  document.getElementById('loginForm').style.display    = 'none';
+  document.getElementById('registerForm').style.display = 'block';
+}
+function showLogin() {
+  document.getElementById('registerForm').style.display = 'none';
+  document.getElementById('loginForm').style.display    = 'block';
+}
+function doLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const pass  = document.getElementById('loginPass').value;
+  if (!email || !pass) { showToast('❌', 'Συμπλήρωσε email και κωδικό'); return; }
+  const saved = JSON.parse(localStorage.getItem('solaren_user') || 'null');
+  if (saved && saved.email === email && saved.pass === pass) {
+    renderAccount();
+    showToast('✅', `Καλώς ήρθες, ${saved.name}!`);
+  } else {
+    showToast('❌', 'Λάθος email ή κωδικός');
+  }
+}
+function doRegister() {
+  const name  = document.getElementById('regName').value;
+  const email = document.getElementById('regEmail').value;
+  const pass  = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+  if (!name || !email || !pass) { showToast('❌', 'Συμπλήρωσε όλα τα πεδία'); return; }
+  if (pass !== pass2) { showToast('❌', 'Οι κωδικοί δεν ταιριάζουν'); return; }
+  if (pass.length < 8) { showToast('❌', 'Ο κωδικός πρέπει να έχει τουλάχιστον 8 χαρακτήρες'); return; }
+  localStorage.setItem('solaren_user', JSON.stringify({name, email, pass}));
+  renderAccount();
+  showToast('✅', `Ο λογαριασμός δημιουργήθηκε! Καλώς ήρθες, ${name}!`);
+}
+function doLogout() {
+  localStorage.removeItem('solaren_user');
+  renderAccount();
+  showToast('👋', 'Αποσυνδέθηκες');
+}
+
+// Init account header name
+const _u = JSON.parse(localStorage.getItem('solaren_user') || 'null');
+if (_u) {
+  const initials = _u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const uEl = document.querySelector('.user-av');
+  if (uEl) uEl.textContent = initials;
+  const unEl = document.querySelector('.user-name');
+  if (unEl) unEl.textContent = _u.name;
+}
 let lastRealData = null; // Κρατάει τα τελευταία γνωστά δεδομένα
 
 async function loadRealData() {
@@ -936,4 +1445,32 @@ function updateSitesFromAPI(apiSites) {
   apiSites.forEach((s, idx) => {
     SITES.push({
       id:     idx + 1,
-      name:   s.n
+      name:   s.name,
+      loc:    s.name,
+      brand:  s.brand,
+      kw:     s.kw || 0,
+      cap:    s.cap || 30,
+      status: s.status || 'ok',
+      err:    s.err || null,
+    });
+  });
+  render();
+}
+
+// Φόρτωσε αμέσως cached δεδομένα αν υπάρχουν (χωρίς να περιμένει API)
+const cachedSites = localStorage.getItem('solaren_last_sites');
+if (cachedSites) {
+  try {
+    updateSitesFromAPI(JSON.parse(cachedSites));
+  } catch(e) {
+    render();
+  }
+} else {
+  render();
+}
+
+// Μετά φόρτωσε φρέσκα από API
+loadRealData();
+</script>
+</body>
+</html>
