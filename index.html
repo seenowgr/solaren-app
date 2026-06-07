@@ -1143,15 +1143,17 @@ function showPage(page) {
     const el = document.getElementById('page-' + p);
     if (el) el.style.display = 'none';
   });
-  // Show watchlist main (special case)
-  const mainWl = document.querySelector('main:not([id])') || document.querySelector('main');
-  if (mainWl) mainWl.style.display = (page === 'watchlist') ? 'flex' : 'none';
+  // Show/hide watchlist main
+  const mains = document.querySelectorAll('main');
+  mains.forEach(m => {
+    if (!m.id) m.style.display = (page === 'watchlist') ? 'flex' : 'none';
+  });
   // Show target page
   const target = document.getElementById('page-' + page);
   if (target) target.style.display = 'flex';
-  // Update nav active state
+  // Update nav active
   document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  // Refresh page content
+  // Render page content
   if (page === 'dashboard')  renderDashboard();
   if (page === 'sites')      renderAllSites();
   if (page === 'analytics')  renderAnalytics();
@@ -1452,9 +1454,20 @@ function updateSitesFromAPI(apiSites) {
       cap:    s.cap || 30,
       status: s.status || 'ok',
       err:    s.err || null,
+      month_power: s.month_power || 0,
+      total_power: s.total_power || 0,
     });
   });
   render();
+  // Ανανέωσε και την τρέχουσα σελίδα αν είναι ανοιχτή
+  if (currentPage === 'sites')     renderAllSites();
+  if (currentPage === 'dashboard') renderDashboard();
+  if (currentPage === 'analytics') renderAnalytics();
+  if (currentPage === 'alerts')    renderAlerts();
+  // Ενημέρωσε alerts count
+  const problems = SITES.filter(s => s.status !== 'ok');
+  const alertEl = document.getElementById('alertNavCount');
+  if (alertEl) alertEl.textContent = problems.length;
 }
 
 // Φόρτωσε αμέσως cached δεδομένα αν υπάρχουν (χωρίς να περιμένει API)
