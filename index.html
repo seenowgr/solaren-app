@@ -340,7 +340,7 @@ canvas.mini{width:100%!important;height:130px!important;}
 <body>
 
 <header>
-  <div class="logo">
+  <div class="logo" onclick="location.reload()" style="cursor:pointer;">
     <div class="logo-icon">☀️</div>
     <span style="color:var(--bl)">Solar</span><span style="color:var(--or)">en</span>
   </div>
@@ -765,7 +765,7 @@ function buildCard(x){
     </div>
 
     <div class="card-click-hint" onclick="openInverterModal(${x.id})">
-      🔌 ${(INVERTERS[x.id]||[]).length} Inverters — κλικ για λεπτομέρειες
+      🔌 ${getInverters(x.id).length} Inverters — κλικ για λεπτομέρειες
       <span style="margin-left:auto;font-size:13px;">›</span>
     </div>
 
@@ -1060,10 +1060,37 @@ function showToast(icon,msg){
 // ── INVERTER MODAL ──
 let currentInvSiteId=null;
 
+function getInverters(siteId) {
+  // Χρησιμοποίησε hardcoded αν υπάρχουν
+  if(INVERTERS[siteId] && INVERTERS[siteId].length > 0) return INVERTERS[siteId];
+  // Αλλιώς δημιούργησε δυναμικά
+  const s = SITES.find(x=>x.id===siteId);
+  if(!s) return [];
+  const cap = s.cap || 30;
+  const n = cap <= 15 ? 1 : cap <= 40 ? 2 : cap <= 80 ? 3 : 4;
+  return Array.from({length:n}, (_,i) => {
+    const isFirst = i === 0;
+    const st = s.status==='error' ? 'error' : (s.status==='warn' && isFirst ? 'warn' : 'ok');
+    const kw = st==='error' ? 0 : st==='warn' ? +(s.kw/n*0.5).toFixed(1) : +(s.kw/n).toFixed(1);
+    const now = new Date();
+    const offAt = st!=='ok' ? `${now.getHours()-1}:${String(now.getMinutes()).padStart(2,'0')}` : null;
+    return {
+      name: `Inverter ${i+1}`,
+      model: `${bLbl[s.brand]} ${Math.round(cap/n)}kW`,
+      serial: `${s.brand.slice(0,2).toUpperCase()}-${String(siteId).replace(/\D/g,'').slice(-4).padStart(4,'0')}-00${i+1}`,
+      kw, cap: +(cap/n).toFixed(1), status: st,
+      temp: st==='error' ? 0 : 35+i*4,
+      err: st==='error' ? (s.err||'Inverter offline') : st==='warn' ? (s.err||'Χαμηλή απόδοση') : null,
+      offAt
+    };
+  });
+}
+
 function openInverterModal(siteId){
   currentInvSiteId=siteId;
   const site=SITES.find(s=>s.id===siteId);
-  const invs=INVERTERS[siteId]||[];
+  if(!site) return;
+  const invs=getInverters(siteId);
   const color=bColor[site.brand];
   document.getElementById('invModalAv').textContent=bAv[site.brand];
   document.getElementById('invModalTitle').textContent=site.name;
@@ -1211,11 +1238,42 @@ const PAGES_HTML = {
 
   apikeys: `
     <div class="page-head"><div><div class="page-title">🔑 API Keys</div><div class="page-sub">Διαχείριση μέσω Railway.app → Variables</div></div></div>
+    <div style="background:var(--bl-l);border-radius:10px;padding:14px;font-size:12px;color:var(--bl);margin-bottom:4px;">
+      💡 Πήγαινε στο <a href="https://railway.app" target="_blank" style="color:var(--bl);font-weight:700;">railway.app</a> → solaren-app → <strong>Variables</strong> → <strong>+ New Variable</strong> για να προσθέσεις keys.
+    </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-      <div class="chart-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="site-brand brand-sungrow">Sungrow</span></div><div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">SUNGROW_TOKEN</div><div style="font-size:12px;color:var(--tx2);">SUNGROW_APP_ID</div></div>
-      <div class="chart-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="site-brand brand-huawei">Huawei</span><span style="font-size:10px;color:var(--gr);font-weight:600;">✅ Συνδεδεμένο</span></div><div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">HUAWEI_USER: solarengr</div><div style="font-size:12px;color:var(--tx2);">HUAWEI_PASS: ••••••••</div></div>
-      <div class="chart-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="site-brand brand-goodwe">GoodWe</span></div><div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">GOODWE_ACCOUNT</div><div style="font-size:12px;color:var(--tx2);">GOODWE_TOKEN</div></div>
-      <div class="chart-card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="site-brand brand-fronius">Fronius</span></div><div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">FRONIUS_ACCESS_KEY_ID</div><div style="font-size:12px;color:var(--tx2);">FRONIUS_ACCESS_KEY_VALUE</div></div>
+      <div class="chart-card">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span class="brand-tag brand-sungrow">Sungrow</span><span style="font-size:11px;color:var(--tx3);">iSolarCloud</span></div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">SUNGROW_TOKEN</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:8px;">Από iSolarCloud → Account → Open API</div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">SUNGROW_APP_ID</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:12px;">Από iSolarCloud → Account → Open API</div>
+        <a href="https://isolarcloud.com.hk" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 12px;display:inline-block;">Άνοιγμα →</a>
+      </div>
+      <div class="chart-card">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span class="brand-tag brand-huawei">Huawei</span><span style="font-size:11px;color:var(--gr);font-weight:600;">✅ Συνδεδεμένο</span></div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">HUAWEI_USER</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:8px;">solarengr ✅</div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">HUAWEI_PASS</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:12px;">•••••••• ✅</div>
+        <a href="https://eu5.fusionsolar.huawei.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 12px;display:inline-block;">Άνοιγμα →</a>
+      </div>
+      <div class="chart-card">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span class="brand-tag brand-goodwe">GoodWe</span><span style="font-size:11px;color:var(--tx3);">SEMS Portal</span></div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">GOODWE_ACCOUNT</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:8px;">Το email σου στο SEMS Portal</div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">GOODWE_TOKEN</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:12px;">Ο κωδικός σου στο SEMS Portal</div>
+        <a href="https://semsportal.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 12px;display:inline-block;">Άνοιγμα →</a>
+      </div>
+      <div class="chart-card">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span class="brand-tag brand-fronius">Fronius</span><span style="font-size:11px;color:var(--tx3);">SolarWeb</span></div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">FRONIUS_ACCESS_KEY_ID</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:8px;">Από SolarWeb → Settings → API</div>
+        <div style="font-size:11px;font-weight:600;color:var(--tx2);margin-bottom:2px;">FRONIUS_ACCESS_KEY_VALUE</div>
+        <div style="font-size:11px;color:var(--tx3);margin-bottom:12px;">Από SolarWeb → Settings → API</div>
+        <a href="https://www.solarweb.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 12px;display:inline-block;">Άνοιγμα →</a>
+      </div>
     </div>`,
 
   account: `
