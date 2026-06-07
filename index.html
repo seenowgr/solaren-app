@@ -3,123 +3,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Solaren — Watchlist</title>
+<title>Solaren — Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#d8e2ee;
-  --bg2:#ccd7e6;
-  --white:#eef2f8;
-  --card:#eef2f8;
-  --card2:#e4eaf4;
-  --bl:#1677ff;--bl-h:#0958d9;--bl-l:#dbeafe;--bl-m:#93c5fd;
+  --bg:#f0f4f8;--bg2:#e4ecf5;--card:#fff;--card2:#f8fafd;
+  --bl:#1677ff;--bl-l:#e6f0ff;--bl-m:#93c5fd;
   --or:#ea6f00;--or-l:#fde8cc;
   --gr:#00a85a;--gr-l:#d1fae5;
   --rd:#e0181f;--rd-l:#fee2e2;
   --am:#d97706;--am-l:#fef3c7;
-  --fr:#e65c00;--fr-l:#fff0e6;--fr-m:#ffbb99;
+  --fr:#e65c00;--fr-l:#fff0e6;
   --tx:#18243a;--tx2:#445572;--tx3:#7b93b8;
-  --bdr:#c2cfe0;--bdr2:#a8bedb;
-  --sh:0 1px 3px rgba(0,0,0,.08),0 2px 10px rgba(0,0,0,.05);
-  --sh2:0 6px 24px rgba(22,119,255,.15);
+  --bdr:#dde6f0;--bdr2:#c0d0e8;
+  --sh:0 1px 3px rgba(0,0,0,.07),0 2px 10px rgba(0,0,0,.04);
   --head:'Syne',sans-serif;--body:'Inter',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:var(--bg);color:var(--tx);font-family:var(--body);min-height:100vh;font-size:14px;}
+body{background:var(--bg);color:var(--tx);font-family:var(--body);font-size:14px;}
 
-header{background:var(--card);border-bottom:1px solid var(--bdr);display:flex;align-items:center;
-  justify-content:space-between;padding:0 28px;height:56px;position:sticky;top:0;z-index:100;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);}
+/* HEADER */
+header{background:#fff;border-bottom:1px solid var(--bdr);display:flex;align-items:center;
+  justify-content:space-between;padding:0 24px;height:54px;position:sticky;top:0;z-index:100;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);}
 .logo{font-family:var(--head);font-weight:800;font-size:20px;display:flex;align-items:center;gap:10px;}
-.logo-icon{width:32px;height:32px;background:linear-gradient(135deg,#1677ff,#0040cc);border-radius:8px;
-  display:flex;align-items:center;justify-content:center;font-size:16px;}
-.header-right{display:flex;align-items:center;gap:8px;}
-.htabs{display:flex;gap:2px;background:var(--bg2);border-radius:8px;padding:3px;border:1px solid var(--bdr);}
+.logo-icon{width:30px;height:30px;background:linear-gradient(135deg,#1677ff,#0040cc);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:15px;}
+.hright{display:flex;align-items:center;gap:8px;}
 .htab{font-size:12px;font-weight:500;padding:5px 14px;border-radius:6px;cursor:pointer;border:none;
   background:transparent;color:var(--tx2);transition:all .15s;}
-.htab.active{background:var(--bl);color:#fff;box-shadow:0 2px 6px rgba(22,119,255,.3);}
-.hbtn{position:relative;width:34px;height:34px;border-radius:8px;border:1px solid var(--bdr);
-  background:var(--card);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all .15s;}
-.hbtn:hover{border-color:var(--bl);background:var(--bl-l);}
+.htab.active{background:var(--bl);color:#fff;}
+.hbtn{position:relative;width:32px;height:32px;border-radius:8px;border:1px solid var(--bdr);
+  background:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;}
 .hbtn .bc{position:absolute;top:-4px;right:-4px;background:var(--rd);color:#fff;font-size:9px;
-  width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
-.user-pill{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 8px;border:1px solid var(--bdr);
-  border-radius:20px;cursor:pointer;background:var(--card);}
-.user-av{width:24px;height:24px;border-radius:50%;background:var(--bl-l);display:flex;align-items:center;
-  justify-content:center;font-size:11px;font-weight:700;color:var(--bl);}
-.user-name{font-size:12px;font-weight:500;color:var(--tx);}
+  width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.htabs-wrap{display:flex;gap:2px;background:var(--bg);border-radius:8px;padding:3px;border:1px solid var(--bdr);}
 
-.layout{display:flex;min-height:calc(100vh - 56px);}
-nav{width:210px;flex-shrink:0;background:var(--card);border-right:1px solid var(--bdr);
-  padding:16px 0;display:flex;flex-direction:column;gap:2px;}
+/* LAYOUT */
+.layout{display:flex;min-height:calc(100vh - 54px);}
+
+/* NAV */
+nav{width:200px;flex-shrink:0;background:#fff;border-right:1px solid var(--bdr);padding:14px 0;}
 .nav-sec{font-size:10px;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase;
-  padding:12px 18px 5px;font-weight:600;}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 18px;cursor:pointer;font-size:13px;
-  color:var(--tx2);transition:all .12s;font-weight:500;position:relative;}
+  padding:12px 16px 5px;font-weight:600;}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 16px;cursor:pointer;font-size:13px;
+  color:var(--tx2);font-weight:500;position:relative;transition:all .12s;}
 .nav-item::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:3px;
-  border-radius:0 3px 3px 0;background:var(--bl);opacity:0;transition:opacity .15s;}
+  border-radius:0 3px 3px 0;background:var(--bl);opacity:0;}
 .nav-item:hover{color:var(--tx);background:var(--bl-l);}
 .nav-item.active{color:var(--bl);background:var(--bl-l);font-weight:600;}
 .nav-item.active::before{opacity:1;}
-.nav-icon{width:18px;text-align:center;font-size:14px;}
-.nav-pill{margin-left:auto;font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600;}
+.nav-pill{margin-left:auto;font-size:10px;padding:1px 6px;border-radius:10px;font-weight:600;}
 .np-bl{background:var(--bl-l);color:var(--bl);}
 .np-rd{background:var(--rd-l);color:var(--rd);}
 .np-gr{background:var(--gr-l);color:var(--gr);}
+.np-or{background:var(--or-l);color:var(--or);}
 
-main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column;gap:18px;}
-
-.page-head{display:flex;align-items:center;justify-content:space-between;gap:16px;}
+/* PAGE */
+.page{flex:1;padding:20px 22px;overflow-y:auto;display:none;flex-direction:column;gap:16px;}
+.page.active{display:flex;}
 .page-title{font-family:var(--head);font-weight:800;font-size:20px;color:var(--tx);}
 .page-sub{font-size:12px;color:var(--tx2);margin-top:3px;}
-.search-wrap{display:flex;gap:8px;align-items:center;}
-.si{position:relative;}
-.si::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:11px;pointer-events:none;}
-.search-inp{background:var(--card);border:1px solid var(--bdr);border-radius:8px;padding:7px 12px 7px 30px;
-  font-size:13px;color:var(--tx);width:210px;transition:all .2s;outline:none;}
-.search-inp:focus{border-color:var(--bl);box-shadow:0 0 0 3px rgba(22,119,255,.12);}
-.search-inp::placeholder{color:var(--tx3);}
-.btn-pri{font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;cursor:pointer;border:none;
-  background:var(--bl);color:#fff;box-shadow:0 2px 6px rgba(22,119,255,.25);transition:background .15s;}
-.btn-pri:hover{background:var(--bl-h);}
-.btn-sec{font-size:13px;font-weight:500;padding:7px 14px;border-radius:8px;cursor:pointer;
-  border:1px solid var(--bdr2);background:var(--card);color:var(--tx2);transition:all .15s;}
-.btn-sec:hover{border-color:var(--bl);color:var(--bl);}
 
+/* KPI */
 .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
-.kpi{background:var(--card);border:1px solid var(--bdr);border-radius:12px;padding:16px 18px;box-shadow:var(--sh);}
-.kpi-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.kpi-lbl{font-size:12px;color:var(--tx2);font-weight:500;}
-.kpi-ic{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.kpi{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:14px 16px;box-shadow:var(--sh);}
+.kpi-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.kpi-lbl{font-size:11px;color:var(--tx2);font-weight:500;}
+.kpi-ic{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
 .ki-bl{background:var(--bl-l);}
 .ki-or{background:var(--or-l);}
 .ki-gr{background:var(--gr-l);}
 .ki-rd{background:var(--rd-l);}
-.kpi-val{font-family:var(--head);font-weight:700;font-size:26px;line-height:1;color:var(--tx);}
-.kpi-unit{font-size:13px;color:var(--tx2);font-weight:400;}
-.kpi-trend{font-size:11px;margin-top:5px;}
+.kpi-val{font-family:var(--head);font-weight:700;font-size:24px;line-height:1;color:var(--tx);}
+.kpi-unit{font-size:12px;color:var(--tx2);font-weight:400;}
+.kpi-sub{font-size:11px;margin-top:4px;color:var(--tx3);}
 .tr-up{color:var(--gr);}
+.tr-dn{color:var(--rd);}
 .tr-wa{color:var(--am);}
 
+/* TOOLBAR */
 .toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
-.fbtn{font-size:12px;font-weight:500;padding:5px 13px;border-radius:20px;cursor:pointer;
-  border:1px solid var(--bdr);background:var(--card);color:var(--tx2);transition:all .15s;}
+.fbtn{font-size:12px;font-weight:500;padding:5px 12px;border-radius:20px;cursor:pointer;
+  border:1px solid var(--bdr);background:#fff;color:var(--tx2);transition:all .15s;}
 .fbtn:hover,.fbtn.active{border-color:var(--bl);color:var(--bl);background:var(--bl-l);}
 .fbtn.f-err.active{border-color:var(--rd);color:var(--rd);background:var(--rd-l);}
 .fbtn.f-warn.active{border-color:var(--am);color:var(--am);background:var(--am-l);}
-.tbsep{width:1px;height:20px;background:var(--bdr);}
-.sort-sel{font-size:12px;font-family:var(--body);background:var(--card);border:1px solid var(--bdr);
-  border-radius:8px;padding:5px 10px;color:var(--tx2);outline:none;cursor:pointer;}
+.sort-sel{font-size:12px;background:#fff;border:1px solid var(--bdr);border-radius:8px;
+  padding:5px 10px;color:var(--tx2);outline:none;cursor:pointer;}
 .count-lbl{font-size:12px;color:var(--tx3);margin-left:auto;}
+.si{position:relative;}
+.si::before{content:'🔍';position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:11px;pointer-events:none;}
+.search-inp{background:#fff;border:1px solid var(--bdr);border-radius:8px;padding:6px 12px 6px 28px;
+  font-size:13px;color:var(--tx);width:200px;outline:none;transition:all .2s;}
+.search-inp:focus{border-color:var(--bl);}
 
-/* ── CARDS ── */
-.sites-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.site-card{background:var(--card);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
-  box-shadow:var(--sh);transition:box-shadow .2s,transform .2s;}
-.site-card:hover{box-shadow:var(--sh2);}
-.site-card.st-error{border-color:#fca5a5;}
-.site-card.st-warn{border-color:#fcd34d;}
-.card-top{padding:13px 14px 11px;border-bottom:1px solid var(--bdr);}
+/* SITE CARDS */
+.sites-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.site-card{background:#fff;border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
+  box-shadow:var(--sh);transition:all .2s;}
+.site-card:hover{box-shadow:0 4px 18px rgba(0,0,0,.1);transform:translateY(-1px);}
+.site-card.st-error{border-color:#fca5a5;border-top:3px solid var(--rd);}
+.site-card.st-warn{border-color:#fcd34d;border-top:3px solid var(--am);}
+.site-card.st-ok{border-top:3px solid var(--bl);}
+.card-top{padding:12px 14px 10px;border-bottom:1px solid var(--bdr);}
 .card-row1{display:flex;align-items:flex-start;justify-content:space-between;}
 .site-name{font-size:14px;font-weight:600;color:var(--tx);}
 .site-loc{font-size:11px;color:var(--tx3);margin-top:2px;}
@@ -128,17 +115,17 @@ main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column
   display:flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;transition:all .2s;}
 .star-btn:hover,.star-btn.starred{border-color:var(--am);background:var(--am-l);}
 .set-btn{width:26px;height:26px;border-radius:6px;border:1px solid var(--bdr);background:transparent;
-  display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:all .2s;}
+  display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;}
 .set-btn:hover{border-color:var(--bl);background:var(--bl-l);}
 .card-mid{padding:12px 14px 10px;}
 .power-row{display:flex;align-items:baseline;gap:4px;margin-bottom:8px;}
-.power-val{font-family:var(--head);font-weight:700;font-size:26px;line-height:1;}
-.power-unit{font-size:13px;color:var(--tx2);}
+.power-val{font-family:var(--head);font-weight:700;font-size:24px;line-height:1;}
+.power-unit{font-size:12px;color:var(--tx2);}
 .power-cap{font-size:11px;color:var(--tx3);margin-left:auto;}
 .prog-wrap{height:5px;background:var(--bg2);border-radius:3px;overflow:hidden;margin-bottom:10px;}
 .prog-bar{height:5px;border-radius:3px;}
 .status-row{display:flex;align-items:center;justify-content:space-between;}
-.status-pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;}
+.sp{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:20px;}
 .sp-ok{background:var(--gr-l);color:#065f46;}
 .sp-warn{background:var(--am-l);color:#92400e;}
 .sp-err{background:var(--rd-l);color:var(--rd);}
@@ -147,142 +134,132 @@ main{flex:1;padding:22px 24px;overflow-y:auto;display:flex;flex-direction:column
 .dot-warn{background:var(--am);}
 .dot-err{background:var(--rd);animation:blink 1s infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.brand-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;letter-spacing:.04em;}
-.b-sg{background:#dbeafe;color:#1e40af;}
+.brand-tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;}
+.b-sg{background:#e6f4ff;color:#1e40af;}
 .b-hw{background:var(--rd-l);color:#991b1b;}
 .b-gw{background:var(--gr-l);color:#065f46;}
-.b-fr{background:var(--fr-l);color:#9a3000;}
-.np-fr{background:var(--fr-l);color:var(--fr);}
-.fbtn.f-brand.active{border-color:var(--tx2);color:var(--tx);background:var(--bg2);}
-
-/* ── CHART TOGGLE ── */
-.chart-toggle{display:flex;align-items:center;justify-content:space-between;
-  padding:9px 14px;border-top:1px solid var(--bdr);cursor:pointer;transition:background .15s;user-select:none;}
-.chart-toggle:hover{background:var(--bl-l);}
-.chart-toggle-left{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--bl);}
-.chart-hint{font-size:10px;color:var(--tx3);font-weight:400;}
-.chart-arrow{font-size:10px;color:var(--tx3);transition:transform .25s;}
-.chart-arrow.open{transform:rotate(180deg);}
-
-/* ── CHART SECTION ── */
-.chart-section{overflow:hidden;max-height:0;transition:max-height .38s cubic-bezier(.4,0,.2,1);border-top:none;}
-.chart-section.open{max-height:380px;border-top:1px solid var(--bdr);}
-.chart-inner{padding:14px 14px 10px;}
-
-/* Period tabs */
-.chart-tabs{display:flex;gap:4px;margin-bottom:12px;}
-.ctab{font-size:11px;font-weight:500;padding:4px 11px;border-radius:6px;cursor:pointer;
-  border:1px solid var(--bdr);background:transparent;color:var(--tx2);transition:all .15s;font-family:var(--body);}
-.ctab.active{background:var(--bl);color:#fff;border-color:var(--bl);}
-
-/* Legend */
-.chart-legend{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
-.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--tx2);}
-.leg-line{width:16px;height:2px;border-radius:1px;}
-.leg-dashed{width:16px;height:0;border-top:2px dashed;}
-
-canvas.mini{width:100%!important;height:130px!important;}
-
-/* Comparison badge */
-.cmp-badge{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600;
-  padding:2px 7px;border-radius:6px;margin-left:4px;}
-.cmp-up{background:var(--gr-l);color:#065f46;}
-.cmp-dn{background:var(--rd-l);color:var(--rd);}
-.cmp-eq{background:var(--bg2);color:var(--tx3);}
-
-/* Stats */
-.chart-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;}
-.cstat{background:var(--bg2);border-radius:8px;padding:8px 10px;border:1px solid var(--bdr);}
-.cstat-l{font-size:9px;color:var(--tx3);margin-bottom:3px;text-transform:uppercase;letter-spacing:.05em;}
-.cstat-v{font-size:13px;font-weight:700;color:var(--tx);font-family:var(--head);}
-.cstat-u{font-size:9px;color:var(--tx2);font-weight:400;}
-.cstat-diff{font-size:10px;margin-top:2px;font-weight:600;}
-.diff-up{color:var(--gr);}
-.diff-dn{color:var(--rd);}
-
-/* Watchlist foot */
-.card-foot{padding:8px 14px;background:var(--bg2);border-top:1px solid var(--bdr);display:flex;align-items:center;gap:6px;}
-.nt{font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;display:flex;align-items:center;gap:3px;}
+.b-fr{background:var(--or-l);color:#9a3000;}
+.card-inv{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;
+  border-top:1px solid var(--bdr);cursor:pointer;font-size:12px;font-weight:500;color:var(--bl);
+  background:var(--bl-l);transition:background .15s;}
+.card-inv:hover{background:var(--bl-m);}
+.card-foot{padding:7px 14px;background:var(--bg2);border-top:1px solid var(--bdr);
+  display:flex;align-items:center;gap:6px;}
+.nt{font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px;}
 .nt-on{background:var(--bl-l);color:var(--bl);border:1px solid var(--bl-m);}
-.nt-off{background:var(--bg);color:var(--tx3);border:1px solid var(--bdr);}
+.nt-off{background:var(--bg2);color:var(--tx3);border:1px solid var(--bdr);}
 .nt-wl{background:var(--am-l);color:var(--am);border:1px solid #fcd34d;margin-left:auto;}
 
+/* SEC HEADERS */
+.sec-hd{grid-column:1/-1;display:flex;align-items:center;gap:8px;padding:8px 2px 4px;margin-top:4px;}
+.sec-dot{width:9px;height:9px;border-radius:50%;}
+.err-dot{background:var(--rd);}
+.ok-dot{background:var(--gr);}
+.sec-title{font-family:var(--head);font-weight:700;font-size:14px;color:var(--tx);}
+.sec-cnt{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;}
+.err-cnt{background:var(--rd-l);color:var(--rd);}
+.ok-cnt{background:var(--gr-l);color:var(--gr);}
+
+/* EMPTY */
+.empty{grid-column:1/-1;text-align:center;padding:48px;color:var(--tx3);}
+.empty-icon{font-size:36px;margin-bottom:10px;}
+.empty-title{font-size:15px;font-weight:600;color:var(--tx2);margin-bottom:4px;}
+
+/* CARD inside page */
+.card{background:#fff;border:1px solid var(--bdr);border-radius:12px;padding:18px;box-shadow:var(--sh);}
+.card-title{font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;}
+
 /* MODAL */
-.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;align-items:center;
-  justify-content:center;z-index:200;backdrop-filter:blur(4px);}
+.modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.35);display:none;align-items:center;
+  justify-content:center;z-index:200;backdrop-filter:blur(3px);}
 .modal-ov.open{display:flex;}
-.modal{background:var(--card);border-radius:16px;width:460px;max-width:95vw;
-  box-shadow:0 20px 60px rgba(0,0,0,.25);overflow:hidden;border:1px solid var(--bdr);}
-.modal-head{padding:18px 22px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;
-  gap:12px;justify-content:space-between;background:var(--card2);}
-.modal-head-left{display:flex;align-items:center;gap:12px;}
-.modal-av{width:40px;height:40px;border-radius:10px;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:18px;}
-.modal-title{font-size:16px;font-weight:700;color:var(--tx);}
-.modal-sub{font-size:11px;color:var(--tx3);margin-top:1px;}
-.modal-close{width:28px;height:28px;border:none;background:var(--bg2);border-radius:6px;
-  cursor:pointer;font-size:15px;color:var(--tx2);display:flex;align-items:center;justify-content:center;}
-.modal-close:hover{background:var(--rd-l);color:var(--rd);}
-.modal-body{padding:20px 22px;display:flex;flex-direction:column;gap:12px;max-height:60vh;overflow-y:auto;}
-.modal-foot{padding:14px 22px;border-top:1px solid var(--bdr);display:flex;gap:8px;justify-content:flex-end;background:var(--card2);}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;
-  background:var(--bg2);border-radius:8px;border:1px solid var(--bdr);}
-.toggle-lbl{font-size:13px;font-weight:500;color:var(--tx);}
-.toggle-desc{font-size:11px;color:var(--tx2);margin-top:2px;}
-.tog{position:relative;width:40px;height:22px;flex-shrink:0;}
+.modal{background:#fff;border-radius:16px;width:520px;max-width:96vw;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,.2);}
+.modal-hd{padding:16px 20px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:12px;justify-content:space-between;background:var(--card2);}
+.modal-hd-l{display:flex;align-items:center;gap:12px;}
+.modal-av{width:38px;height:38px;border-radius:10px;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:17px;}
+.modal-title{font-size:15px;font-weight:700;color:var(--tx);}
+.modal-sub{font-size:11px;color:var(--tx3);}
+.modal-close{width:26px;height:26px;border:none;background:var(--bg);border-radius:6px;cursor:pointer;font-size:14px;color:var(--tx2);}
+.modal-body{padding:0;max-height:480px;overflow-y:auto;}
+.modal-sum{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--bdr);border-bottom:1px solid var(--bdr);}
+.modal-sum-item{background:var(--card2);padding:10px 12px;}
+.msi-lbl{font-size:9px;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;}
+.msi-val{font-family:var(--head);font-size:17px;font-weight:700;color:var(--tx);}
+.inv-list{padding:12px 14px;display:flex;flex-direction:column;gap:8px;}
+.inv-row{background:var(--card2);border:1px solid var(--bdr);border-radius:10px;
+  padding:11px 13px;display:flex;align-items:center;gap:10px;}
+.inv-row.inv-err{border-color:#fca5a5;border-left:3px solid var(--rd);}
+.inv-row.inv-warn{border-color:#fcd34d;border-left:3px solid var(--am);}
+.inv-row.inv-ok{border-left:3px solid var(--gr);}
+.inv-num{width:28px;height:28px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
+.inn-ok{background:var(--gr-l);color:var(--gr);}
+.inn-err{background:var(--rd-l);color:var(--rd);}
+.inn-warn{background:var(--am-l);color:var(--am);}
+.inv-info{flex:1;}
+.inv-name{font-size:13px;font-weight:600;color:var(--tx);}
+.inv-model{font-size:10px;color:var(--tx3);margin-top:1px;}
+.inv-serial{font-size:10px;color:var(--tx3);}
+.inv-err-msg{font-size:11px;font-weight:600;margin-top:3px;}
+.inv-off{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:2px 7px;border-radius:5px;margin-left:6px;}
+.inv-prog{height:3px;background:var(--bg2);border-radius:2px;margin-top:6px;overflow:hidden;}
+.inv-prog-bar{height:3px;border-radius:2px;}
+.inv-right{text-align:right;}
+.inv-kw{font-family:var(--head);font-size:19px;font-weight:700;}
+.inv-kw-sub{font-size:10px;color:var(--tx3);}
+.inv-temp{font-size:11px;color:var(--tx2);margin-top:3px;}
+
+/* SETTINGS MODAL */
+.tog{position:relative;width:38px;height:21px;flex-shrink:0;}
 .tog input{opacity:0;width:0;height:0;position:absolute;}
 .tog-track{position:absolute;inset:0;background:var(--bdr2);border-radius:11px;cursor:pointer;transition:background .2s;}
 .tog input:checked + .tog-track{background:var(--bl);}
-.tog-thumb{position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;
-  transition:transform .2s;pointer-events:none;box-shadow:0 1px 4px rgba(0,0,0,.2);}
-.tog input:checked ~ .tog-thumb{transform:translateX(18px);}
-.sev-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.sev-opt{padding:10px 12px;border-radius:8px;border:1px solid var(--bdr);cursor:pointer;
-  display:flex;align-items:center;gap:8px;background:var(--card);transition:all .15s;}
+.tog-thumb{position:absolute;top:3px;left:3px;width:15px;height:15px;background:#fff;border-radius:50%;
+  transition:transform .2s;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.2);}
+.tog input:checked ~ .tog-thumb{transform:translateX(17px);}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;
+  background:var(--bg2);border-radius:8px;border:1px solid var(--bdr);}
+.tog-lbl{font-size:13px;font-weight:500;color:var(--tx);}
+.tog-desc{font-size:11px;color:var(--tx2);margin-top:1px;}
+.sev-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.sev-opt{padding:9px 11px;border-radius:8px;border:1px solid var(--bdr);cursor:pointer;
+  display:flex;align-items:center;gap:7px;background:#fff;transition:all .15s;}
 .sev-opt.checked.c-err{border-color:#fca5a5;background:var(--rd-l);}
 .sev-opt.checked.c-warn{border-color:#fcd34d;background:var(--am-l);}
 .sev-opt.checked.c-info{border-color:var(--bl-m);background:var(--bl-l);}
 .sev-opt.checked.c-ok{border-color:#6ee7b7;background:var(--gr-l);}
-.sev-dot2{width:8px;height:8px;border-radius:50%;}
+.sev-dot2{width:7px;height:7px;border-radius:50%;}
 .sev-txt{font-size:12px;color:var(--tx2);font-weight:500;}
 .sev-opt.checked .sev-txt{color:var(--tx);}
 .sev-chk{margin-left:auto;font-size:11px;color:var(--bl);font-weight:700;opacity:0;}
 .sev-opt.checked .sev-chk{opacity:1;}
-.thresh-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:8px;padding:14px;}
-.thresh-title{font-size:11px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
-.thresh-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.thresh-box{background:var(--bg2);border:1px solid var(--bdr);border-radius:8px;padding:13px;}
+.thresh-title{font-size:10px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.thresh-row{display:flex;align-items:center;gap:8px;margin-bottom:7px;}
 .thresh-row:last-child{margin-bottom:0;}
 .thresh-lbl{font-size:12px;color:var(--tx2);flex:1;}
-.thresh-inp{width:65px;background:var(--card);border:1px solid var(--bdr2);border-radius:6px;
-  padding:5px 8px;font-size:13px;color:var(--tx);text-align:right;outline:none;}
-.thresh-inp:focus{border-color:var(--bl);}
-.thresh-unit{font-size:12px;color:var(--tx3);width:40px;}
-.empty{grid-column:1/-1;text-align:center;padding:48px;color:var(--tx3);}
-.empty-icon{font-size:36px;margin-bottom:10px;}
-.empty-title{font-size:16px;font-weight:600;color:var(--tx2);margin-bottom:4px;}
-.toast{position:fixed;bottom:24px;right:24px;z-index:300;background:var(--tx);border-radius:10px;
-  padding:11px 18px;font-size:13px;color:#fff;display:flex;align-items:center;gap:10px;
-  box-shadow:0 6px 24px rgba(0,0,0,.25);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
-.toast.show{transform:translateY(0);opacity:1;}
-/* ── SECTION HEADERS ── */
-.sec-header{
-  grid-column:1/-1;
-  display:flex;align-items:center;gap:10px;
-  padding:10px 4px 6px;
-  margin-top:4px;
-}
-.sec-header-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-.err-dot{background:var(--rd);box-shadow:0 0 8px rgba(224,24,31,.4);}
-.ok-dot{background:var(--gr);}
-.sec-header-title{font-family:var(--head);font-weight:700;font-size:14px;color:var(--tx);}
-.sec-header-count{
-  font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;
-}
-.err-count{background:var(--rd-l);color:var(--rd);border:1px solid #fca5a5;}
-.ok-count{background:var(--gr-l);color:var(--gr);border:1px solid #6ee7b7;}
+.thresh-inp{width:60px;background:#fff;border:1px solid var(--bdr2);border-radius:6px;
+  padding:5px 8px;font-size:12px;color:var(--tx);text-align:right;outline:none;}
+.thresh-unit{font-size:11px;color:var(--tx3);width:36px;}
+.modal-foot{padding:12px 20px;border-top:1px solid var(--bdr);display:flex;gap:8px;justify-content:flex-end;background:var(--card2);}
+.btn-pri{font-size:12px;font-weight:600;padding:7px 15px;border-radius:8px;cursor:pointer;
+  border:none;background:var(--bl);color:#fff;}
+.btn-sec{font-size:12px;font-weight:500;padding:6px 13px;border-radius:8px;cursor:pointer;
+  border:1px solid var(--bdr2);background:#fff;color:var(--tx2);}
 
-/* Error card top accent */
-.site-card.st-error{border-color:#fca5a5;border-top:3px solid var(--rd);}
-.site-card.st-warn{border-color:#fcd34d;border-top:3px solid var(--am);}
+/* TOAST */
+.toast{position:fixed;bottom:22px;right:22px;z-index:300;background:var(--tx);border-radius:10px;
+  padding:10px 16px;font-size:13px;color:#fff;display:flex;align-items:center;gap:8px;
+  box-shadow:0 6px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ACCOUNT FORMS */
+.form-field{display:flex;flex-direction:column;gap:4px;}
+.form-field label{font-size:12px;color:var(--tx2);}
+.form-field input{background:#fff;border:1px solid var(--bdr2);border-radius:8px;
+  padding:8px 12px;font-size:13px;color:var(--tx);outline:none;}
+.form-field input:focus{border-color:var(--bl);}
+.info-box{background:var(--bl-l);border-radius:8px;padding:11px 13px;font-size:12px;color:var(--bl);}
 
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--bg2);}
@@ -296,1194 +273,706 @@ canvas.mini{width:100%!important;height:130px!important;}
     <div class="logo-icon">☀️</div>
     <span style="color:var(--bl)">Solar</span><span style="color:var(--or)">en</span>
   </div>
-  <div class="header-right">
-    <div class="htabs">
-      <button class="htab">Dashboard</button>
-      <button class="htab active">Watchlist</button>
-      <button class="htab">Analytics</button>
+  <div class="hright">
+    <div class="htabs-wrap">
+      <button class="htab active" onclick="showPage('watchlist',this)">Watchlist</button>
+      <button class="htab" onclick="showPage('sites',this)">Εγκαταστάσεις</button>
+      <button class="htab" onclick="showPage('analytics',this)">Analytics</button>
     </div>
-    <div class="hbtn">🔔 <span class="bc">3</span></div>
-    <div class="hbtn">⚙️</div>
-    <div class="user-pill">
-      <div class="user-av">ΓΚ</div>
-      <span class="user-name">Λογαριασμός</span>
-    </div>
+    <div class="hbtn" onclick="showPage('alerts',null)">🔔<span class="bc" id="alertBadge">0</span></div>
+    <div class="hbtn" onclick="showPage('account',null)">👤</div>
   </div>
 </header>
 
 <div class="layout">
-  <nav>
-    <div class="nav-sec">Κύριο</div>
-    <div class="nav-item" onclick="showPage('dashboard')"><span class="nav-icon">⚡</span>Dashboard</div>
-    <div class="nav-item active" id="nav-watchlist" onclick="showPage('watchlist')"><span class="nav-icon">⭐</span>Watchlist <span class="nav-pill np-bl" id="wlCount">0</span></div>
-    <div class="nav-item" onclick="showPage('sites')"><span class="nav-icon">🏭</span>Εγκαταστάσεις</div>
-    <div class="nav-item" onclick="showPage('analytics')"><span class="nav-icon">📈</span>Αναλυτικά</div>
-    <div class="nav-sec">Brands</div>
-    <div class="nav-item" onclick="filterByBrand('sungrow')"><span class="nav-icon">◉</span>Sungrow <span class="nav-pill np-bl" id="cnt-sungrow">—</span></div>
-    <div class="nav-item" onclick="filterByBrand('huawei')"><span class="nav-icon">◉</span>Huawei <span class="nav-pill np-rd" id="cnt-huawei">—</span></div>
-    <div class="nav-item" onclick="filterByBrand('goodwe')"><span class="nav-icon">◉</span>GoodWe <span class="nav-pill np-gr" id="cnt-goodwe">—</span></div>
-    <div class="nav-item" onclick="filterByBrand('fronius')"><span class="nav-icon">◉</span>Fronius <span class="nav-pill np-fr" id="cnt-fronius">—</span></div>
-    <div class="nav-sec">Ειδοποιήσεις</div>
-    <div class="nav-item" onclick="showPage('alerts')"><span class="nav-icon">🚨</span>Alerts <span class="nav-pill np-rd" id="alertNavCount">0</span></div>
-    <div class="nav-item" onclick="showPage('email')"><span class="nav-icon">✉️</span>Email</div>
-    <div class="nav-item" onclick="showPage('push')"><span class="nav-icon">📱</span>Push</div>
-    <div class="nav-sec">Σύστημα</div>
-    <div class="nav-item" onclick="showPage('apikeys')"><span class="nav-icon">🔑</span>API Keys</div>
-    <div class="nav-item" onclick="showPage('account')"><span class="nav-icon">👤</span>Λογαριασμός</div>
-  </nav>
+<nav>
+  <div class="nav-sec">Κύριο</div>
+  <div class="nav-item" onclick="showPage('dashboard',null)">⚡ Dashboard</div>
+  <div class="nav-item active" id="nav-watchlist" onclick="showPage('watchlist',null)">⭐ Watchlist <span class="nav-pill np-bl" id="wlCount">0</span></div>
+  <div class="nav-item" onclick="showPage('sites',null)">🏭 Εγκαταστάσεις</div>
+  <div class="nav-item" onclick="showPage('analytics',null)">📈 Αναλυτικά</div>
+  <div class="nav-sec">Brands</div>
+  <div class="nav-item" onclick="brandFilter('sungrow')">◉ Sungrow <span class="nav-pill np-bl" id="cnt-sg">0</span></div>
+  <div class="nav-item" onclick="brandFilter('huawei')">◉ Huawei <span class="nav-pill np-rd" id="cnt-hw">0</span></div>
+  <div class="nav-item" onclick="brandFilter('goodwe')">◉ GoodWe <span class="nav-pill np-gr" id="cnt-gw">0</span></div>
+  <div class="nav-item" onclick="brandFilter('fronius')">◉ Fronius <span class="nav-pill np-or" id="cnt-fr">0</span></div>
+  <div class="nav-sec">Ειδοποιήσεις</div>
+  <div class="nav-item" onclick="showPage('alerts',null)">🚨 Alerts <span class="nav-pill np-rd" id="alertNav">0</span></div>
+  <div class="nav-item" onclick="showPage('email',null)">✉️ Email</div>
+  <div class="nav-item" onclick="showPage('push',null)">📱 Push</div>
+  <div class="nav-sec">Σύστημα</div>
+  <div class="nav-item" onclick="showPage('apikeys',null)">🔑 API Keys</div>
+  <div class="nav-item" onclick="showPage('account',null)">👤 Λογαριασμός</div>
+</nav>
 
-  <main>
-    <div class="page-head">
-      <div>
-        <div class="page-title">⭐ Watchlist</div>
-        <div class="page-sub">Κλικ στο 📈 για γράφημα παραγωγής με σύγκριση χθες / σήμερα</div>
-      </div>
-      <div class="search-wrap">
-        <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="filterSites(this.value)"></div>
-        <button class="btn-sec" onclick="clearAll()">Καθαρισμός</button>
-        <button class="btn-pri" onclick="saveWatchlist()">💾 Αποθήκευση</button>
-      </div>
-    </div>
-
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Στο Watchlist</div><div class="kpi-ic ki-bl">⭐</div></div>
-        <div class="kpi-val" id="sumCount">0 <span class="kpi-unit">εγκ/σεις</span></div>
-        <div class="kpi-trend" id="sumSub"><span class="tr-wa">Επίλεξε εγκαταστάσεις</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Παραγωγή τώρα</div><div class="kpi-ic ki-or">⚡</div></div>
-        <div class="kpi-val" id="sumKw">0 <span class="kpi-unit">kW</span></div>
-        <div class="kpi-trend" id="sumKwSub"><span class="tr-wa">—</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Alerts watchlist</div><div class="kpi-ic ki-rd">🚨</div></div>
-        <div class="kpi-val" id="sumAlerts">0</div>
-        <div class="kpi-trend"><span class="tr-wa">ενεργά σφάλματα</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Push ενεργές</div><div class="kpi-ic ki-gr">📱</div></div>
-        <div class="kpi-val" id="sumPush">0</div>
-        <div class="kpi-trend"><span class="tr-up">ειδοποιήσεις on</span></div></div>
-    </div>
-
-    <div class="toolbar">
-      <button class="fbtn f-all active" onclick="setFilter(this,'all')">Όλες</button>
-      <button class="fbtn" onclick="setFilter(this,'starred')">⭐ Watchlist μου</button>
-      <button class="fbtn f-err" onclick="setFilter(this,'error')">🔴 Σφάλμα</button>
-      <button class="fbtn f-warn" onclick="setFilter(this,'warn')">🟡 Προειδοποίηση</button>
-      <div class="tbsep"></div>
-      <button class="fbtn f-brand" onclick="setFilter(this,'sungrow')">Sungrow</button>
-      <button class="fbtn f-brand" onclick="setFilter(this,'huawei')">Huawei</button>
-      <button class="fbtn f-brand" onclick="setFilter(this,'goodwe')">GoodWe</button>
-      <button class="fbtn f-brand" onclick="setFilter(this,'fronius')" style="color:var(--fr)">Fronius</button>
-      <div class="tbsep"></div>
-      <select class="sort-sel" onchange="sortSites(this.value)">
-        <option value="name">Α–Ω Όνομα</option>
-        <option value="kw">Παραγωγή ↓</option>
-        <option value="status">Κατάσταση</option>
-        <option value="starred">Watchlist πρώτα</option>
-      </select>
-      <span class="count-lbl" id="countLbl">—</span>
-    </div>
-
-    <div class="sites-grid" id="sitesGrid"></div>
-  </main>
-
-  <!-- ── DASHBOARD PAGE ── -->
-  <main id="page-dashboard" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">⚡ Dashboard</div>
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολική παραγωγή τώρα</div><div class="kpi-ic ki-or">⚡</div></div>
-        <div class="kpi-val" id="dash-kw">— <span class="kpi-unit">kW</span></div>
-        <div class="kpi-trend" id="dash-kwsub"><span class="tr-wa">—</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ενεργές εγκαταστάσεις</div><div class="kpi-ic ki-gr">🏭</div></div>
-        <div class="kpi-val" id="dash-ok">—</div>
-        <div class="kpi-trend" id="dash-oksub"><span class="tr-wa">—</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Με σφάλμα</div><div class="kpi-ic ki-rd">🚨</div></div>
-        <div class="kpi-val" id="dash-err" style="color:var(--rd)">—</div>
-        <div class="kpi-trend"><span class="tr-wa">εγκαταστάσεις</span></div></div>
-      <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολικές εγκαταστάσεις</div><div class="kpi-ic ki-bl">📊</div></div>
-        <div class="kpi-val" id="dash-total">—</div>
-        <div class="kpi-trend"><span class="tr-wa">εγκαταστάσεις</span></div></div>
-    </div>
-    <!-- Brand breakdown -->
-    <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:16px;">Παραγωγή ανά brand</div>
-      <div id="dash-brands" style="display:flex;flex-direction:column;gap:10px;"></div>
-    </div>
-    <!-- Alerts summary -->
-    <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">🚨 Εγκαταστάσεις με πρόβλημα</div>
-      <div id="dash-alerts-list"></div>
-    </div>
-  </main>
-
-  <!-- ── SITES PAGE ── -->
-  <main id="page-sites" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;">
-      <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🏭 Όλες οι Εγκαταστάσεις</div>
-      <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="filterAllSites(this.value)" id="allSitesSearch"></div>
-    </div>
-    <div class="toolbar">
-      <button class="fbtn active" onclick="filterAllSitesBrand(this,'all')">Όλες</button>
-      <button class="fbtn" onclick="filterAllSitesBrand(this,'sungrow')">Sungrow</button>
-      <button class="fbtn" onclick="filterAllSitesBrand(this,'huawei')">Huawei</button>
-      <button class="fbtn" onclick="filterAllSitesBrand(this,'goodwe')">GoodWe</button>
-      <button class="fbtn" onclick="filterAllSitesBrand(this,'fronius')" style="color:var(--fr)">Fronius</button>
-      <div class="tbsep"></div>
-      <button class="fbtn f-err" onclick="filterAllSitesBrand(this,'error')">🔴 Σφάλμα</button>
-      <button class="fbtn f-warn" onclick="filterAllSitesBrand(this,'warn')">🟡 Προειδοποίηση</button>
-      <span class="count-lbl" id="allSitesCount">—</span>
-    </div>
-    <div class="sites-grid" id="allSitesGrid"></div>
-  </main>
-
-  <!-- ── ANALYTICS PAGE ── -->
-  <main id="page-analytics" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">📈 Αναλυτικά</div>
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-lbl">Παραγωγή σήμερα</div>
-        <div class="kpi-val" id="an-today">— <span class="kpi-unit">kWh</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Παραγωγή μήνα</div>
-        <div class="kpi-val" id="an-month">— <span class="kpi-unit">kWh</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Παραγωγή έτους</div>
-        <div class="kpi-val" id="an-year">— <span class="kpi-unit">MWh</span></div></div>
-      <div class="kpi"><div class="kpi-lbl">Μέση απόδοση</div>
-        <div class="kpi-val" id="an-avg">— <span class="kpi-unit">%</span></div></div>
-    </div>
-    <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Κατάταξη εγκαταστάσεων — Παραγωγή σήμερα</div>
-      <div id="an-ranking"></div>
-    </div>
-    <div class="kpi" style="padding:20px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:14px;margin-bottom:14px;">Ανάλυση ανά brand</div>
-      <div id="an-brands"></div>
-    </div>
-  </main>
-
-  <!-- ── ALERTS PAGE ── -->
-  <main id="page-alerts" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🚨 Alerts</div>
-    <div id="alerts-list"></div>
-  </main>
-
-  <!-- ── EMAIL PAGE ── -->
-  <main id="page-email" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">✉️ Email Ειδοποιήσεις</div>
-    <div class="kpi" style="padding:22px;max-width:520px;">
-      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ρύθμισε το email για να λαμβάνεις ειδοποιήσεις σφαλμάτων.</div>
-      <div style="display:flex;flex-direction:column;gap:12px;">
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Email αποστολής (Gmail)</div>
-          <input class="search-inp" style="width:100%;" type="email" id="emailFrom" placeholder="alerts@gmail.com">
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">App Password Gmail</div>
-          <input class="search-inp" style="width:100%;" type="password" id="emailPass" placeholder="xxxx xxxx xxxx xxxx">
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:5px;">Αποστολή σε (email σου)</div>
-          <input class="search-inp" style="width:100%;" type="email" id="emailTo" placeholder="info@solaren.gr">
-        </div>
-        <div style="background:var(--bl-l);border-radius:8px;padding:12px;font-size:12px;color:var(--bl);">
-          💡 Για Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
-        </div>
-        <button class="btn-pri" onclick="saveEmailSettings()">💾 Αποθήκευση</button>
-      </div>
-    </div>
-  </main>
-
-  <!-- ── PUSH PAGE ── -->
-  <main id="page-push" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">📱 Push Notifications</div>
-    <div class="kpi" style="padding:22px;max-width:520px;">
-      <div style="font-size:13px;color:var(--tx2);margin-bottom:18px;">Ενεργοποίησε push notifications για να λαμβάνεις ειδοποιήσεις στο κινητό και desktop.</div>
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:var(--tx);">Browser Notifications</div>
-            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Ειδοποιήσεις σε αυτόν τον browser</div>
-          </div>
-          <button class="btn-pri" id="pushEnableBtn" onclick="enablePush()">Ενεργοποίηση</button>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:var(--tx);">Firebase FCM (κινητό)</div>
-            <div style="font-size:11px;color:var(--tx2);margin-top:2px;">Server Key από Firebase Console</div>
-          </div>
-          <span style="font-size:11px;color:var(--tx3);">Μέσω Railway Variables</span>
-        </div>
-        <div style="background:var(--bl-l);border-radius:8px;padding:12px;font-size:12px;color:var(--bl);">
-          💡 Για mobile push: βάλε FCM_SERVER_KEY στο Railway → Variables
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- ── API KEYS PAGE ── -->
-  <main id="page-apikeys" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">🔑 API Keys</div>
-    <div style="font-size:13px;color:var(--tx2);">Τα API keys διαχειρίζονται μέσω του Railway.app → Variables για ασφάλεια.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-      <div class="kpi" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="brand-tag b-sg">Sungrow</span>
-          <span style="font-size:11px;color:var(--tx3);">iSolarCloud API</span>
-        </div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">SUNGROW_TOKEN</div>
-        <div style="font-size:11px;color:var(--tx2);">SUNGROW_APP_ID</div>
-        <div style="margin-top:10px;"><a href="https://isolarcloud.com.hk" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
-      </div>
-      <div class="kpi" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="brand-tag b-hw">Huawei</span>
-          <span style="font-size:11px;color:var(--tx3);">FusionSolar API</span>
-        </div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">HUAWEI_USER: <strong>solarengr</strong></div>
-        <div style="font-size:11px;color:var(--tx2);">HUAWEI_PASS: ••••••••</div>
-        <div style="margin-top:10px;font-size:10px;color:var(--gr);font-weight:600;">✅ Συνδεδεμένο</div>
-      </div>
-      <div class="kpi" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="brand-tag b-gw">GoodWe</span>
-          <span style="font-size:11px;color:var(--tx3);">SEMS Portal API</span>
-        </div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">GOODWE_ACCOUNT</div>
-        <div style="font-size:11px;color:var(--tx2);">GOODWE_TOKEN</div>
-        <div style="margin-top:10px;"><a href="https://semsportal.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
-      </div>
-      <div class="kpi" style="padding:18px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
-          <span class="brand-tag b-fr">Fronius</span>
-          <span style="font-size:11px;color:var(--tx3);">SolarWeb API</span>
-        </div>
-        <div style="font-size:11px;color:var(--tx2);margin-bottom:6px;">FRONIUS_ACCESS_KEY_ID</div>
-        <div style="font-size:11px;color:var(--tx2);">FRONIUS_ACCESS_KEY_VALUE</div>
-        <div style="margin-top:10px;"><a href="https://www.solarweb.com" target="_blank" class="btn-sec" style="font-size:11px;padding:4px 10px;">Άνοιγμα →</a></div>
-      </div>
-    </div>
-  </main>
-
-  <!-- ── ACCOUNT PAGE ── -->
-  <main id="page-account" style="display:none;flex:1;padding:22px 24px;overflow-y:auto;flex-direction:column;gap:18px;">
-    <div class="page-title" style="font-family:var(--head);font-weight:800;font-size:20px;">👤 Λογαριασμός</div>
-    <!-- Login form -->
-    <div id="loginForm" class="kpi" style="padding:24px;max-width:420px;">
-      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Σύνδεση</div>
-      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Συνδέσου στο Solaren account σου</div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Email</div>
-          <input class="search-inp" style="width:100%;" type="email" id="loginEmail" placeholder="info@solaren.gr">
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Κωδικός</div>
-          <input class="search-inp" style="width:100%;" type="password" id="loginPass" placeholder="••••••••">
-        </div>
-        <button class="btn-pri" onclick="doLogin()">Σύνδεση →</button>
-        <div style="text-align:center;font-size:12px;color:var(--tx2);">
-          Δεν έχεις λογαριασμό; 
-          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showRegister()">Εγγραφή</span>
-        </div>
-      </div>
-    </div>
-    <!-- Register form -->
-    <div id="registerForm" class="kpi" style="padding:24px;max-width:420px;display:none;">
-      <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Εγγραφή</div>
-      <div style="font-size:12px;color:var(--tx2);margin-bottom:18px;">Δημιούργησε νέο Solaren account</div>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Όνομα εταιρείας</div>
-          <input class="search-inp" style="width:100%;" type="text" id="regName" placeholder="Solaren GR">
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Email</div>
-          <input class="search-inp" style="width:100%;" type="email" id="regEmail" placeholder="info@solaren.gr">
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Κωδικός</div>
-          <input class="search-inp" style="width:100%;" type="password" id="regPass" placeholder="Τουλάχιστον 8 χαρακτήρες">
-        </div>
-        <div>
-          <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">Επιβεβαίωση κωδικού</div>
-          <input class="search-inp" style="width:100%;" type="password" id="regPass2" placeholder="••••••••">
-        </div>
-        <button class="btn-pri" onclick="doRegister()">Εγγραφή →</button>
-        <div style="text-align:center;font-size:12px;color:var(--tx2);">
-          Έχεις ήδη λογαριασμό; 
-          <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showLogin()">Σύνδεση</span>
-        </div>
-      </div>
-    </div>
-    <!-- Logged in profile -->
-    <div id="profileForm" class="kpi" style="padding:24px;max-width:420px;display:none;">
-      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
-        <div style="width:52px;height:52px;border-radius:50%;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:700;color:var(--bl);" id="profileAvatar">ΓΚ</div>
-        <div>
-          <div style="font-family:var(--head);font-weight:700;font-size:16px;" id="profileName">—</div>
-          <div style="font-size:12px;color:var(--tx2);" id="profileEmail">—</div>
-        </div>
-      </div>
-      <div style="height:1px;background:var(--bdr);margin-bottom:14px;"></div>
-      <button class="btn-sec" style="width:100%;color:var(--rd);border-color:var(--rd);" onclick="doLogout()">Αποσύνδεση</button>
-    </div>
-  </main>
+<!-- WATCHLIST PAGE -->
+<div class="page active" id="pg-watchlist">
+  <div><div class="page-title">⭐ Watchlist</div><div class="page-sub">Επίλεξε ⭐ σε πλάνα για να τα παρακολουθείς</div></div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Στο Watchlist</div><div class="kpi-ic ki-bl">⭐</div></div>
+      <div class="kpi-val" id="wl-cnt">0 <span class="kpi-unit">πλάνα</span></div>
+      <div class="kpi-sub" id="wl-sub">—</div></div>
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Παραγωγή τώρα</div><div class="kpi-ic ki-or">⚡</div></div>
+      <div class="kpi-val" id="wl-kw">0 <span class="kpi-unit">kW</span></div>
+      <div class="kpi-sub tr-up">live παραγωγή</div></div>
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Alerts</div><div class="kpi-ic ki-rd">🚨</div></div>
+      <div class="kpi-val" id="wl-alerts" style="color:var(--rd)">0</div>
+      <div class="kpi-sub">ενεργά σφάλματα</div></div>
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Push ενεργές</div><div class="kpi-ic ki-gr">📱</div></div>
+      <div class="kpi-val" id="wl-push">0</div>
+      <div class="kpi-sub tr-up">ειδοποιήσεις on</div></div>
+  </div>
+  <div class="toolbar">
+    <button class="fbtn active" onclick="setWLFilter(this,'all')">Όλες</button>
+    <button class="fbtn" onclick="setWLFilter(this,'starred')">⭐ Watchlist μου</button>
+    <button class="fbtn f-err" onclick="setWLFilter(this,'error')">🔴 Σφάλμα</button>
+    <button class="fbtn f-warn" onclick="setWLFilter(this,'warn')">🟡 Προειδοποίηση</button>
+    <div class="tbsep" style="width:1px;height:20px;background:var(--bdr)"></div>
+    <button class="fbtn" onclick="setWLFilter(this,'sungrow')">Sungrow</button>
+    <button class="fbtn" onclick="setWLFilter(this,'huawei')">Huawei</button>
+    <button class="fbtn" onclick="setWLFilter(this,'goodwe')">GoodWe</button>
+    <button class="fbtn" style="color:var(--or)" onclick="setWLFilter(this,'fronius')">Fronius</button>
+    <div class="tbsep" style="width:1px;height:20px;background:var(--bdr)"></div>
+    <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="wlSearch(this.value)"></div>
+    <span class="count-lbl" id="wl-total-cnt">—</span>
+  </div>
+  <div class="sites-grid" id="wl-grid"></div>
 </div>
 
-<!-- SETTINGS MODAL -->
-<div class="modal-ov" id="settingsModal">
-  <div class="modal">
-    <div class="modal-head">
-      <div class="modal-head-left">
-        <div class="modal-av" id="modalAv">☀️</div>
-        <div><div class="modal-title" id="modalSiteName">—</div><div class="modal-sub" id="modalSiteSub">—</div></div>
-      </div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="toggle-row">
-        <div><div class="toggle-lbl">⭐ Watchlist</div><div class="toggle-desc">Παρακολούθηση αυτής της εγκατάστασης</div></div>
-        <label class="tog"><input type="checkbox" id="tWatchlist" onchange="updateModalState()"><div class="tog-track"></div><div class="tog-thumb"></div></label>
-      </div>
-      <div id="notifSection">
-        <div class="toggle-row">
-          <div><div class="toggle-lbl">✉️ Email ειδοποιήσεις</div><div class="toggle-desc">Αποστολή email για αυτή την εγκατάσταση</div></div>
-          <label class="tog"><input type="checkbox" id="tEmail"><div class="tog-track"></div><div class="tog-thumb"></div></label>
-        </div>
-        <div class="toggle-row">
-          <div><div class="toggle-lbl">📱 Push notification</div><div class="toggle-desc">Ειδοποίηση στο κινητό και desktop</div></div>
-          <label class="tog"><input type="checkbox" id="tPush"><div class="tog-track"></div><div class="tog-thumb"></div></label>
-        </div>
-        <div>
-          <div style="font-size:11px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;">Επίπεδο ειδοποίησης</div>
-          <div class="sev-grid">
-            <div class="sev-opt c-err checked" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--rd)"></div><div class="sev-txt">Κρίσιμο σφάλμα</div><div class="sev-chk">✓</div></div>
-            <div class="sev-opt c-warn checked" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--am)"></div><div class="sev-txt">Προειδοποίηση</div><div class="sev-chk">✓</div></div>
-            <div class="sev-opt c-info" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--bl)"></div><div class="sev-txt">Χαμηλή παραγωγή</div><div class="sev-chk">✓</div></div>
-            <div class="sev-opt c-ok" onclick="toggleSev(this)"><div class="sev-dot2" style="background:var(--gr)"></div><div class="sev-txt">Επάνοδος ΟΚ</div><div class="sev-chk">✓</div></div>
-          </div>
-        </div>
-        <div class="thresh-box">
-          <div class="thresh-title">Κατώφλια</div>
-          <div class="thresh-row"><div class="thresh-lbl">Ειδοποίηση αν παραγωγή πέσει κάτω από</div><input class="thresh-inp" type="number" id="threshLow" value="70"><div class="thresh-unit">%</div></div>
-          <div class="thresh-row"><div class="thresh-lbl">Ειδοποίηση αν χαθεί επικοινωνία για</div><input class="thresh-inp" type="number" id="threshOff" value="15"><div class="thresh-unit">λεπτά</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn-sec" onclick="closeModal()">Άκυρο</button>
-      <button class="btn-pri" onclick="saveSettings()">💾 Αποθήκευση</button>
+<!-- DASHBOARD PAGE -->
+<div class="page" id="pg-dashboard">
+  <div class="page-title">⚡ Dashboard</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Συνολική παραγωγή</div><div class="kpi-ic ki-or">⚡</div></div>
+      <div class="kpi-val" id="db-kw">— <span class="kpi-unit">kW</span></div>
+      <div class="kpi-sub" id="db-kw-sub">—</div></div>
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Ενεργές</div><div class="kpi-ic ki-gr">🏭</div></div>
+      <div class="kpi-val" id="db-ok">—</div>
+      <div class="kpi-sub tr-up">κανονική λειτουργία</div></div>
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Με πρόβλημα</div><div class="kpi-ic ki-rd">🚨</div></div>
+      <div class="kpi-val" id="db-err" style="color:var(--rd)">—</div>
+      <div class="kpi-sub">εγκαταστάσεις</div></div>
+    <div class="kpi"><div class="kpi-head"><div class="kpi-lbl">Σύνολο</div><div class="kpi-ic ki-bl">📊</div></div>
+      <div class="kpi-val" id="db-total">—</div>
+      <div class="kpi-sub">εγκαταστάσεις</div></div>
+  </div>
+  <div class="card"><div class="card-title">Παραγωγή ανά brand</div><div id="db-brands"></div></div>
+  <div class="card"><div class="card-title">🚨 Εγκαταστάσεις με πρόβλημα</div><div id="db-probs"></div></div>
+</div>
+
+<!-- SITES PAGE -->
+<div class="page" id="pg-sites">
+  <div style="display:flex;align-items:center;justify-content:space-between;">
+    <div class="page-title">🏭 Όλες οι Εγκαταστάσεις</div>
+    <div class="si"><input class="search-inp" type="text" placeholder="Αναζήτηση..." oninput="sitesSearch(this.value)"></div>
+  </div>
+  <div class="toolbar">
+    <button class="fbtn active" onclick="setSitesFilter(this,'all')">Όλες</button>
+    <button class="fbtn" onclick="setSitesFilter(this,'sungrow')">Sungrow</button>
+    <button class="fbtn" onclick="setSitesFilter(this,'huawei')">Huawei</button>
+    <button class="fbtn" onclick="setSitesFilter(this,'goodwe')">GoodWe</button>
+    <button class="fbtn" style="color:var(--or)" onclick="setSitesFilter(this,'fronius')">Fronius</button>
+    <div class="tbsep" style="width:1px;height:20px;background:var(--bdr)"></div>
+    <button class="fbtn f-err" onclick="setSitesFilter(this,'error')">🔴 Σφάλμα</button>
+    <button class="fbtn f-warn" onclick="setSitesFilter(this,'warn')">🟡 Προειδοποίηση</button>
+    <span class="count-lbl" id="sites-cnt">—</span>
+  </div>
+  <div class="sites-grid" id="sites-grid"></div>
+</div>
+
+<!-- ANALYTICS PAGE -->
+<div class="page" id="pg-analytics">
+  <div class="page-title">📈 Αναλυτικά</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-lbl">Παραγωγή σήμερα (εκτ.)</div><div class="kpi-val" id="an-day">— <span class="kpi-unit">kWh</span></div></div>
+    <div class="kpi"><div class="kpi-lbl">Παραγωγή μήνα</div><div class="kpi-val" id="an-month">— <span class="kpi-unit">kWh</span></div></div>
+    <div class="kpi"><div class="kpi-lbl">Παραγωγή έτους (εκτ.)</div><div class="kpi-val" id="an-year">— <span class="kpi-unit">MWh</span></div></div>
+    <div class="kpi"><div class="kpi-lbl">Μέση απόδοση</div><div class="kpi-val" id="an-avg">— <span class="kpi-unit">%</span></div></div>
+  </div>
+  <div class="card"><div class="card-title">🏆 Κατάταξη παραγωγής</div><div id="an-rank"></div></div>
+  <div class="card"><div class="card-title">Ανάλυση ανά brand</div><div id="an-brands"></div></div>
+</div>
+
+<!-- ALERTS PAGE -->
+<div class="page" id="pg-alerts">
+  <div class="page-title">🚨 Alerts</div>
+  <div id="alerts-content"></div>
+</div>
+
+<!-- EMAIL PAGE -->
+<div class="page" id="pg-email">
+  <div class="page-title">✉️ Email Ειδοποιήσεις</div>
+  <div class="card" style="max-width:480px;">
+    <div class="card-title">Ρυθμίσεις Email</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="form-field"><label>Email αποστολής (Gmail)</label><input type="email" id="em-from" placeholder="alerts@gmail.com"></div>
+      <div class="form-field"><label>App Password Gmail</label><input type="password" id="em-pass" placeholder="xxxx xxxx xxxx xxxx"></div>
+      <div class="form-field"><label>Αποστολή σε</label><input type="email" id="em-to" placeholder="info@solaren.gr"></div>
+      <div class="info-box">💡 Google Account → Security → 2-Step Verification → App Passwords</div>
+      <button class="btn-pri" onclick="saveEmail()">💾 Αποθήκευση</button>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast"><span id="toastIcon">⭐</span><span id="toastMsg">—</span></div>
+<!-- PUSH PAGE -->
+<div class="page" id="pg-push">
+  <div class="page-title">📱 Push Notifications</div>
+  <div class="card" style="max-width:480px;">
+    <div class="card-title">Ενεργοποίηση Push</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:13px;background:var(--bg2);border-radius:10px;border:1px solid var(--bdr);">
+        <div><div style="font-size:13px;font-weight:600;">Browser Notifications</div><div style="font-size:11px;color:var(--tx2);margin-top:2px;">Ειδοποιήσεις σε αυτόν τον browser</div></div>
+        <button class="btn-pri" id="push-btn" onclick="enablePush()">Ενεργοποίηση</button>
+      </div>
+      <div class="info-box">💡 Για mobile push: βάλε FCM_SERVER_KEY στο Railway → Variables</div>
+    </div>
+  </div>
+</div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<!-- API KEYS PAGE -->
+<div class="page" id="pg-apikeys">
+  <div class="page-title">🔑 API Keys</div>
+  <div style="font-size:13px;color:var(--tx2);margin-bottom:4px;">Τα API keys διαχειρίζονται μέσω Railway.app → Variables.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="brand-tag b-sg">Sungrow</span></div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">SUNGROW_TOKEN</div>
+      <div style="font-size:12px;color:var(--tx2);">SUNGROW_APP_ID</div></div>
+    <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="brand-tag b-hw">Huawei</span><span style="font-size:10px;color:var(--gr);font-weight:600;">✅ Συνδεδεμένο</span></div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">HUAWEI_USER: solarengr</div>
+      <div style="font-size:12px;color:var(--tx2);">HUAWEI_PASS: ••••••••</div></div>
+    <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="brand-tag b-gw">GoodWe</span></div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">GOODWE_ACCOUNT</div>
+      <div style="font-size:12px;color:var(--tx2);">GOODWE_TOKEN</div></div>
+    <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;"><span class="brand-tag b-fr">Fronius</span></div>
+      <div style="font-size:12px;color:var(--tx2);margin-bottom:4px;">FRONIUS_ACCESS_KEY_ID</div>
+      <div style="font-size:12px;color:var(--tx2);">FRONIUS_ACCESS_KEY_VALUE</div></div>
+  </div>
+</div>
+
+<!-- ACCOUNT PAGE -->
+<div class="page" id="pg-account">
+  <div class="page-title">👤 Λογαριασμός</div>
+  <div id="login-form" class="card" style="max-width:400px;">
+    <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Σύνδεση</div>
+    <div style="font-size:12px;color:var(--tx2);margin-bottom:16px;">Συνδέσου στο Solaren account σου</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="form-field"><label>Email</label><input type="email" id="log-email" placeholder="info@solaren.gr"></div>
+      <div class="form-field"><label>Κωδικός</label><input type="password" id="log-pass" placeholder="••••••••"></div>
+      <button class="btn-pri" onclick="doLogin()">Σύνδεση →</button>
+      <div style="text-align:center;font-size:12px;color:var(--tx2);">Δεν έχεις λογαριασμό; <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showReg()">Εγγραφή</span></div>
+    </div>
+  </div>
+  <div id="reg-form" class="card" style="max-width:400px;display:none;">
+    <div style="font-family:var(--head);font-weight:700;font-size:16px;margin-bottom:4px;">Εγγραφή</div>
+    <div style="font-size:12px;color:var(--tx2);margin-bottom:16px;">Δημιούργησε νέο Solaren account</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="form-field"><label>Όνομα εταιρείας</label><input type="text" id="reg-name" placeholder="Solaren GR"></div>
+      <div class="form-field"><label>Email</label><input type="email" id="reg-email" placeholder="info@solaren.gr"></div>
+      <div class="form-field"><label>Κωδικός</label><input type="password" id="reg-pass" placeholder="Τουλάχιστον 8 χαρακτήρες"></div>
+      <div class="form-field"><label>Επιβεβαίωση κωδικού</label><input type="password" id="reg-pass2" placeholder="••••••••"></div>
+      <button class="btn-pri" onclick="doReg()">Εγγραφή →</button>
+      <div style="text-align:center;font-size:12px;color:var(--tx2);">Έχεις ήδη λογαριασμό; <span style="color:var(--bl);cursor:pointer;font-weight:600;" onclick="showLogin()">Σύνδεση</span></div>
+    </div>
+  </div>
+  <div id="profile-form" class="card" style="max-width:400px;display:none;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+      <div style="width:48px;height:48px;border-radius:50%;background:var(--bl-l);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:var(--bl);" id="prof-av">ΓΚ</div>
+      <div><div style="font-family:var(--head);font-weight:700;font-size:16px;" id="prof-name">—</div>
+        <div style="font-size:12px;color:var(--tx2);" id="prof-email">—</div></div>
+    </div>
+    <button class="btn-sec" style="width:100%;color:var(--rd);border-color:var(--rd);" onclick="doLogout()">Αποσύνδεση</button>
+  </div>
+</div>
+
+</div><!-- end layout -->
+
+<!-- INVERTER MODAL -->
+<div class="modal-ov" id="inv-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-hd-l">
+        <div class="modal-av" id="inv-av">☀️</div>
+        <div><div class="modal-title" id="inv-title">—</div><div class="modal-sub" id="inv-sub">—</div></div>
+      </div>
+      <button class="modal-close" onclick="closeInv()">✕</button>
+    </div>
+    <div class="modal-sum">
+      <div class="modal-sum-item"><div class="msi-lbl">Παραγωγή</div><div class="msi-val" id="inv-sum-kw">—</div></div>
+      <div class="modal-sum-item"><div class="msi-lbl">Inverters</div><div class="msi-val" id="inv-sum-cnt">—</div></div>
+      <div class="modal-sum-item"><div class="msi-lbl">Σε λειτουργία</div><div class="msi-val" style="color:var(--gr)" id="inv-sum-ok">—</div></div>
+      <div class="modal-sum-item"><div class="msi-lbl">Με πρόβλημα</div><div class="msi-val" style="color:var(--rd)" id="inv-sum-err">—</div></div>
+    </div>
+    <div class="inv-list" id="inv-list"></div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-ov" id="set-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-hd-l">
+        <div class="modal-av" id="set-av">☀️</div>
+        <div><div class="modal-title" id="set-title">—</div><div class="modal-sub">Ρυθμίσεις ειδοποιήσεων</div></div>
+      </div>
+      <button class="modal-close" onclick="closeSet()">✕</button>
+    </div>
+    <div class="inv-list" style="display:flex;flex-direction:column;gap:10px;">
+      <div class="tog-row">
+        <div><div class="tog-lbl">⭐ Watchlist</div><div class="tog-desc">Παρακολούθηση αυτής της εγκατάστασης</div></div>
+        <label class="tog"><input type="checkbox" id="set-wl" onchange="setModalState()"><div class="tog-track"></div><div class="tog-thumb"></div></label>
+      </div>
+      <div id="set-notif">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="tog-row">
+            <div><div class="tog-lbl">✉️ Email</div><div class="tog-desc">Αποστολή email για αυτή την εγκατάσταση</div></div>
+            <label class="tog"><input type="checkbox" id="set-email"><div class="tog-track"></div><div class="tog-thumb"></div></label>
+          </div>
+          <div class="tog-row">
+            <div><div class="tog-lbl">📱 Push</div><div class="tog-desc">Push notification για αυτή την εγκατάσταση</div></div>
+            <label class="tog"><input type="checkbox" id="set-push"><div class="tog-track"></div><div class="tog-thumb"></div></label>
+          </div>
+          <div>
+            <div style="font-size:10px;font-weight:600;color:var(--tx2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:7px;">Επίπεδο ειδοποίησης</div>
+            <div class="sev-grid">
+              <div class="sev-opt c-err checked" onclick="this.classList.toggle('checked')"><div class="sev-dot2" style="background:var(--rd)"></div><div class="sev-txt">Κρίσιμο</div><div class="sev-chk">✓</div></div>
+              <div class="sev-opt c-warn checked" onclick="this.classList.toggle('checked')"><div class="sev-dot2" style="background:var(--am)"></div><div class="sev-txt">Προειδοποίηση</div><div class="sev-chk">✓</div></div>
+              <div class="sev-opt c-info" onclick="this.classList.toggle('checked')"><div class="sev-dot2" style="background:var(--bl)"></div><div class="sev-txt">Χαμηλή παραγωγή</div><div class="sev-chk">✓</div></div>
+              <div class="sev-opt c-ok" onclick="this.classList.toggle('checked')"><div class="sev-dot2" style="background:var(--gr)"></div><div class="sev-txt">Επάνοδος ΟΚ</div><div class="sev-chk">✓</div></div>
+            </div>
+          </div>
+          <div class="thresh-box">
+            <div class="thresh-title">Κατώφλια</div>
+            <div class="thresh-row"><div class="thresh-lbl">Ειδοποίηση αν παραγωγή πέσει κάτω από</div><input class="thresh-inp" type="number" id="set-low" value="70"><div class="thresh-unit">%</div></div>
+            <div class="thresh-row"><div class="thresh-lbl">Ειδοποίηση αν χαθεί επικοινωνία για</div><input class="thresh-inp" type="number" id="set-off" value="15"><div class="thresh-unit">λεπτά</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn-sec" onclick="closeSet()">Άκυρο</button>
+      <button class="btn-pri" onclick="saveSet()">💾 Αποθήκευση</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"><span id="ti">✅</span><span id="tm">—</span></div>
+
 <script>
-const SITES=[
-  {id:1, name:'Κηφισιά Α',    loc:'Κηφισιά',       brand:'sungrow', kw:42.3, cap:50, status:'ok'},
-  {id:2, name:'Μαρούσι Β',    loc:'Μαρούσι',       brand:'huawei',  kw:0,    cap:35, status:'error', err:'Grid fault'},
-  {id:3, name:'Γλυφάδα Α',    loc:'Γλυφάδα',       brand:'goodwe',  kw:28.1, cap:30, status:'ok'},
-  {id:4, name:'Χαλάνδρι',     loc:'Χαλάνδρι',      brand:'sungrow', kw:61.0, cap:65, status:'ok'},
-  {id:5, name:'Αγ. Παρ.',     loc:'Αγ. Παρασκευή', brand:'huawei',  kw:18.4, cap:40, status:'warn', err:'Low output -30%'},
-  {id:6, name:'Βριλήσσια',    loc:'Βριλήσσια',     brand:'goodwe',  kw:33.5, cap:35, status:'ok'},
-  {id:7, name:'Νέα Ιωνία',    loc:'Νέα Ιωνία',     brand:'sungrow', kw:0,    cap:55, status:'error', err:'Inverter offline'},
-  {id:8, name:'Ηλιούπολη',    loc:'Ηλιούπολη',     brand:'huawei',  kw:47.2, cap:50, status:'ok'},
-  {id:9, name:'Περιστέρι',    loc:'Περιστέρι',     brand:'sungrow', kw:38.9, cap:45, status:'ok'},
-  {id:10,name:'Π. Φάληρο',    loc:'Π. Φάληρο',     brand:'goodwe',  kw:22.0, cap:25, status:'ok'},
-  {id:11,name:'Άλιμος Α',     loc:'Άλιμος',        brand:'sungrow', kw:55.1, cap:60, status:'ok'},
-  {id:12,name:'Νέα Σμύρνη',   loc:'Νέα Σμύρνη',   brand:'huawei',  kw:14.2, cap:30, status:'warn', err:'Χαμηλή απόδοση'},
-  {id:13,name:'Αργυρούπολη',  loc:'Αργυρούπολη',   brand:'fronius', kw:38.4, cap:40, status:'ok'},
-  {id:14,name:'Βύρωνας',      loc:'Βύρωνας',       brand:'fronius', kw:0,    cap:30, status:'error', err:'Communication lost'},
-  {id:15,name:'Καλλιθέα Α',   loc:'Καλλιθέα',      brand:'fronius', kw:21.6, cap:25, status:'ok'},
-  {id:16,name:'Δάφνη',        loc:'Δάφνη',         brand:'fronius', kw:17.8, cap:35, status:'warn', err:'Low irradiance'},
-  {id:17,name:'Ζωγράφου',     loc:'Ζωγράφου',      brand:'fronius', kw:44.1, cap:45, status:'ok'},
-];
-
+// ── DATA ──
+let SITES = [];
+let wl = JSON.parse(localStorage.getItem('sol_wl') || '{}');
 const bLbl={sungrow:'Sungrow',huawei:'Huawei',goodwe:'GoodWe',fronius:'Fronius'};
 const bCls={sungrow:'b-sg',huawei:'b-hw',goodwe:'b-gw',fronius:'b-fr'};
 const bAv={sungrow:'🔵',huawei:'🔴',goodwe:'🟢',fronius:'🟠'};
 const bColor={sungrow:'#1677ff',huawei:'#e0181f',goodwe:'#00a85a',fronius:'#e65c00'};
 
-// ── DATA GENERATOR ──
-function rng(seed,i){return 0.65+0.35*Math.abs(Math.sin(seed+i*1.9));}
+const INVERTERS={
+  1:[{name:'Inverter 1',model:'Sungrow SG50CX',serial:'SN-2021-4471',kw:14.2,cap:17,status:'ok',temp:42},
+     {name:'Inverter 2',model:'Sungrow SG50CX',serial:'SN-2021-4472',kw:15.8,cap:17,status:'ok',temp:44},
+     {name:'Inverter 3',model:'Sungrow SG17KTL',serial:'SN-2021-4473',kw:12.3,cap:17,status:'ok',temp:38}],
+};
 
-function genToday(site,variation=1){
-  const bell=[0.04,0.15,0.38,0.60,0.78,0.91,1,0.97,0.89,0.74,0.54,0.30,0.12,0.02];
-  const hrs=['6','7','8','9','10','11','12','13','14','15','16','17','18','19'];
-  const sd=site.id*7;
-  return{
-    labels:hrs,
-    values:bell.map((b,i)=>site.status==='error'?0:+(site.cap*b*rng(sd,i)*variation).toFixed(1))
-  };
-}
-function genWeek(site,variation=1){
-  const days=['Δευ','Τρι','Τετ','Πεμ','Παρ','Σαβ','Κυρ'];
-  const sd=site.id*11;
-  return{labels:days,values:days.map((_,i)=>+(site.cap*8*rng(sd,i+10)*variation).toFixed(1))};
-}
-function genMonth(site,variation=1){
-  const days=Array.from({length:30},(_,i)=>''+(i+1));
-  const sd=site.id*13;
-  return{labels:days,values:days.map((_,i)=>+(site.cap*7.5*rng(sd,i+20)*variation).toFixed(1))};
-}
-function genYear(site,variation=1){
-  const months=['Ιαν','Φεβ','Μαρ','Απρ','Μαϊ','Ιουν','Ιουλ','Αυγ','Σεπ','Οκτ','Νοε','Δεκ'];
-  const seas=[0.38,0.48,0.68,0.84,0.94,1,0.97,0.95,0.80,0.62,0.42,0.33];
-  const sd=site.id*17;
-  return{labels:months,values:months.map((_,i)=>Math.round(site.cap*200*seas[i]*rng(sd,i+30)*variation))};
-}
-function getData(site,period,variation=1){
-  if(period==='today')return genToday(site,variation);
-  if(period==='week')return genWeek(site,variation);
-  if(period==='month')return genMonth(site,variation);
-  return genYear(site,variation);
-}
-function getUnit(period){return period==='today'?'kW':'kWh';}
-
-// Yesterday has ~8% variation from today
-function getYesterdayVariation(siteId){return 0.85+0.3*Math.abs(Math.sin(siteId*3.7));}
-
-let wl=JSON.parse(localStorage.getItem('solaren_wl')||'{}');
-let cf='all',cs='',cSort='name',cBrand='',eid=null;
-let openCharts={};
-let chartInsts={};
-
-function gcfg(id){return wl[id]||{starred:false,email:true,push:true,sevCritical:true,sevWarn:true,sevLow:false,sevOk:false,threshLow:70,threshOff:15};}
-
-function render(){
-  let s=[...SITES];
-  if(cs){const q=cs.toLowerCase();s=s.filter(x=>x.name.toLowerCase().includes(q)||x.loc.toLowerCase().includes(q)||bLbl[x.brand].toLowerCase().includes(q));}
-  if(cf==='starred')     s=s.filter(x=>gcfg(x.id).starred);
-  else if(cf==='error')  s=s.filter(x=>x.status==='error');
-  else if(cf==='warn')   s=s.filter(x=>x.status==='warn');
-  else if(['sungrow','huawei','goodwe','fronius'].includes(cf)) s=s.filter(x=>x.brand===cf);
-  if(cSort==='kw')       s.sort((a,b)=>b.kw-a.kw);
-  else if(cSort==='status') s.sort((a,b)=>['error','warn','ok'].indexOf(a.status)-['error','warn','ok'].indexOf(b.status));
-  else if(cSort==='starred') s.sort((a,b)=>(gcfg(b.id).starred?1:0)-(gcfg(a.id).starred?1:0));
-  else s.sort((a,b)=>a.name.localeCompare(b.name,'el'));
-
-  document.getElementById('countLbl').textContent=s.length+' εγκαταστάσεις';
-  const g=document.getElementById('sitesGrid');
-  if(!s.length){
-    g.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Δεν βρέθηκαν αποτελέσματα</div></div>';
-    updateSum();return;
-  }
-
-  const problems=s.filter(x=>x.status==='error'||x.status==='warn');
-  const ok=s.filter(x=>x.status==='ok');
-  problems.sort((a,b)=>['error','warn'].indexOf(a.status)-['error','warn'].indexOf(b.status));
-
-  let html='';
-  if(problems.length){
-    html+=`<div class="sec-header error-header">
-      <span class="sec-header-dot err-dot"></span>
-      <span class="sec-header-title">Απαιτεί προσοχή</span>
-      <span class="sec-header-count err-count">${problems.length}</span>
-    </div>`;
-    html+=problems.map(x=>buildCard(x)).join('');
-  }
-  if(ok.length){
-    html+=`<div class="sec-header ok-header" style="margin-top:${problems.length?'12px':'0'}">
-      <span class="sec-header-dot ok-dot"></span>
-      <span class="sec-header-title">Κανονική λειτουργία</span>
-      <span class="sec-header-count ok-count">${ok.length}</span>
-    </div>`;
-    html+=ok.map(x=>buildCard(x)).join('');
-  }
-  g.innerHTML=html;
-  Object.keys(openCharts).forEach(id=>{
-    const sec=document.getElementById('cs-'+id);
-    if(sec){sec.classList.add('open');buildChart(parseInt(id),openCharts[id]);}
-  });
-  updateSum();
+function getInv(id){
+  if(INVERTERS[id]) return INVERTERS[id];
+  const s=SITES.find(x=>x.id===id);
+  if(!s) return [];
+  const n=s.status==='error'?2:s.status==='warn'?2:3;
+  const color=bColor[s.brand];
+  return Array.from({length:n},(_,i)=>({
+    name:`Inverter ${i+1}`,
+    model:`${bLbl[s.brand]} Inverter`,
+    serial:`${s.brand.toUpperCase().slice(0,2)}-${s.id}${i+1}`,
+    kw: s.status==='error'?0:s.status==='warn'&&i===0?0:+(s.kw/n).toFixed(1),
+    cap:+(s.cap/n).toFixed(1),
+    status:s.status==='error'?'error':s.status==='warn'&&i===0?'warn':'ok',
+    temp:s.status==='error'?0:38+i*3,
+    err:s.status==='error'?s.err||'Inverter offline':s.status==='warn'&&i===0?s.err||'Χαμηλή απόδοση':null,
+    offAt:s.status!=='ok'&&i===0?'14:23':null
+  }));
 }
 
-function buildCard(x){
-  const c=gcfg(x.id);
-  const pct=x.cap?Math.round(x.kw/x.cap*100):0;
-  const stC={ok:'',warn:'st-warn',error:'st-error'}[x.status];
-  const bc=x.status==='error'?'var(--rd)':x.status==='warn'?'var(--am)':'var(--bl)';
-  const pwC=x.status==='error'?'style="color:var(--rd)"':x.status==='warn'?'style="color:var(--am)"':'';
-  const spC={ok:'sp-ok',warn:'sp-warn',error:'sp-err'}[x.status];
-  const stL={ok:'Κανονική λειτουργία',warn:'Χαμηλή απόδοση',error:'Εκτός λειτουργίας'}[x.status];
-  const dotC={ok:'dot-ok',warn:'dot-warn',error:'dot-err'}[x.status];
-  const isOpen=!!openCharts[x.id];
-  const curPeriod=openCharts[x.id]||'today';
+function gcfg(id){return wl[id]||{starred:false,email:true,push:true,threshLow:70,threshOff:15};}
 
-  // Quick stats for toggle bar
-  const td=getData(x,'today');
-  const todayTot=td.values.reduce((a,b)=>a+b,0).toFixed(1);
-  const yVar=getYesterdayVariation(x.id);
-  const yd=getData(x,'today',yVar);
-  const yestTot=yd.values.reduce((a,b)=>a+b,0).toFixed(1);
-  const diffPct=yestTot>0?Math.round((todayTot-yestTot)/yestTot*100):0;
-  const diffSign=diffPct>0?'+':'';
-  const diffCls=diffPct>0?'cmp-up':diffPct<0?'cmp-dn':'cmp-eq';
-  const diffIcon=diffPct>0?'↑':diffPct<0?'↓':'=';
-
+// ── RENDER CARD ──
+function buildCard(s){
+  const cfg=gcfg(s.id);
+  const pct=s.cap?Math.round(s.kw/s.cap*100):0;
+  const stC=s.status==='error'?'st-error':s.status==='warn'?'st-warn':'st-ok';
+  const bc=s.status==='error'?'var(--rd)':s.status==='warn'?'var(--am)':'var(--bl)';
+  const pwC=s.status==='error'?`style="color:var(--rd)"`:s.status==='warn'?`style="color:var(--am)"`:'' ;
+  const spC=s.status==='error'?'sp-err':s.status==='warn'?'sp-warn':'sp-ok';
+  const stL=s.status==='error'?'Εκτός λειτουργίας':s.status==='warn'?'Χαμηλή απόδοση':'Κανονική λειτουργία';
+  const dotC=s.status==='error'?'dot-err':s.status==='warn'?'dot-warn':'dot-ok';
+  const invs=getInv(s.id);
+  const invErr=invs.filter(i=>i.status!=='ok').length;
   return `<div class="site-card ${stC}">
     <div class="card-top"><div class="card-row1">
-      <div><div class="site-name">${x.name}</div><div class="site-loc">📍 ${x.loc}</div></div>
+      <div><div class="site-name">${s.name}</div><div class="site-loc">📍 ${s.loc||s.name}</div></div>
       <div class="card-actions">
-        <button class="star-btn ${c.starred?'starred':''}" onclick="quickStar(${x.id},event)">${c.starred?'⭐':'☆'}</button>
-        <button class="set-btn" onclick="openSettings(${x.id},event)">⚙️</button>
+        <button class="star-btn ${cfg.starred?'starred':''}" onclick="quickStar(${s.id},event)">${cfg.starred?'⭐':'☆'}</button>
+        <button class="set-btn" onclick="openSet(${s.id},event)">⚙️</button>
       </div>
     </div></div>
-
     <div class="card-mid">
       <div class="power-row">
-        <div class="power-val" ${pwC}>${x.kw>0?x.kw.toFixed(1):'—'}</div>
+        <div class="power-val" ${pwC}>${s.kw>0?s.kw.toFixed(1):'—'}</div>
         <div class="power-unit">kW</div>
-        <div class="power-cap">${x.cap} kW peak · ${pct}%</div>
+        <div class="power-cap">${s.cap} kW peak · ${pct}%</div>
       </div>
       <div class="prog-wrap"><div class="prog-bar" style="width:${pct}%;background:${bc}"></div></div>
       <div class="status-row">
-        <div class="status-pill ${spC}"><span class="sdot ${dotC}"></span>${stL}</div>
-        <span class="brand-tag ${bCls[x.brand]}">${bLbl[x.brand]}</span>
+        <div class="sp ${spC}"><span class="sdot ${dotC}"></span>${stL}</div>
+        <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
       </div>
     </div>
-
-    <div class="card-click-hint" onclick="openInverterModal(${x.id})">
-      🔌 ${(INVERTERS[x.id]||[]).length || '—'} Inverters — κλικ για λεπτομέρειες
-      <span style="margin-left:auto;font-size:13px;">›</span>
+    <div class="card-inv" onclick="openInv(${s.id})">
+      <span>🔌 ${invs.length} Inverters${invErr>0?` · <span style="color:var(--rd)">${invErr} με πρόβλημα</span>`:''}</span>
+      <span>›</span>
     </div>
-
-    <div class="chart-toggle" onclick="toggleChart(${x.id})">
-      <div class="chart-toggle-left">
-        <span>📈</span> Γράφημα
-        <span class="chart-hint">σήμερα ${todayTot} kWh</span>
-        <span class="cmp-badge ${diffCls}">${diffIcon} ${diffSign}${diffPct}% vs χθες</span>
-      </div>
-      <span class="chart-arrow ${isOpen?'open':''}" id="arr-${x.id}">▼</span>
-    </div>
-
-    <div class="chart-section ${isOpen?'open':''}" id="cs-${x.id}">
-      <div class="chart-inner">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
-          <div class="chart-tabs">
-            <button class="ctab ${curPeriod==='today'?'active':''}" onclick="changePeriod(${x.id},'today',event)">Σήμερα</button>
-            <button class="ctab ${curPeriod==='week'?'active':''}" onclick="changePeriod(${x.id},'week',event)">Εβδομάδα</button>
-            <button class="ctab ${curPeriod==='month'?'active':''}" onclick="changePeriod(${x.id},'month',event)">Μήνας</button>
-            <button class="ctab ${curPeriod==='year'?'active':''}" onclick="changePeriod(${x.id},'year',event)">Έτος</button>
-          </div>
-          <div class="chart-legend">
-            <div class="leg-item"><div class="leg-line" style="background:${bColor[x.brand]}"></div>Σήμερα</div>
-            <div class="leg-item"><div class="leg-dashed" style="border-color:${bColor[x.brand]};opacity:.5"></div>Χθες</div>
-          </div>
-        </div>
-        <canvas class="mini" id="chart-${x.id}"></canvas>
-        <div class="chart-stats" id="stats-${x.id}"></div>
-      </div>
-    </div>
-
-    ${c.starred?`<div class="card-foot">
-      <span class="nt ${c.email?'nt-on':'nt-off'}">✉️ ${c.email?'Email on':'Email off'}</span>
-      <span class="nt ${c.push?'nt-on':'nt-off'}">📱 ${c.push?'Push on':'Push off'}</span>
+    ${cfg.starred?`<div class="card-foot">
+      <span class="nt ${cfg.email?'nt-on':'nt-off'}">✉️ ${cfg.email?'Email on':'off'}</span>
+      <span class="nt ${cfg.push?'nt-on':'nt-off'}">📱 ${cfg.push?'Push on':'off'}</span>
       <span class="nt nt-wl">⭐ Watchlist</span>
     </div>`:''}
   </div>`;
 }
 
-function buildChart(id, period){
-  const canvas=document.getElementById('chart-'+id);
-  if(!canvas)return;
-  const site=SITES.find(s=>s.id===id);
-  const color=bColor[site.brand];
-  const yVar=getYesterdayVariation(id);
-
-  const todayD=getData(site,period,1);
-  const yestD=getData(site,period,yVar);
-  const unit=getUnit(period);
-
-  // Compute comparison stats
-  const todaySum=todayD.values.reduce((a,b)=>a+b,0);
-  const yestSum=yestD.values.reduce((a,b)=>a+b,0);
-  const diffAbs=(todaySum-yestSum).toFixed(1);
-  const diffPct=yestSum>0?Math.round((todaySum-yestSum)/yestSum*100):0;
-  const diffSign=diffPct>=0?'+':'';
-  const diffCls=diffPct>0?'diff-up':'diff-dn';
-  const pct=site.cap?Math.round(site.kw/site.cap*100):0;
-  const monthD=getData(site,'month',1);
-  const monthSum=monthD.values.reduce((a,b)=>a+b,0).toFixed(0);
-
-  // Render stats
-  document.getElementById('stats-'+id).innerHTML=`
-    <div class="cstat">
-      <div class="cstat-l">Σήμερα</div>
-      <div class="cstat-v">${todaySum.toFixed(1)}<span class="cstat-u"> ${unit}</span></div>
-      <div class="cstat-diff ${diffCls}">${diffSign}${diffAbs} vs χθες</div>
-    </div>
-    <div class="cstat">
-      <div class="cstat-l">Χθες</div>
-      <div class="cstat-v">${yestSum.toFixed(1)}<span class="cstat-u"> ${unit}</span></div>
-      <div class="cstat-diff ${diffCls}">${diffSign}${diffPct}%</div>
-    </div>
-    <div class="cstat">
-      <div class="cstat-l">Μήνας</div>
-      <div class="cstat-v">${monthSum}<span class="cstat-u"> kWh</span></div>
-      <div class="cstat-diff" style="color:var(--tx3)">Ιούν. 2026</div>
-    </div>
-    <div class="cstat">
-      <div class="cstat-l">Απόδοση</div>
-      <div class="cstat-v">${pct}<span class="cstat-u"> %</span></div>
-      <div class="cstat-diff" style="color:var(--tx3)">peak cap</div>
-    </div>`;
-
-  const ctx=canvas.getContext('2d');
-  const grad=ctx.createLinearGradient(0,0,0,130);
-  grad.addColorStop(0,color+'2e');
-  grad.addColorStop(1,color+'04');
-
-  if(chartInsts[id]){chartInsts[id].destroy();}
-  chartInsts[id]=new Chart(ctx,{
-    type:'line',
-    data:{
-      labels:todayD.labels,
-      datasets:[
-        {
-          label:'Σήμερα',
-          data:todayD.values,
-          fill:true,
-          backgroundColor:grad,
-          borderColor:color,
-          borderWidth:2,
-          tension:0.4,
-          pointRadius:period==='month'||period==='year'?0:3,
-          pointBackgroundColor:color,
-          pointHoverRadius:5,
-          pointHoverBackgroundColor:color,
-          order:1
-        },
-        {
-          label:'Χθες',
-          data:yestD.values,
-          fill:false,
-          borderColor:color,
-          borderWidth:1.5,
-          borderDash:[5,4],
-          tension:0.4,
-          pointRadius:0,
-          pointHoverRadius:4,
-          pointHoverBackgroundColor:color,
-          backgroundColor:'transparent',
-          order:2
-        }
-      ]
-    },
-    options:{
-      responsive:true,
-      maintainAspectRatio:false,
-      interaction:{intersect:false,mode:'index'},
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          backgroundColor:'rgba(24,36,58,.92)',
-          borderColor:color,
-          borderWidth:1,
-          titleColor:'#e2eaf5',
-          bodyColor:'#9ab0cc',
-          padding:10,
-          cornerRadius:8,
-          callbacks:{
-            label:ctx=>{
-              const ds=ctx.dataset.label;
-              return ` ${ds}: ${ctx.raw} ${unit}`;
-            },
-            afterBody:(items)=>{
-              if(items.length===2){
-                const today=items[0].raw;
-                const yest=items[1].raw;
-                const d=yest>0?Math.round((today-yest)/yest*100):0;
-                const sign=d>=0?'+':'';
-                return [`─────────`,` Διαφορά: ${sign}${d}%`];
-              }
-              return[];
-            }
-          }
-        }
-      },
-      scales:{
-        x:{
-          grid:{color:'rgba(0,0,0,.04)',drawBorder:false},
-          ticks:{color:'#7b93b8',font:{size:10,family:'Inter'},maxTicksLimit:period==='month'?10:14}
-        },
-        y:{
-          grid:{color:'rgba(0,0,0,.04)',drawBorder:false},
-          ticks:{color:'#7b93b8',font:{size:10,family:'Inter'}},
-          beginAtZero:true
-        }
-      }
-    }
-  });
+function renderGrid(containerId, sites){
+  const g=document.getElementById(containerId);
+  if(!sites.length){g.innerHTML='<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Δεν βρέθηκαν αποτελέσματα</div></div>';return;}
+  const prob=sites.filter(s=>s.status!=='ok').sort((a,b)=>['error','warn'].indexOf(a.status)-['error','warn'].indexOf(b.status));
+  const ok=sites.filter(s=>s.status==='ok');
+  let html='';
+  if(prob.length) html+=`<div class="sec-hd"><span class="sec-dot err-dot"></span><span class="sec-title">Απαιτεί προσοχή</span><span class="sec-cnt err-cnt">${prob.length}</span></div>`+prob.map(buildCard).join('');
+  if(ok.length) html+=`<div class="sec-hd" style="margin-top:${prob.length?'12px':'0'}"><span class="sec-dot ok-dot"></span><span class="sec-title">Κανονική λειτουργία</span><span class="sec-cnt ok-cnt">${ok.length}</span></div>`+ok.map(buildCard).join('');
+  g.innerHTML=html;
 }
 
-function toggleChart(id){
-  const sec=document.getElementById('cs-'+id);
-  const arr=document.getElementById('arr-'+id);
-  if(sec.classList.contains('open')){
-    sec.classList.remove('open');
-    arr.classList.remove('open');
-    delete openCharts[id];
-    if(chartInsts[id]){chartInsts[id].destroy();delete chartInsts[id];}
-  } else {
-    sec.classList.add('open');
-    arr.classList.add('open');
-    openCharts[id]='today';
-    setTimeout(()=>buildChart(id,'today'),20);
-  }
-}
-
-function changePeriod(id,period,e){
-  e.stopPropagation();
-  openCharts[id]=period;
-  const sec=document.getElementById('cs-'+id);
-  sec.querySelectorAll('.ctab').forEach((t,i)=>{
-    t.classList.toggle('active',['today','week','month','year'][i]===period);
-  });
-  if(chartInsts[id]){chartInsts[id].destroy();delete chartInsts[id];}
-  buildChart(id,period);
-}
-
-function updateSum(){
-  const st=SITES.filter(s=>gcfg(s.id).starred);
-  const kw=st.reduce((a,s)=>a+s.kw,0);
-  const al=st.filter(s=>s.status==='error').length;
-  const pu=st.filter(s=>gcfg(s.id).push).length;
-  document.getElementById('sumCount').innerHTML=`${st.length} <span class="kpi-unit">εγκ/σεις</span>`;
-  document.getElementById('sumSub').innerHTML=st.length?'<span class="tr-up">από '+SITES.length+' συνολικά</span>':'<span class="tr-wa">Επίλεξε εγκαταστάσεις</span>';
-  document.getElementById('sumKw').innerHTML=`${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
-  document.getElementById('sumKwSub').innerHTML=st.length?'<span class="tr-up">live παραγωγή</span>':'<span class="tr-wa">—</span>';
-  document.getElementById('sumAlerts').textContent=al;
-  document.getElementById('sumAlerts').style.color=al>0?'var(--rd)':'var(--tx)';
-  document.getElementById('sumPush').textContent=pu;
+// ── WATCHLIST ──
+let wlFilter='all', wlSearchQ='';
+function renderWL(){
+  let s=[...SITES];
+  if(wlSearchQ){const q=wlSearchQ.toLowerCase();s=s.filter(x=>x.name.toLowerCase().includes(q)||bLbl[x.brand].toLowerCase().includes(q));}
+  if(wlFilter==='starred') s=s.filter(x=>gcfg(x.id).starred);
+  else if(wlFilter==='error') s=s.filter(x=>x.status==='error');
+  else if(wlFilter==='warn') s=s.filter(x=>x.status==='warn');
+  else if(['sungrow','huawei','goodwe','fronius'].includes(wlFilter)) s=s.filter(x=>x.brand===wlFilter);
+  document.getElementById('wl-total-cnt').textContent=s.length+' εγκαταστάσεις';
+  renderGrid('wl-grid',s);
+  const st=SITES.filter(x=>gcfg(x.id).starred);
+  document.getElementById('wl-cnt').innerHTML=`${st.length} <span class="kpi-unit">πλάνα</span>`;
+  document.getElementById('wl-sub').textContent=st.length?`από ${SITES.length} συνολικά`:'Δεν έχεις επιλέξει ακόμα';
+  const kw=st.reduce((a,x)=>a+x.kw,0);
+  document.getElementById('wl-kw').innerHTML=`${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
+  const al=st.filter(x=>x.status==='error').length;
+  document.getElementById('wl-alerts').textContent=al;
+  document.getElementById('wl-alerts').style.color=al>0?'var(--rd)':'var(--tx)';
+  document.getElementById('wl-push').textContent=st.filter(x=>gcfg(x.id).push).length;
   document.getElementById('wlCount').textContent=st.length;
-  // sidebar brand counts
+  // sidebar counts
   ['sungrow','huawei','goodwe','fronius'].forEach(b=>{
-    const el=document.getElementById('cnt-'+b);
+    const el=document.getElementById('cnt-'+b.slice(0,2));
     if(el) el.textContent=SITES.filter(s=>s.brand===b).length;
   });
+  const probs=SITES.filter(s=>s.status!=='ok').length;
+  document.getElementById('alertBadge').textContent=probs;
+  document.getElementById('alertNav').textContent=probs;
+}
+function setWLFilter(btn,f){document.querySelectorAll('#pg-watchlist .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');wlFilter=f;renderWL();}
+function wlSearch(q){wlSearchQ=q;renderWL();}
+function brandFilter(b){showPage('watchlist',null);wlFilter=b;document.querySelectorAll('#pg-watchlist .fbtn').forEach(x=>x.classList.remove('active'));renderWL();}
+
+// ── SITES PAGE ──
+let sitesFilter='all', sitesSearchQ='';
+function renderSites(){
+  let s=[...SITES];
+  if(sitesSearchQ){const q=sitesSearchQ.toLowerCase();s=s.filter(x=>x.name.toLowerCase().includes(q)||bLbl[x.brand].toLowerCase().includes(q));}
+  if(['sungrow','huawei','goodwe','fronius'].includes(sitesFilter)) s=s.filter(x=>x.brand===sitesFilter);
+  else if(sitesFilter==='error') s=s.filter(x=>x.status==='error');
+  else if(sitesFilter==='warn') s=s.filter(x=>x.status==='warn');
+  document.getElementById('sites-cnt').textContent=s.length+' εγκαταστάσεις';
+  renderGrid('sites-grid',s);
+}
+function setSitesFilter(btn,f){document.querySelectorAll('#pg-sites .fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');sitesFilter=f;renderSites();}
+function sitesSearch(q){sitesSearchQ=q;renderSites();}
+
+// ── DASHBOARD ──
+function renderDashboard(){
+  const total=SITES.length,ok=SITES.filter(s=>s.status==='ok').length;
+  const errs=SITES.filter(s=>s.status!=='ok').length;
+  const kw=SITES.reduce((a,s)=>a+s.kw,0);
+  document.getElementById('db-kw').innerHTML=`${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
+  document.getElementById('db-kw-sub').innerHTML=`<span class="tr-up">σε ${total} εγκαταστάσεις</span>`;
+  document.getElementById('db-ok').textContent=ok;
+  document.getElementById('db-err').textContent=errs;
+  document.getElementById('db-total').textContent=total;
+  const brands=['sungrow','huawei','goodwe','fronius'];
+  const maxKw=Math.max(...brands.map(b=>SITES.filter(s=>s.brand===b).reduce((a,s)=>a+s.kw,0)),1);
+  document.getElementById('db-brands').innerHTML=brands.map(b=>{
+    const bs=SITES.filter(s=>s.brand===b),bkw=bs.reduce((a,s)=>a+s.kw,0);
+    const pct=Math.round(bkw/maxKw*100);
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div style="width:75px;font-size:12px;color:var(--tx2);">${bLbl[b]} <span style="color:var(--tx3);font-size:10px;">(${bs.length})</span></div>
+      <div style="flex:1;height:5px;background:var(--bg2);border-radius:3px;"><div style="width:${pct}%;height:5px;border-radius:3px;background:${bColor[b]};"></div></div>
+      <div style="font-size:12px;font-weight:600;color:${bColor[b]};width:65px;text-align:right;">${bkw.toFixed(1)} kW</div>
+    </div>`;
+  }).join('');
+  const probs=SITES.filter(s=>s.status!=='ok');
+  document.getElementById('db-probs').innerHTML=probs.length?probs.map(s=>`
+    <div style="display:flex;align-items:center;gap:10px;padding:10px;background:${s.status==='error'?'var(--rd-l)':'var(--am-l)'};border-radius:8px;margin-bottom:6px;border-left:3px solid ${s.status==='error'?'var(--rd)':'var(--am)'};">
+      <div style="flex:1;"><div style="font-size:13px;font-weight:600;">${s.name}</div>
+      <div style="font-size:11px;color:var(--tx2);">${s.err||'Πρόβλημα εγκατάστασης'}</div></div>
+      <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
+    </div>`).join(''):'<div style="color:var(--gr);font-size:13px;">✅ Όλα ΟΚ!</div>';
 }
 
-function setFilter(btn,f){
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  cf=f;
-  render();
+// ── ANALYTICS ──
+function renderAnalytics(){
+  const kw=SITES.reduce((a,s)=>a+s.kw,0);
+  const month=SITES.reduce((a,s)=>a+(s.month_power||0),0);
+  document.getElementById('an-day').innerHTML=`${(kw*5).toFixed(0)} <span class="kpi-unit">kWh</span>`;
+  document.getElementById('an-month').innerHTML=`${month.toFixed(0)} <span class="kpi-unit">kWh</span>`;
+  document.getElementById('an-year').innerHTML=`${(month*12/1000).toFixed(1)} <span class="kpi-unit">MWh</span>`;
+  const sc=SITES.filter(s=>s.cap>0);
+  const avg=sc.length?Math.round(sc.reduce((a,s)=>a+s.kw/s.cap*100,0)/sc.length):0;
+  document.getElementById('an-avg').innerHTML=`${avg} <span class="kpi-unit">%</span>`;
+  const ranked=[...SITES].sort((a,b)=>b.kw-a.kw);
+  document.getElementById('an-rank').innerHTML=ranked.slice(0,10).map((s,i)=>{
+    const pct=s.cap?Math.round(s.kw/s.cap*100):0;
+    const c=s.status==='error'?'var(--rd)':s.status==='warn'?'var(--am)':'var(--bl)';
+    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr);">
+      <div style="width:20px;font-size:12px;color:var(--tx3);font-weight:600;">${i+1}</div>
+      <div style="flex:1;font-size:13px;font-weight:500;">${s.name}</div>
+      <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
+      <div style="font-size:13px;font-weight:700;color:${c};width:75px;text-align:right;">${s.kw.toFixed(1)} kW</div>
+      <div style="font-size:11px;color:var(--tx3);width:36px;text-align:right;">${pct}%</div>
+    </div>`;
+  }).join('');
+  document.getElementById('an-brands').innerHTML=['sungrow','huawei','goodwe','fronius'].map(b=>{
+    const bs=SITES.filter(s=>s.brand===b);
+    if(!bs.length) return '';
+    const bkw=bs.reduce((a,s)=>a+s.kw,0);
+    return `<div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg2);border-radius:8px;margin-bottom:6px;">
+      <span class="brand-tag ${bCls[b]}">${bLbl[b]}</span>
+      <div style="flex:1;font-size:12px;color:var(--tx2);">${bs.length} εγκαταστάσεις · ${bs.filter(s=>s.status==='ok').length} ΟΚ</div>
+      <div style="font-size:14px;font-weight:700;">${bkw.toFixed(1)} kW</div>
+    </div>`;
+  }).join('');
 }
 
-function filterByBrand(brand){
-  // Click the matching brand fbtn if visible, otherwise just set filter
-  cf=brand;
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.fbtn.f-brand').forEach(b=>{
-    if(b.textContent.trim().toLowerCase()===bLbl[brand].toLowerCase()) b.classList.add('active');
-  });
-  render();
+// ── ALERTS ──
+function renderAlerts(){
+  const probs=SITES.filter(s=>s.status!=='ok');
+  document.getElementById('alerts-content').innerHTML=probs.length?probs.map(s=>`
+    <div style="background:${s.status==='error'?'var(--rd-l)':'var(--am-l)'};border-radius:12px;padding:16px;margin-bottom:10px;border-left:4px solid ${s.status==='error'?'var(--rd)':'var(--am)'};">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+        <span style="font-size:10px;font-weight:700;color:${s.status==='error'?'var(--rd)':'var(--am)'};text-transform:uppercase;">${s.status==='error'?'🚨 Κρίσιμο':'⚠️ Προειδοποίηση'}</span>
+        <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
+      </div>
+      <div style="font-size:15px;font-weight:700;margin-bottom:4px;">${s.name}</div>
+      <div style="font-size:12px;color:var(--tx2);">${s.err||'Πρόβλημα εγκατάστασης'}</div>
+      <div style="margin-top:10px;">
+        <button class="btn-sec" style="font-size:11px;padding:4px 10px;" onclick="openInv(${s.id})">🔌 Inverters</button>
+      </div>
+    </div>`).join(''):'<div style="text-align:center;padding:48px;color:var(--tx3)"><div style="font-size:36px;margin-bottom:10px;">✅</div><div style="font-size:15px;font-weight:600;color:var(--tx2);">Δεν υπάρχουν ενεργά alerts</div></div>';
 }
 
+// ── PAGE NAVIGATION ──
+let curPage='watchlist';
+function showPage(page,btn){
+  curPage=page;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const target=document.getElementById('pg-'+page);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(page==='dashboard')  renderDashboard();
+  if(page==='sites')      renderSites();
+  if(page==='analytics')  renderAnalytics();
+  if(page==='alerts')     renderAlerts();
+  if(page==='account')    renderAccount();
+}
+
+// ── QUICK STAR ──
 function quickStar(id,e){
   e.stopPropagation();
   const c=gcfg(id);c.starred=!c.starred;wl[id]=c;
-  localStorage.setItem('solaren_wl',JSON.stringify(wl));
+  localStorage.setItem('sol_wl',JSON.stringify(wl));
   const s=SITES.find(x=>x.id===id);
-  showToast(c.starred?'⭐':'✕',c.starred?`"${s.name}" προστέθηκε στο Watchlist`:`"${s.name}" αφαιρέθηκε`);
-  render();
+  toast(c.starred?'⭐':'✕',c.starred?`"${s.name}" στο Watchlist`:`"${s.name}" αφαιρέθηκε`);
+  if(curPage==='watchlist') renderWL();
+  else if(curPage==='sites') renderSites();
 }
 
-function openSettings(id,e){
-  if(e)e.stopPropagation();eid=id;
+// ── INVERTER MODAL ──
+function openInv(id){
+  const s=SITES.find(x=>x.id===id);const invs=getInv(id);
+  document.getElementById('inv-av').textContent=bAv[s.brand];
+  document.getElementById('inv-title').textContent=s.name;
+  document.getElementById('inv-sub').textContent=`${bLbl[s.brand]} · ${invs.length} inverters`;
+  const tkw=invs.reduce((a,i)=>a+i.kw,0);
+  const ok=invs.filter(i=>i.status==='ok').length;
+  const err=invs.filter(i=>i.status!=='ok').length;
+  document.getElementById('inv-sum-kw').textContent=tkw.toFixed(1)+' kW';
+  document.getElementById('inv-sum-cnt').textContent=invs.length;
+  document.getElementById('inv-sum-ok').textContent=ok;
+  document.getElementById('inv-sum-err').textContent=err;
+  document.getElementById('inv-sum-err').style.color=err>0?'var(--rd)':'var(--gr)';
+  const color=bColor[s.brand];
+  const sorted=[...invs].sort((a,b)=>['error','warn','ok'].indexOf(a.status)-['error','warn','ok'].indexOf(b.status));
+  document.getElementById('inv-list').innerHTML=sorted.map((inv,i)=>{
+    const pct=inv.cap?Math.round(inv.kw/inv.cap*100):0;
+    const isErr=inv.status==='error',isWarn=inv.status==='warn';
+    const rCls=isErr?'inv-err':isWarn?'inv-warn':'inv-ok';
+    const nCls=isErr?'inn-err':isWarn?'inn-warn':'inn-ok';
+    const kwC=isErr?'var(--rd)':isWarn?'var(--am)':'var(--tx)';
+    const barC=isErr?'var(--rd)':isWarn?'var(--am)':color;
+    const tC=inv.temp>55?'var(--rd)':inv.temp>45?'var(--am)':'var(--tx2)';
+    const spLbl=isErr?'🔴 Σφάλμα':isWarn?'🟡 Προειδοποίηση':'🟢 Λειτουργεί';
+    const spC=isErr?'sp-err':isWarn?'sp-warn':'sp-ok';
+    let offTxt='';
+    if(inv.offAt&&(isErr||isWarn)){
+      const[hh,mm]=inv.offAt.split(':').map(Number);
+      const now=new Date();
+      const mins=Math.max(0,now.getHours()*60+now.getMinutes()-hh*60-mm);
+      const hrs=Math.floor(mins/60),rem=mins%60;
+      const dur=hrs>0?`${hrs}ω ${rem}λ`:`${mins}λ`;
+      offTxt=`<span class="inv-off" style="background:${isErr?'var(--rd-l)':'var(--am-l)'};color:${isErr?'var(--rd)':'var(--am)'}">🕐 Εκτός από ${inv.offAt} · ${dur}</span>`;
+    }
+    return `<div class="inv-row ${rCls}">
+      <div class="inv-num ${nCls}">${i+1}</div>
+      <div class="inv-info">
+        <div class="inv-name">${inv.name} <span style="font-size:10px;color:var(--tx3);font-weight:400;">· ${inv.model}</span></div>
+        <div class="inv-serial">${inv.serial}</div>
+        ${(isErr||isWarn)&&inv.err?`<div class="inv-err-msg" style="color:${isErr?'var(--rd)':'var(--am)'}">⚠ ${inv.err}${offTxt}</div>`:''}
+        <div class="inv-prog"><div class="inv-prog-bar" style="width:${pct}%;background:${barC}"></div></div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div class="inv-kw" style="color:${kwC}">${inv.kw>0?inv.kw.toFixed(1):'—'}<span style="font-size:11px;color:var(--tx3);font-weight:400;"> kW</span></div>
+        <div class="inv-kw-sub">${pct}% · ${inv.cap} kW</div>
+        ${inv.temp>0?`<div class="inv-temp" style="color:${tC}">🌡 ${inv.temp}°C</div>`:''}
+        <div style="margin-top:4px;"><span class="sp ${spC}" style="font-size:10px;">${spLbl}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('inv-modal').classList.add('open');
+}
+function closeInv(){document.getElementById('inv-modal').classList.remove('open');}
+document.getElementById('inv-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeInv();});
+
+// ── SETTINGS MODAL ──
+let setId=null;
+function openSet(id,e){
+  if(e)e.stopPropagation();setId=id;
   const s=SITES.find(x=>x.id===id);const c=gcfg(id);
-  document.getElementById('modalAv').textContent=bAv[s.brand];
-  document.getElementById('modalSiteName').textContent=s.name;
-  document.getElementById('modalSiteSub').textContent=bLbl[s.brand]+' · '+s.loc;
-  document.getElementById('tWatchlist').checked=c.starred;
-  document.getElementById('tEmail').checked=c.email;
-  document.getElementById('tPush').checked=c.push;
-  document.getElementById('threshLow').value=c.threshLow;
-  document.getElementById('threshOff').value=c.threshOff;
-  const opts=document.querySelectorAll('.sev-opt');
-  ['sevCritical','sevWarn','sevLow','sevOk'].forEach((k,i)=>opts[i].classList.toggle('checked',c[k]!==false));
-  updateModalState();
-  document.getElementById('settingsModal').classList.add('open');
+  document.getElementById('set-av').textContent=bAv[s.brand];
+  document.getElementById('set-title').textContent=s.name;
+  document.getElementById('set-wl').checked=c.starred;
+  document.getElementById('set-email').checked=c.email;
+  document.getElementById('set-push').checked=c.push;
+  document.getElementById('set-low').value=c.threshLow;
+  document.getElementById('set-off').value=c.threshOff;
+  setModalState();
+  document.getElementById('set-modal').classList.add('open');
 }
-function updateModalState(){
-  const on=document.getElementById('tWatchlist').checked;
-  document.getElementById('notifSection').style.opacity=on?'1':'0.4';
-  document.getElementById('notifSection').style.pointerEvents=on?'all':'none';
+function setModalState(){
+  const on=document.getElementById('set-wl').checked;
+  document.getElementById('set-notif').style.opacity=on?'1':'0.4';
+  document.getElementById('set-notif').style.pointerEvents=on?'all':'none';
 }
-function toggleSev(el){el.classList.toggle('checked');}
-function saveSettings(){
-  const c=gcfg(eid);
-  c.starred=document.getElementById('tWatchlist').checked;
-  c.email=document.getElementById('tEmail').checked;
-  c.push=document.getElementById('tPush').checked;
-  c.threshLow=parseInt(document.getElementById('threshLow').value)||70;
-  c.threshOff=parseInt(document.getElementById('threshOff').value)||15;
-  ['sevCritical','sevWarn','sevLow','sevOk'].forEach((k,i)=>c[k]=document.querySelectorAll('.sev-opt')[i].classList.contains('checked'));
-  wl[eid]=c;localStorage.setItem('solaren_wl',JSON.stringify(wl));
-  closeModal();render();showToast('✅','Ρυθμίσεις αποθηκεύτηκαν!');
+function saveSet(){
+  const c=gcfg(setId);
+  c.starred=document.getElementById('set-wl').checked;
+  c.email=document.getElementById('set-email').checked;
+  c.push=document.getElementById('set-push').checked;
+  c.threshLow=parseInt(document.getElementById('set-low').value)||70;
+  c.threshOff=parseInt(document.getElementById('set-off').value)||15;
+  wl[setId]=c;localStorage.setItem('sol_wl',JSON.stringify(wl));
+  closeSet();renderWL();toast('✅','Ρυθμίσεις αποθηκεύτηκαν!');
 }
-function closeModal(){document.getElementById('settingsModal').classList.remove('open');}
-document.getElementById('settingsModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
-function filterSites(q){cs=q;render();}
-function sortSites(v){cSort=v;render();}
-function clearAll(){if(!confirm('Να αφαιρεθούν όλες;'))return;Object.keys(wl).forEach(k=>{if(wl[k])wl[k].starred=false;});localStorage.setItem('solaren_wl',JSON.stringify(wl));render();showToast('🗑','Watchlist εκκαθαρίστηκε');}
-function saveWatchlist(){localStorage.setItem('solaren_wl',JSON.stringify(wl));showToast('✅','Αποθηκεύτηκε!');}
-function showToast(icon,msg){
-  document.getElementById('toastIcon').textContent=icon;
-  document.getElementById('toastMsg').textContent=msg;
+function closeSet(){document.getElementById('set-modal').classList.remove('open');}
+document.getElementById('set-modal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeSet();});
+
+// ── EMAIL ──
+function saveEmail(){
+  localStorage.setItem('sol_email',JSON.stringify({from:document.getElementById('em-from').value,pass:document.getElementById('em-pass').value,to:document.getElementById('em-to').value}));
+  toast('✅','Email ρυθμίσεις αποθηκεύτηκαν!');
+}
+
+// ── PUSH ──
+async function enablePush(){
+  if(!('Notification'in window)){toast('❌','Ο browser δεν υποστηρίζει notifications');return;}
+  const p=await Notification.requestPermission();
+  if(p==='granted'){document.getElementById('push-btn').textContent='✅ Ενεργό';new Notification('Solaren',{body:'Push notifications ενεργοποιήθηκαν!'});toast('🔔','Push ενεργό!');}
+  else toast('❌','Δεν δόθηκε άδεια');
+}
+
+// ── ACCOUNT ──
+function renderAccount(){
+  const u=JSON.parse(localStorage.getItem('sol_user')||'null');
+  document.getElementById('login-form').style.display=u?'none':'block';
+  document.getElementById('reg-form').style.display='none';
+  document.getElementById('profile-form').style.display=u?'block':'none';
+  if(u){document.getElementById('prof-av').textContent=u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);document.getElementById('prof-name').textContent=u.name;document.getElementById('prof-email').textContent=u.email;}
+}
+function showReg(){document.getElementById('login-form').style.display='none';document.getElementById('reg-form').style.display='block';}
+function showLogin(){document.getElementById('reg-form').style.display='none';document.getElementById('login-form').style.display='block';}
+function doLogin(){
+  const e=document.getElementById('log-email').value,p=document.getElementById('log-pass').value;
+  if(!e||!p){toast('❌','Συμπλήρωσε email και κωδικό');return;}
+  const u=JSON.parse(localStorage.getItem('sol_user')||'null');
+  if(u&&u.email===e&&u.pass===p){renderAccount();toast('✅',`Καλώς ήρθες, ${u.name}!`);}
+  else toast('❌','Λάθος email ή κωδικός');
+}
+function doReg(){
+  const n=document.getElementById('reg-name').value,e=document.getElementById('reg-email').value;
+  const p=document.getElementById('reg-pass').value,p2=document.getElementById('reg-pass2').value;
+  if(!n||!e||!p){toast('❌','Συμπλήρωσε όλα τα πεδία');return;}
+  if(p!==p2){toast('❌','Οι κωδικοί δεν ταιριάζουν');return;}
+  if(p.length<8){toast('❌','Κωδικός τουλάχιστον 8 χαρακτήρες');return;}
+  localStorage.setItem('sol_user',JSON.stringify({name:n,email:e,pass:p}));
+  renderAccount();toast('✅',`Καλώς ήρθες, ${n}!`);
+}
+function doLogout(){localStorage.removeItem('sol_user');renderAccount();toast('👋','Αποσυνδέθηκες');}
+
+// ── TOAST ──
+function toast(icon,msg){
+  document.getElementById('ti').textContent=icon;document.getElementById('tm').textContent=msg;
   const t=document.getElementById('toast');t.classList.add('show');
   clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-// ── PAGE NAVIGATION ──
-const PAGES = ['watchlist','dashboard','sites','analytics','alerts','email','push','apikeys','account'];
-let currentPage = 'watchlist';
-
-function showPage(page) {
-  currentPage = page;
-  // Hide all pages
-  PAGES.forEach(p => {
-    const el = document.getElementById('page-' + p);
-    if (el) el.style.display = 'none';
-  });
-  // Show/hide watchlist main
-  const mains = document.querySelectorAll('main');
-  mains.forEach(m => {
-    if (!m.id) m.style.display = (page === 'watchlist') ? 'flex' : 'none';
-  });
-  // Show target page
-  const target = document.getElementById('page-' + page);
-  if (target) target.style.display = 'flex';
-  // Update nav active
-  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-  // Render page content
-  if (page === 'dashboard')  renderDashboard();
-  if (page === 'sites')      renderAllSites();
-  if (page === 'analytics')  renderAnalytics();
-  if (page === 'alerts')     renderAlerts();
-  if (page === 'account')    renderAccount();
-}
-
-// ── DASHBOARD PAGE ──
-function renderDashboard() {
-  const total = SITES.length;
-  const ok    = SITES.filter(s => s.status === 'ok').length;
-  const errs  = SITES.filter(s => s.status === 'error').length;
-  const warns = SITES.filter(s => s.status === 'warn').length;
-  const kw    = SITES.reduce((a,s) => a + s.kw, 0);
-
-  document.getElementById('dash-kw').innerHTML    = `${kw.toFixed(1)} <span class="kpi-unit">kW</span>`;
-  document.getElementById('dash-kwsub').innerHTML = `<span class="tr-up">σε ${total} εγκαταστάσεις</span>`;
-  document.getElementById('dash-ok').textContent  = ok;
-  document.getElementById('dash-oksub').innerHTML = `<span class="tr-up">κανονική λειτουργία</span>`;
-  document.getElementById('dash-err').textContent = errs + warns;
-  document.getElementById('dash-total').textContent = total;
-
-  // Brand breakdown
-  const brands = ['sungrow','huawei','goodwe','fronius'];
-  const bNames = {sungrow:'Sungrow',huawei:'Huawei',goodwe:'GoodWe',fronius:'Fronius'};
-  const bColors = {sungrow:'var(--bl)',huawei:'var(--rd)',goodwe:'var(--gr)',fronius:'var(--fr)'};
-  const maxKw = Math.max(...brands.map(b => SITES.filter(s=>s.brand===b).reduce((a,s)=>a+s.kw,0)), 1);
-  document.getElementById('dash-brands').innerHTML = brands.map(b => {
-    const bSites = SITES.filter(s => s.brand === b);
-    const bKw = bSites.reduce((a,s) => a+s.kw, 0);
-    const pct = Math.round(bKw/maxKw*100);
-    return `<div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-      <div style="width:80px;font-size:12px;color:var(--tx2);">${bNames[b]} <span style="color:var(--tx3);font-size:10px;">(${bSites.length})</span></div>
-      <div style="flex:1;height:6px;background:var(--bg2);border-radius:3px;">
-        <div style="width:${pct}%;height:6px;border-radius:3px;background:${bColors[b]};transition:width .8s;"></div>
-      </div>
-      <div style="font-size:12px;font-weight:600;color:${bColors[b]};width:70px;text-align:right;">${bKw.toFixed(1)} kW</div>
-    </div>`;
-  }).join('');
-
-  // Problems
-  const problems = SITES.filter(s => s.status !== 'ok');
-  document.getElementById('dash-alerts-list').innerHTML = problems.length ? problems.map(s => `
-    <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:${s.status==='error'?'var(--rd-l)':'var(--am-l)'};border-radius:8px;margin-bottom:6px;border-left:3px solid ${s.status==='error'?'var(--rd)':'var(--am)'};">
-      <div style="flex:1;">
-        <div style="font-size:13px;font-weight:600;color:var(--tx);">${s.name}</div>
-        <div style="font-size:11px;color:var(--tx2);">${s.err || (s.status==='error'?'Εκτός λειτουργίας':'Χαμηλή απόδοση')}</div>
-      </div>
-      <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
-    </div>`).join('') : '<div style="color:var(--gr);font-size:13px;">✅ Όλες οι εγκαταστάσεις λειτουργούν κανονικά!</div>';
-}
-
-// ── ALL SITES PAGE ──
-let allSitesFilter = 'all';
-let allSitesSearch = '';
-
-function renderAllSites() {
-  let sites = [...SITES];
-  if (allSitesSearch) {
-    const q = allSitesSearch.toLowerCase();
-    sites = sites.filter(s => s.name.toLowerCase().includes(q) || bLbl[s.brand].toLowerCase().includes(q));
-  }
-  if (['sungrow','huawei','goodwe','fronius'].includes(allSitesFilter)) {
-    sites = sites.filter(s => s.brand === allSitesFilter);
-  } else if (allSitesFilter === 'error') sites = sites.filter(s => s.status === 'error');
-  else if (allSitesFilter === 'warn')  sites = sites.filter(s => s.status === 'warn');
-
-  const problems = sites.filter(s => s.status !== 'ok');
-  const ok       = sites.filter(s => s.status === 'ok');
-  problems.sort((a,b) => ['error','warn'].indexOf(a.status)-['error','warn'].indexOf(b.status));
-
-  document.getElementById('allSitesCount').textContent = sites.length + ' εγκαταστάσεις';
-  let html = '';
-  if (problems.length) {
-    html += `<div class="sec-header"><span class="sec-header-dot err-dot"></span><span class="sec-header-title">Απαιτεί προσοχή</span><span class="sec-header-count err-count">${problems.length}</span></div>`;
-    html += problems.map(x => buildCard(x)).join('');
-  }
-  if (ok.length) {
-    html += `<div class="sec-header" style="margin-top:${problems.length?'12px':'0'}"><span class="sec-header-dot ok-dot"></span><span class="sec-header-title">Κανονική λειτουργία</span><span class="sec-header-count ok-count">${ok.length}</span></div>`;
-    html += ok.map(x => buildCard(x)).join('');
-  }
-  document.getElementById('allSitesGrid').innerHTML = html || '<div class="empty"><div class="empty-icon">🔍</div><div class="empty-title">Δεν βρέθηκαν αποτελέσματα</div></div>';
-}
-
-function filterAllSites(q) { allSitesSearch = q; renderAllSites(); }
-function filterAllSitesBrand(btn, f) {
-  document.querySelectorAll('#page-sites .fbtn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  allSitesFilter = f;
-  renderAllSites();
-}
-
-// ── ANALYTICS PAGE ──
-function renderAnalytics() {
-  const todayKwh = SITES.reduce((a,s) => a + (s.month_power || (s.kw * 5)), 0);
-  const monthKwh = SITES.reduce((a,s) => a + (s.month_power || 0), 0);
-  document.getElementById('an-today').innerHTML = `${(todayKwh/30).toFixed(0)} <span class="kpi-unit">kWh</span>`;
-  document.getElementById('an-month').innerHTML = `${monthKwh.toFixed(0)} <span class="kpi-unit">kWh</span>`;
-  document.getElementById('an-year').innerHTML  = `${(monthKwh*12/1000).toFixed(1)} <span class="kpi-unit">MWh</span>`;
-
-  const sitesWithCap = SITES.filter(s => s.cap > 0);
-  const avgPct = sitesWithCap.length ? Math.round(sitesWithCap.reduce((a,s) => a + s.kw/s.cap*100, 0) / sitesWithCap.length) : 0;
-  document.getElementById('an-avg').innerHTML = `${avgPct} <span class="kpi-unit">%</span>`;
-
-  // Ranking
-  const ranked = [...SITES].sort((a,b) => b.kw - a.kw);
-  document.getElementById('an-ranking').innerHTML = ranked.slice(0,10).map((s,i) => {
-    const pct = s.cap ? Math.round(s.kw/s.cap*100) : 0;
-    const color = s.status==='error'?'var(--rd)':s.status==='warn'?'var(--am)':'var(--bl)';
-    return `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bdr);">
-      <div style="width:22px;font-size:12px;color:var(--tx3);font-weight:600;">${i+1}</div>
-      <div style="flex:1;font-size:13px;font-weight:500;color:var(--tx);">${s.name}</div>
-      <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
-      <div style="font-size:13px;font-weight:700;color:${color};width:80px;text-align:right;">${s.kw.toFixed(1)} kW</div>
-      <div style="font-size:11px;color:var(--tx3);width:40px;text-align:right;">${pct}%</div>
-    </div>`;
-  }).join('');
-
-  // Brand analysis
-  const brands = ['sungrow','huawei','goodwe','fronius'];
-  const bNames = {sungrow:'Sungrow',huawei:'Huawei',goodwe:'GoodWe',fronius:'Fronius'};
-  document.getElementById('an-brands').innerHTML = brands.map(b => {
-    const bSites = SITES.filter(s => s.brand === b);
-    if (!bSites.length) return '';
-    const bKw = bSites.reduce((a,s)=>a+s.kw,0);
-    const bOk = bSites.filter(s=>s.status==='ok').length;
-    return `<div style="display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--bg2);border-radius:8px;margin-bottom:6px;">
-      <span class="brand-tag ${bCls[b]}">${bNames[b]}</span>
-      <div style="flex:1;font-size:12px;color:var(--tx2);">${bSites.length} εγκαταστάσεις · ${bOk} OK</div>
-      <div style="font-size:14px;font-weight:700;color:var(--tx);">${bKw.toFixed(1)} kW</div>
-    </div>`;
-  }).join('');
-}
-
-// ── ALERTS PAGE ──
-function renderAlerts() {
-  const problems = SITES.filter(s => s.status !== 'ok');
-  document.getElementById('alertNavCount').textContent = problems.length;
-  if (!problems.length) {
-    document.getElementById('alerts-list').innerHTML = `
-      <div style="text-align:center;padding:48px;color:var(--tx3);">
-        <div style="font-size:36px;margin-bottom:10px;">✅</div>
-        <div style="font-size:16px;font-weight:600;color:var(--tx2);">Δεν υπάρχουν ενεργά alerts</div>
-        <div style="font-size:13px;margin-top:4px;">Όλες οι εγκαταστάσεις λειτουργούν κανονικά</div>
-      </div>`;
-    return;
-  }
-  document.getElementById('alerts-list').innerHTML = problems.map(s => {
-    const isErr = s.status === 'error';
-    const color = isErr ? 'var(--rd)' : 'var(--am)';
-    const bg    = isErr ? 'var(--rd-l)' : 'var(--am-l)';
-    return `<div style="background:${bg};border-radius:12px;padding:16px 18px;margin-bottom:10px;border-left:4px solid ${color};">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-        <div style="font-size:10px;font-weight:700;color:${color};text-transform:uppercase;letter-spacing:.06em;">${isErr?'🚨 Κρίσιμο':'⚠️ Προειδοποίηση'}</div>
-        <span class="brand-tag ${bCls[s.brand]}">${bLbl[s.brand]}</span>
-      </div>
-      <div style="font-size:15px;font-weight:700;color:var(--tx);margin-bottom:4px;">${s.name}</div>
-      <div style="font-size:12px;color:var(--tx2);">${s.err || (isErr?'Εκτός λειτουργίας':'Χαμηλή απόδοση')}</div>
-      <div style="margin-top:10px;display:flex;gap:8px;">
-        <button class="btn-sec" style="font-size:11px;padding:4px 10px;" onclick="openInverterModal(${s.id})">🔌 Inverters</button>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ── EMAIL SETTINGS ──
-function saveEmailSettings() {
-  const cfg = {
-    from: document.getElementById('emailFrom').value,
-    pass: document.getElementById('emailPass').value,
-    to:   document.getElementById('emailTo').value,
-  };
-  localStorage.setItem('solaren_email', JSON.stringify(cfg));
-  showToast('✅', 'Email ρυθμίσεις αποθηκεύτηκαν!');
-}
-
-// ── PUSH ──
-async function enablePush() {
-  if (!('Notification' in window)) { showToast('❌', 'Ο browser δεν υποστηρίζει notifications'); return; }
-  const perm = await Notification.requestPermission();
-  if (perm === 'granted') {
-    document.getElementById('pushEnableBtn').textContent = '✅ Ενεργό';
-    document.getElementById('pushEnableBtn').disabled = true;
-    new Notification('Solaren', { body: 'Push notifications ενεργοποιήθηκαν!' });
-    showToast('🔔', 'Push notifications ενεργά!');
-  } else {
-    showToast('❌', 'Δεν δόθηκε άδεια');
-  }
-}
-
-// ── ACCOUNT ──
-function renderAccount() {
-  const user = JSON.parse(localStorage.getItem('solaren_user') || 'null');
-  document.getElementById('loginForm').style.display    = user ? 'none' : 'block';
-  document.getElementById('registerForm').style.display = 'none';
-  document.getElementById('profileForm').style.display  = user ? 'block' : 'none';
-  if (user) {
-    const initials = user.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-    document.getElementById('profileAvatar').textContent = initials;
-    document.getElementById('profileName').textContent   = user.name;
-    document.getElementById('profileEmail').textContent  = user.email;
-  }
-}
-function showRegister() {
-  document.getElementById('loginForm').style.display    = 'none';
-  document.getElementById('registerForm').style.display = 'block';
-}
-function showLogin() {
-  document.getElementById('registerForm').style.display = 'none';
-  document.getElementById('loginForm').style.display    = 'block';
-}
-function doLogin() {
-  const email = document.getElementById('loginEmail').value;
-  const pass  = document.getElementById('loginPass').value;
-  if (!email || !pass) { showToast('❌', 'Συμπλήρωσε email και κωδικό'); return; }
-  const saved = JSON.parse(localStorage.getItem('solaren_user') || 'null');
-  if (saved && saved.email === email && saved.pass === pass) {
-    renderAccount();
-    showToast('✅', `Καλώς ήρθες, ${saved.name}!`);
-  } else {
-    showToast('❌', 'Λάθος email ή κωδικός');
-  }
-}
-function doRegister() {
-  const name  = document.getElementById('regName').value;
-  const email = document.getElementById('regEmail').value;
-  const pass  = document.getElementById('regPass').value;
-  const pass2 = document.getElementById('regPass2').value;
-  if (!name || !email || !pass) { showToast('❌', 'Συμπλήρωσε όλα τα πεδία'); return; }
-  if (pass !== pass2) { showToast('❌', 'Οι κωδικοί δεν ταιριάζουν'); return; }
-  if (pass.length < 8) { showToast('❌', 'Ο κωδικός πρέπει να έχει τουλάχιστον 8 χαρακτήρες'); return; }
-  localStorage.setItem('solaren_user', JSON.stringify({name, email, pass}));
-  renderAccount();
-  showToast('✅', `Ο λογαριασμός δημιουργήθηκε! Καλώς ήρθες, ${name}!`);
-}
-function doLogout() {
-  localStorage.removeItem('solaren_user');
-  renderAccount();
-  showToast('👋', 'Αποσυνδέθηκες');
-}
-
-// Init account header name
-const _u = JSON.parse(localStorage.getItem('solaren_user') || 'null');
-if (_u) {
-  const initials = _u.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
-  const uEl = document.querySelector('.user-av');
-  if (uEl) uEl.textContent = initials;
-  const unEl = document.querySelector('.user-name');
-  if (unEl) unEl.textContent = _u.name;
-}
-let lastRealData = null; // Κρατάει τα τελευταία γνωστά δεδομένα
-
-async function loadRealData() {
-  try {
-    const r = await fetch('/api/all-sites');
-    const data = await r.json();
-    if (data.ok && data.sites && data.sites.length > 0) {
-      // Αποθήκευσε στο localStorage για επόμενη φόρτωση
-      localStorage.setItem('solaren_last_sites', JSON.stringify(data.sites));
-      lastRealData = data.sites;
-      updateSitesFromAPI(data.sites);
-      showToast('✅', `${data.sites.length} εγκαταστάσεις ενημερώθηκαν`);
+// ── LOAD DATA FROM API ──
+async function loadData(){
+  try{
+    const r=await fetch('/api/all-sites');
+    const data=await r.json();
+    if(data.ok&&data.sites&&data.sites.length>0){
+      SITES.length=0;
+      data.sites.forEach((s,i)=>{
+        SITES.push({id:i+1,name:s.name,loc:s.name,brand:s.brand,kw:s.kw||0,
+          cap:s.cap||30,status:s.status||'ok',err:s.err||null,
+          month_power:s.month_power||0,total_power:s.total_power||0});
+      });
+      localStorage.setItem('sol_cache',JSON.stringify(SITES));
+      toast('✅',`${SITES.length} εγκαταστάσεις φορτώθηκαν`);
     } else {
-      // API απέτυχε — χρησιμοποίησε τελευταία γνωστά δεδομένα
-      const saved = localStorage.getItem('solaren_last_sites');
-      if (saved) {
-        const sites = JSON.parse(saved);
-        updateSitesFromAPI(sites);
-        showToast('⚠️', 'Offline — εμφάνιση τελευταίων δεδομένων');
-      } else {
-        render(); // demo δεδομένα μόνο αν δεν έχουμε τίποτα
-      }
+      const c=localStorage.getItem('sol_cache');
+      if(c){SITES.length=0;JSON.parse(c).forEach(s=>SITES.push(s));toast('📵','Cached δεδομένα');}
     }
-  } catch(e) {
-    // Σφάλμα δικτύου — χρησιμοποίησε cached
-    const saved = localStorage.getItem('solaren_last_sites');
-    if (saved) {
-      const sites = JSON.parse(saved);
-      updateSitesFromAPI(sites);
-      showToast('📵', 'Offline — cached δεδομένα');
-    } else {
-      render();
-    }
+  }catch(e){
+    const c=localStorage.getItem('sol_cache');
+    if(c){SITES.length=0;JSON.parse(c).forEach(s=>SITES.push(s));}
   }
+  renderWL();
   // Ανανέωση κάθε 5 λεπτά
-  setTimeout(loadRealData, 5 * 60 * 1000);
+  setTimeout(loadData,5*60*1000);
 }
 
-function updateSitesFromAPI(apiSites) {
-  SITES.length = 0;
-  apiSites.forEach((s, idx) => {
-    SITES.push({
-      id:     idx + 1,
-      name:   s.name,
-      loc:    s.name,
-      brand:  s.brand,
-      kw:     s.kw || 0,
-      cap:    s.cap || 30,
-      status: s.status || 'ok',
-      err:    s.err || null,
-      month_power: s.month_power || 0,
-      total_power: s.total_power || 0,
-    });
-  });
-  render();
-  // Ανανέωσε και την τρέχουσα σελίδα αν είναι ανοιχτή
-  if (currentPage === 'sites')     renderAllSites();
-  if (currentPage === 'dashboard') renderDashboard();
-  if (currentPage === 'analytics') renderAnalytics();
-  if (currentPage === 'alerts')    renderAlerts();
-  // Ενημέρωσε alerts count
-  const problems = SITES.filter(s => s.status !== 'ok');
-  const alertEl = document.getElementById('alertNavCount');
-  if (alertEl) alertEl.textContent = problems.length;
-}
-
-// Φόρτωσε αμέσως cached δεδομένα αν υπάρχουν (χωρίς να περιμένει API)
-const cachedSites = localStorage.getItem('solaren_last_sites');
-if (cachedSites) {
-  try {
-    updateSitesFromAPI(JSON.parse(cachedSites));
-  } catch(e) {
-    render();
-  }
-} else {
-  render();
-}
-
-// Μετά φόρτωσε φρέσκα από API
-loadRealData();
+// Init
+const cached=localStorage.getItem('sol_cache');
+if(cached){try{JSON.parse(cached).forEach(s=>SITES.push(s));}catch(e){}}
+renderWL();
+loadData();
 </script>
 </body>
 </html>
