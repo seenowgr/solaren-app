@@ -160,9 +160,19 @@ def fetch_huawei_from_api():
                         # activePower = live kW (τρέχουσα ισχύς)
                         # day_power   = kWh σήμερα
                         # real_health_state: 1=ok, 2=warn, 3=fault
-                        active_power = kpi.get("activePower") or kpi.get("active_power") or 0
-                        day_power    = kpi.get("day_power") or 0
-                        health       = int(kpi.get("real_health_state") or 1)
+                        # Huawei FusionSolar OpenAPI:
+                        # radiation_intensity = live active power (kW)
+                        # day_power = ημερήσια παραγωγή (kWh)
+                        active_power = (
+                            kpi.get("radiation_intensity") or   # live kW
+                            kpi.get("activePower") or
+                            kpi.get("active_power") or
+                            0
+                        )
+                        # Αν active_power μοιάζει με kWh (>cap*3) τότε είναι day_power
+                        # και δεν έχουμε live data — βάλε 0
+                        day_power = kpi.get("day_power") or 0
+                        health    = int(kpi.get("real_health_state") or 1)
                         power_map[code] = {
                             "kw":          round(float(active_power), 2),
                             "day_kwh":     round(float(day_power), 2),
@@ -184,6 +194,10 @@ def fetch_huawei_from_api():
             kw     = info.get("kw", 0.0)
             health = info.get("health", 1)
             day_kwh = info.get("day_kwh", 0.0)
+            # Sanity check: αν kw > cap*3 τότε είναι kWh όχι kW — βάλε 0
+            if cap > 0 and kw > cap * 3:
+                log.warning(f"Site {name}: kw={kw} > cap*3={cap*3}, likely kWh — setting 0")
+                kw = 0.0
             # real_health_state: 1=λειτουργεί, 2=προειδοποίηση, 3=σφάλμα/offline
             if health == 3:   status = "error"
             elif health == 2: status = "warn"
@@ -210,6 +224,15 @@ def fetch_huawei_from_api():
     except Exception as e:
         log.error(f"Huawei fetch error: {e}")
         return False
+
+@app.get("/api/huawei/clear-cache")
+def huawei_clear_cache():
+    global _huawei_cache, _huawei_cache_time, _huawei_token, _huawei_expires
+    _huawei_cache = []
+    _huawei_cache_time = None
+    _huawei_token = None
+    _huawei_expires = None
+    return {"ok": True, "message": "Cache και token καθαρίστηκαν — θα φορτωθούν νέα δεδομένα"}
 
 @app.get("/api/huawei/kpi-debug")
 def huawei_kpi_debug():
