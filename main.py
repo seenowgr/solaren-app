@@ -80,29 +80,171 @@ def sungrow_sites():
         return {"ok": False, "error": str(e), "sites": []}
 
 # ══════════════════════════════
-#  HUAWEI FUSIONSOLAR
+#  HUAWEI FUSIONSOLAR — με caching
 # ══════════════════════════════
 _huawei_token = None
 _huawei_expires = None
+_huawei_cache = []          # Αποθηκευμένα δεδομένα
+_huawei_cache_time = None   # Πότε τελευταία φορά ανανεώθηκαν
+HUAWEI_CACHE_MINUTES = 5    # Ανανέωση κάθε 5 λεπτά
 
 def get_huawei_token():
     global _huawei_token, _huawei_expires
+    # Αν έχουμε έγκυρο token επέστρεψέ το
     if _huawei_token and datetime.now() < (_huawei_expires or datetime.min):
         return _huawei_token
-    # Force fresh login
+    # Αλλιώς κάνε νέο login
     _huawei_token = None
-    r = requests.post(
-        "https://eu5.fusionsolar.huawei.com/thirdData/login",
-        json={"userName": os.getenv("HUAWEI_USER"), "systemCode": os.getenv("HUAWEI_PASS")},
-        timeout=10
-    )
-    data = r.json()
-    log.info(f"Huawei login response: {data.get('success')} / {data.get('failCode')}")
-    if data.get("success"):
-        _huawei_token = r.cookies.get("XSRF-TOKEN")
-        _huawei_expires = datetime.now() + timedelta(minutes=30)  # 30 λεπτά για ασφάλεια
-        log.info(f"Huawei token refreshed: {_huawei_token[:10] if _huawei_token else 'None'}...")
+    try:
+        r = requests.post(
+            "https://eu5.fusionsolar.huawei.com/thirdData/login",
+            json={"userName": os.getenv("HUAWEI_USER"),
+                  "systemCode": os.getenv("HUAWEI_PASS")},
+            timeout=15
+        )
+        data = r.json()
+        log.info(f"Huawei login: success={data.get('success')} failCode={data.get('failCode')}")
+        if data.get("success"):
+            _huawei_token = r.cookies.get("XSRF-TOKEN")
+            _huawei_expires = datetime.now() + timedelta(minutes=25)
+    except Exception as e:
+        log.error(f"Huawei login error: {e}")
     return _huawei_token
+
+def fetch_huawei_from_api():
+    """Καλεί το Huawei API και επιστρέφει εγκαταστάσεις"""
+    global _huawei_cache, _huawei_cache_time
+    try:
+        token = get_huawei_token()
+        if not token:
+            return False
+        headers = {"XSRF-TOKEN": token}
+
+        # Βήμα 1: Λίστα εγκαταστάσεων
+        r = requests.post(
+            "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
+            json={}, headers=headers, timeout=20
+        )
+        raw = r.json()
+        if not raw.get("success", True) and raw.get("failCode") == 407:
+            log.warning("Huawei rate limit hit — χρησιμοποιώ cache")
+            return False
+
+        stations = raw.get("data", [])
+        if not isinstance(stations, list) or not stations:
+            log.warning(f"Huawei empty stations: {raw}")
+            return False
+
+        # Βήμα 2: KPI παραγωγής
+        codes = [s.get("stationCode","") for s in stations if isinstance(s,dict) and s.get("stationCode")]
+        power_map = {}
+        for i in range(0, len(codes), 100):
+            batch = codes[i:i+100]
+            try:
+                rp = requests.post(
+                    "https://eu5.fusionsolar.huawei.com/thirdData/getStationRealKpi",
+                    json={"stationCodes": ",".join(batch)},
+                    headers=headers, timeout=20
+                )
+                kpi_raw = rp.json()
+                if kpi_raw.get("failCode") == 407:
+                    log.warning("Huawei KPI rate limit")
+                    break
+                kpi_data = kpi_raw.get("data", [])
+                if isinstance(kpi_data, list):
+                    for k in kpi_data:
+                        if not isinstance(k, dict): continue
+                        code = k.get("stationCode","")
+                        kpi  = k.get("dataItemMap", {})
+                        if not isinstance(kpi, dict): continue
+                        power_map[code] = {
+                            "kw":          round(float(kpi.get("day_power") or 0), 2),
+                            "health":      int(kpi.get("real_health_state") or 1),
+                            "month_power": round(float(kpi.get("month_power") or 0), 2),
+                            "total_power": round(float(kpi.get("total_power") or 0), 2),
+                        }
+            except Exception as e:
+                log.error(f"Huawei KPI batch error: {e}")
+
+        # Βήμα 3: Χτίσε λίστα εγκαταστάσεων
+        sites = []
+        for s in stations:
+            if not isinstance(s, dict): continue
+            code   = s.get("stationCode","")
+            name   = s.get("stationName", f"Huawei-{code}")
+            cap    = float(s.get("capacity") or 0)
+            info   = power_map.get(code, {})
+            kw     = info.get("kw", 0.0)
+            health = info.get("health", 1)
+            if health == 3:   status = "error"
+            elif health == 2: status = "warn"
+            else:             status = "ok"
+            sites.append({
+                "id":          code,
+                "name":        name,
+                "brand":       "huawei",
+                "kw":          kw,
+                "cap":         round(cap, 1),
+                "status":      status,
+                "err":         "Σφάλμα εγκατάστασης" if status == "error" else None,
+                "month_power": info.get("month_power", 0),
+                "total_power": info.get("total_power", 0),
+            })
+
+        # Αποθήκευσε στο cache
+        _huawei_cache = sites
+        _huawei_cache_time = datetime.now()
+        log.info(f"Huawei cache updated: {len(sites)} sites")
+        return True
+
+    except Exception as e:
+        log.error(f"Huawei fetch error: {e}")
+        return False
+
+@app.get("/api/huawei/kpi-debug")
+def huawei_kpi_debug():
+    success = fetch_huawei_from_api()
+    return {
+        "fetch_success": success,
+        "cache_size": len(_huawei_cache),
+        "cache_time": str(_huawei_cache_time),
+        "sample": _huawei_cache[:2] if _huawei_cache else []
+    }
+
+@app.get("/api/huawei/debug")
+def huawei_debug():
+    return {
+        "cache_size": len(_huawei_cache),
+        "cache_time": str(_huawei_cache_time),
+        "cache_age_minutes": round((datetime.now() - _huawei_cache_time).seconds / 60, 1) if _huawei_cache_time else None,
+        "sample": _huawei_cache[:2] if _huawei_cache else []
+    }
+
+@app.get("/api/huawei/sites")
+def huawei_sites():
+    global _huawei_cache, _huawei_cache_time
+    try:
+        # Έλεγξε αν το cache είναι φρέσκο (< 5 λεπτά)
+        cache_age = (datetime.now() - _huawei_cache_time).seconds / 60 if _huawei_cache_time else 999
+        if cache_age < HUAWEI_CACHE_MINUTES and _huawei_cache:
+            log.info(f"Huawei: επιστρέφω cache ({cache_age:.1f} λεπτά παλιό)")
+            return {"ok": True, "sites": _huawei_cache,
+                    "raw_count": len(_huawei_cache), "source": "cache"}
+        # Αλλιώς φόρτωσε φρέσκα
+        log.info("Huawei: φόρτωση από API...")
+        success = fetch_huawei_from_api()
+        if success:
+            return {"ok": True, "sites": _huawei_cache,
+                    "raw_count": len(_huawei_cache), "source": "api"}
+        elif _huawei_cache:
+            # Rate limit — επέστρεψε παλιό cache
+            return {"ok": True, "sites": _huawei_cache,
+                    "raw_count": len(_huawei_cache), "source": "old_cache"}
+        else:
+            return {"ok": False, "error": "Rate limited και δεν υπάρχει cache", "sites": []}
+    except Exception as e:
+        log.error(f"Huawei sites error: {e}")
+        return {"ok": False, "error": str(e), "sites": _huawei_cache}
 
 @app.get("/api/huawei/kpi-debug")
 def huawei_kpi_debug():
