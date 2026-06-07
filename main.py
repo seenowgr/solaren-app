@@ -157,9 +157,16 @@ def fetch_huawei_from_api():
                         code = k.get("stationCode","")
                         kpi  = k.get("dataItemMap", {})
                         if not isinstance(kpi, dict): continue
+                        # activePower = live kW (τρέχουσα ισχύς)
+                        # day_power   = kWh σήμερα
+                        # real_health_state: 1=ok, 2=warn, 3=fault
+                        active_power = kpi.get("activePower") or kpi.get("active_power") or 0
+                        day_power    = kpi.get("day_power") or 0
+                        health       = int(kpi.get("real_health_state") or 1)
                         power_map[code] = {
-                            "kw":          round(float(kpi.get("day_power") or 0), 2),
-                            "health":      int(kpi.get("real_health_state") or 1),
+                            "kw":          round(float(active_power), 2),
+                            "day_kwh":     round(float(day_power), 2),
+                            "health":      health,
                             "month_power": round(float(kpi.get("month_power") or 0), 2),
                             "total_power": round(float(kpi.get("total_power") or 0), 2),
                         }
@@ -176,6 +183,8 @@ def fetch_huawei_from_api():
             info   = power_map.get(code, {})
             kw     = info.get("kw", 0.0)
             health = info.get("health", 1)
+            day_kwh = info.get("day_kwh", 0.0)
+            # real_health_state: 1=λειτουργεί, 2=προειδοποίηση, 3=σφάλμα/offline
             if health == 3:   status = "error"
             elif health == 2: status = "warn"
             else:             status = "ok"
@@ -183,10 +192,11 @@ def fetch_huawei_from_api():
                 "id":          code,
                 "name":        name,
                 "brand":       "huawei",
-                "kw":          kw,
+                "kw":          kw,        # live kW τώρα
                 "cap":         round(cap, 1),
                 "status":      status,
-                "err":         "Σφάλμα εγκατάστασης" if status == "error" else None,
+                "err":         "Inverter offline" if status == "error" else ("Χαμηλή απόδοση" if status == "warn" else None),
+                "day_kwh":     day_kwh,   # παραγωγή σήμερα kWh
                 "month_power": info.get("month_power", 0),
                 "total_power": info.get("total_power", 0),
             })
