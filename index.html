@@ -888,41 +888,74 @@ function showToast(icon,msg){
 }
 
 // ── ΦΟΡΤΩΣΗ ΠΡΑΓΜΑΤΙΚΩΝ ΔΕΔΟΜΕΝΩΝ ΑΠΟ API ──
+let lastRealData = null; // Κρατάει τα τελευταία γνωστά δεδομένα
+
 async function loadRealData() {
-  showToast('🔄', 'Φόρτωση δεδομένων...');
   try {
     const r = await fetch('/api/all-sites');
     const data = await r.json();
     if (data.ok && data.sites && data.sites.length > 0) {
-      // Άδειασε τα demo δεδομένα και βάλε μόνο τα πραγματικά
-      SITES.length = 0;
-      data.sites.forEach((apiSite, idx) => {
-        SITES.push({
-          id:     idx + 1,
-          name:   apiSite.name,
-          loc:    apiSite.name,
-          brand:  apiSite.brand,
-          kw:     apiSite.kw || 0,
-          cap:    apiSite.cap || 30,
-          status: apiSite.status || 'ok',
-          err:    apiSite.err || null,
-        });
-      });
-      render();
-      showToast('✅', `${data.sites.length} εγκαταστάσεις φορτώθηκαν!`);
-      // Ανανέωση κάθε 5 λεπτά
-      setTimeout(loadRealData, 5 * 60 * 1000);
+      // Αποθήκευσε στο localStorage για επόμενη φόρτωση
+      localStorage.setItem('solaren_last_sites', JSON.stringify(data.sites));
+      lastRealData = data.sites;
+      updateSitesFromAPI(data.sites);
+      showToast('✅', `${data.sites.length} εγκαταστάσεις ενημερώθηκαν`);
     } else {
-      render();
-      showToast('⚠️', 'Demo δεδομένα — API δεν απάντησε');
+      // API απέτυχε — χρησιμοποίησε τελευταία γνωστά δεδομένα
+      const saved = localStorage.getItem('solaren_last_sites');
+      if (saved) {
+        const sites = JSON.parse(saved);
+        updateSitesFromAPI(sites);
+        showToast('⚠️', 'Offline — εμφάνιση τελευταίων δεδομένων');
+      } else {
+        render(); // demo δεδομένα μόνο αν δεν έχουμε τίποτα
+      }
     }
   } catch(e) {
-    console.error('API error:', e);
-    render();
-    showToast('⚠️', 'Σφάλμα σύνδεσης — demo δεδομένα');
+    // Σφάλμα δικτύου — χρησιμοποίησε cached
+    const saved = localStorage.getItem('solaren_last_sites');
+    if (saved) {
+      const sites = JSON.parse(saved);
+      updateSitesFromAPI(sites);
+      showToast('📵', 'Offline — cached δεδομένα');
+    } else {
+      render();
+    }
   }
+  // Ανανέωση κάθε 5 λεπτά
+  setTimeout(loadRealData, 5 * 60 * 1000);
 }
 
+function updateSitesFromAPI(apiSites) {
+  SITES.length = 0;
+  apiSites.forEach((s, idx) => {
+    SITES.push({
+      id:     idx + 1,
+      name:   s.name,
+      loc:    s.name,
+      brand:  s.brand,
+      kw:     s.kw || 0,
+      cap:    s.cap || 30,
+      status: s.status || 'ok',
+      err:    s.err || null,
+    });
+  });
+  render();
+}
+
+// Φόρτωσε αμέσως cached δεδομένα αν υπάρχουν (χωρίς να περιμένει API)
+const cachedSites = localStorage.getItem('solaren_last_sites');
+if (cachedSites) {
+  try {
+    updateSitesFromAPI(JSON.parse(cachedSites));
+  } catch(e) {
+    render();
+  }
+} else {
+  render();
+}
+
+// Μετά φόρτωσε φρέσκα από API
 loadRealData();
 </script>
 </body>
