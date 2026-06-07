@@ -99,6 +99,35 @@ def get_huawei_token():
         _huawei_expires = datetime.now() + timedelta(hours=1)
     return _huawei_token
 
+@app.get("/api/huawei/kpi-debug")
+def huawei_kpi_debug():
+    """Δείχνει την ακριβή απάντηση του KPI endpoint"""
+    try:
+        token = get_huawei_token()
+        headers = {"XSRF-TOKEN": token}
+
+        # Πάρε πρώτα τις εγκαταστάσεις
+        r = requests.post(
+            "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
+            json={}, headers=headers, timeout=15
+        )
+        stations = r.json().get("data", [])[:3]  # μόνο πρώτες 3
+        codes = [s.get("stationCode","") for s in stations]
+
+        # Τώρα δοκίμασε το KPI
+        rp = requests.post(
+            "https://eu5.fusionsolar.huawei.com/thirdData/getStationRealKpi",
+            json={"stationCodes": ",".join(codes)},
+            headers=headers, timeout=15
+        )
+        return {
+            "codes_sent": codes,
+            "kpi_response": rp.json(),
+            "status_code": rp.status_code
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
 @app.get("/api/huawei/debug")
 def huawei_debug():
     """Δείχνει την ακριβή απάντηση του Huawei API για debugging"""
