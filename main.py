@@ -1,4 +1,3 @@
-
 """
 Solaren — Cloud Backend
 FastAPI server που τρέχει στο Render.com
@@ -99,6 +98,26 @@ def get_huawei_token():
         _huawei_token = r.cookies.get("XSRF-TOKEN")
         _huawei_expires = datetime.now() + timedelta(hours=1)
     return _huawei_token
+
+@app.get("/api/huawei/debug")
+def huawei_debug():
+    """Δείχνει την ακριβή απάντηση του Huawei API για debugging"""
+    try:
+        token = get_huawei_token()
+        r = requests.post(
+            "https://eu5.fusionsolar.huawei.com/thirdData/getStationList",
+            json={}, headers={"XSRF-TOKEN": token}, timeout=15
+        )
+        data = r.json()
+        stations = data.get("data", [])
+        # Επιστρέφει τα πρώτα 2 για να δούμε τα πεδία
+        return {
+            "total": len(stations),
+            "sample": stations[:2] if stations else [],
+            "raw_keys": list(stations[0].keys()) if stations else []
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 @app.get("/api/huawei/sites")
 def huawei_sites():
